@@ -7,7 +7,7 @@
  *   2 = 2-way MC
  */
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 interface KCData {
   prompt: string; // e.g. "Choose the correct form of avoir for 'nous'"
@@ -33,14 +33,17 @@ export default function ConstructGame({
   const [selected, setSelected] = useState<string | null>(null);
 
   const option_count = scaffold_level === 0 ? 6 : scaffold_level === 1 ? 4 : 2;
-  // Always include the correct answer in the visible options
-  const all = kc_data.mc_options ?? [];
-  const visible = all.slice(0, option_count);
-  if (!visible.includes(kc_data.correct_answer)) {
-    visible[visible.length - 1] = kc_data.correct_answer;
-  }
-  // Shuffle
-  const shuffled = [...visible].sort(() => Math.random() - 0.5);
+
+  // Compute once per question — re-runs only when prompt or correct_answer changes
+  const shuffled = useMemo(() => {
+    const all = kc_data.mc_options ?? [];
+    const visible = all.slice(0, option_count);
+    if (!visible.includes(kc_data.correct_answer)) {
+      visible[visible.length - 1] = kc_data.correct_answer;
+    }
+    return [...visible].sort(() => Math.random() - 0.5);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kc_data.prompt, kc_data.correct_answer, option_count]);
 
   const handleSelect = (opt: string) => {
     if (feedback) return; // already submitted
