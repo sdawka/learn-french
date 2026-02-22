@@ -121,14 +121,23 @@ export default function GameOrchestrator({ subject, mood }: Props) {
       if (!currentItem || !sessionId || !planId) return;
 
       const kc = currentItem.kc_data as Record<string, unknown>;
-      const expected =
-        (kc.correct_answer as string) ??
-        (kc.translations as string[])?.[0] ??
-        (kc.blank_answer as string) ??
-        "";
 
+      // For translate: show English (translations[0]), expected answer is the French word.
+      // For all others: use correct_answer, or fall back through known fields.
+      const expected =
+        currentItem.game_type === "translate" && !kc.correct_answer
+          ? (kc.word as string) ?? ""
+          : (kc.correct_answer as string) ??
+            (kc.translations as string[])?.[0] ??
+            (kc.blank_answer as string) ??
+            "";
+
+      // Acceptable alternates: for translate game these would be other French forms,
+      // not the English translations array.
       const acceptable_answers =
-        (kc.translations as string[]) ?? (kc.acceptable_answers as string[]) ?? [];
+        currentItem.game_type === "translate" && !kc.correct_answer
+          ? []
+          : (kc.translations as string[]) ?? (kc.acceptable_answers as string[]) ?? [];
 
       try {
         const res = await fetch("/api/session/submit", {

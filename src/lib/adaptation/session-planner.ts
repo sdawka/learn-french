@@ -89,18 +89,48 @@ const MOOD_CONFIG: Record<Mood, { count: number; challenge_bias: number }> = {
 };
 
 /**
- * Select game type for a KC based on its KLI subtype and learner weights.
+ * Detect which game types are actually compatible with a KC's data shape.
+ *
+ * This prevents the planner from assigning e.g. "transform" to a KC that only
+ * has cloze_sentence/blank_answer fields and would render blank.
+ */
+function compatibleGameTypes(
+  kc_data: Record<string, unknown>,
+  kc_type: "vocabulary" | "grammar"
+): GameType[] {
+  if (kc_type === "grammar") {
+    // Cloze-shaped: has a sentence with a blank to fill
+    if (kc_data.cloze_sentence) return ["cloze"];
+    // MC-shaped: has a prompt + options + single correct answer
+    if (kc_data.prompt && kc_data.mc_options && kc_data.correct_answer) {
+      return ["construct", "spot_error", "naturalness"];
+    }
+    return ["construct"];
+  }
+
+  // Vocabulary
+  const games: GameType[] = [];
+  if (kc_data.word && kc_data.translations) games.push("translate", "definition");
+  if (kc_data.mc_options) games.push("idiomatic", "context_guess", "odd_one_out");
+  if (kc_data.cloze_sentence) games.push("cloze");
+  return games.length > 0 ? games : ["translate"];
+}
+
+/**
+ * Select game type for a KC based on its KLI subtype, data shape, and learner weights.
  */
 function selectGameType(
   kc_subtype: string,
   kc_type: "vocabulary" | "grammar",
+  kc_data: Record<string, unknown>,
   style_weights: Record<string, number>
 ): GameType {
   const preferred = KLI_GAME_MAP[kc_subtype] ?? [];
-  const domain = kc_type === "vocabulary" ? VOCAB_GAMES : GRAMMAR_GAMES;
-  // Filter to domain-appropriate games
-  const candidates = preferred.filter((g) => domain.includes(g));
-  const pool = candidates.length > 0 ? candidates : domain;
+  const compatible = compatibleGameTypes(kc_data, kc_type);
+
+  // Intersect KLI preference with what the KC data can actually support
+  const candidates = preferred.filter((g) => compatible.includes(g));
+  const pool = candidates.length > 0 ? candidates : compatible;
 
   // Weight by learner style preference
   const weights = pool.map((g) => style_weights[g] ?? 1.0);
@@ -163,6 +193,7 @@ export function planSessionSync(
     const game_type = selectGameType(
       subtype,
       item.kc_type,
+      item.kc_data as Record<string, unknown>,
       profile.style_weights as Record<string, number>
     );
 

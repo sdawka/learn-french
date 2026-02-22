@@ -105,6 +105,10 @@ export function grade(input: GradeInput): GradeResult {
   }
 }
 
+function accentReminder(correct: string): string {
+  return `✓ Accepted — accent tip: ${correct}`;
+}
+
 function gradeTranslate(input: GradeInput): GradeResult {
   const given = normalize(input.answer);
   const expected = normalize(input.expected);
@@ -114,16 +118,15 @@ function gradeTranslate(input: GradeInput): GradeResult {
     return { is_correct: true };
   }
 
-  // Diacritic error (e.g., "etudiant" instead of "étudiant")
-  if (hasDiacriticError(input.answer, input.expected)) {
-    return {
-      is_correct: false,
-      error_type: "orthographic",
-      feedback: `Almost! Remember the accent: "${input.expected}"`,
-    };
+  // Accept missing/wrong accents — correct with a soft reminder
+  const givenFlat = normalize(input.answer, false);
+  const expectedFlat = normalize(input.expected, false);
+  const altFlats = (input.acceptable_answers ?? []).map((s) => normalize(s, false));
+  if (givenFlat === expectedFlat || altFlats.includes(givenFlat)) {
+    return { is_correct: true, feedback: accentReminder(input.expected) };
   }
 
-  // Fuzzy match — near miss
+  // Fuzzy match — near miss (typo)
   if (fuzzyMatch(input.answer, input.expected)) {
     return {
       is_correct: false,
@@ -132,8 +135,6 @@ function gradeTranslate(input: GradeInput): GradeResult {
     };
   }
 
-  // Semantic error — given a synonym or related word
-  // (deeper detection would require a thesaurus; flag as semantic for now)
   return {
     is_correct: false,
     error_type: "semantic",
@@ -150,21 +151,20 @@ function gradeCloze(input: GradeInput): GradeResult {
     return { is_correct: true };
   }
 
-  // Check for morphological error (right root, wrong form)
+  // Accept missing/wrong accents — correct with a soft reminder
+  const givenFlat = normalize(input.answer, false);
+  const expectedFlat = normalize(input.expected, false);
+  if (givenFlat === expectedFlat) {
+    return { is_correct: true, feedback: accentReminder(input.expected) };
+  }
+
+  // Morphological error (right root, wrong ending)
   const expectedRoot = expected.slice(0, Math.max(3, expected.length - 3));
   if (given.startsWith(expectedRoot)) {
     return {
       is_correct: false,
       error_type: "morphological",
       feedback: `Check the form: the answer should be "${input.expected}"`,
-    };
-  }
-
-  if (hasDiacriticError(input.answer, input.expected)) {
-    return {
-      is_correct: false,
-      error_type: "orthographic",
-      feedback: `Mind the accent: "${input.expected}"`,
     };
   }
 
@@ -208,7 +208,6 @@ function gradeDefinition(input: GradeInput): GradeResult {
 }
 
 function gradeTransform(input: GradeInput): GradeResult {
-  // Transform requires exact morphological accuracy
   const given = normalize(input.answer);
   const expected = normalize(input.expected);
   const alternatives = (input.acceptable_answers ?? []).map((s) => normalize(s));
@@ -217,12 +216,11 @@ function gradeTransform(input: GradeInput): GradeResult {
     return { is_correct: true };
   }
 
-  if (hasDiacriticError(input.answer, input.expected)) {
-    return {
-      is_correct: false,
-      error_type: "orthographic",
-      feedback: `Check the accent: "${input.expected}"`,
-    };
+  // Accept missing accents
+  const givenFlat = normalize(input.answer, false);
+  const expectedFlat = normalize(input.expected, false);
+  if (givenFlat === expectedFlat) {
+    return { is_correct: true, feedback: accentReminder(input.expected) };
   }
 
   // Check for morphological vs. syntactic error

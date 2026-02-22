@@ -46,7 +46,10 @@ export default function TranslateGame({
 
   const isMC = scaffold_level >= 2;
   const showHint = scaffold_level >= 1 && !isMC;
-  const firstLetter = kc_data.translations[0]?.[0] ?? "";
+  // Hint shows first letter of the French answer (word), not the English prompt
+  const firstLetter = kc_data.word?.[0] ?? "";
+  // Display the English meaning; word is the French answer they need to produce
+  const englishPrompt = kc_data.translations[0] ?? kc_data.word;
 
   const handleSubmit = () => {
     if (typed.trim()) on_submit(typed.trim());
@@ -54,16 +57,16 @@ export default function TranslateGame({
 
   return (
     <div className="w-full space-y-8">
-      {/* Prompt */}
+      {/* Prompt — show ENGLISH, ask for FRENCH */}
       <div className="text-center space-y-2">
         <p className="text-xs text-gray-500 uppercase tracking-widest">Translate to French</p>
-        <h1 className="text-4xl font-bold text-white">{kc_data.word}</h1>
+        <h1 className="text-4xl font-bold text-white">{englishPrompt}</h1>
         {kc_data.definition && (
           <p className="text-sm text-gray-400 italic max-w-xs mx-auto">{kc_data.definition}</p>
         )}
       </div>
 
-      {/* Hint (scaffold 1) */}
+      {/* Hint (scaffold 1) — first letter of the French word */}
       {showHint && hints_used > 0 && (
         <p className="text-center text-sm text-amber-400">
           Starts with: <span className="font-mono font-bold">{firstLetter}__</span>
@@ -123,7 +126,9 @@ export default function TranslateGame({
               : "bg-red-900/40 text-red-400 border border-red-500/30"
           }`}
         >
-          {feedback.is_correct ? "Correct!" : feedback.message ?? "Not quite — try again"}
+          {feedback.is_correct
+            ? `Correct! "${kc_data.word}"`
+            : feedback.message ?? `The answer is "${kc_data.word}"`}
         </div>
       )}
 
