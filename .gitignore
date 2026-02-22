@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+french.db
+french.db-shm
+french.db-wal
+*.db-*
+.env
+.env.*

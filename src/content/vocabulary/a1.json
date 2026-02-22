@@ -1,0 +1,764 @@
+[
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "bonjour",
+      "translations": ["hello", "good morning"],
+      "definition": "Common greeting used during the day",
+      "examples": [
+        { "fr": "Bonjour, comment allez-vous ?", "en": "Hello, how are you?" },
+        { "fr": "Elle dit bonjour à ses collègues.", "en": "She says hello to her colleagues." }
+      ],
+      "mc_options": ["goodbye", "hello", "please", "thank you"],
+      "cloze_sentence": "— {{blank}}, madame !",
+      "blank_answer": "Bonjour",
+      "audio_url": null
+    },
+    "tags_json": ["greetings", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "merci",
+      "translations": ["thank you", "thanks"],
+      "definition": "Expression of gratitude",
+      "examples": [
+        { "fr": "Merci beaucoup pour votre aide.", "en": "Thank you very much for your help." },
+        { "fr": "— Voilà votre café. — Merci !", "en": "— Here's your coffee. — Thanks!" }
+      ],
+      "mc_options": ["please", "sorry", "thank you", "excuse me"],
+      "cloze_sentence": "— Voici votre commande. — {{blank}} !",
+      "blank_answer": "Merci"
+    },
+    "tags_json": ["greetings", "politeness", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "s'il vous plaît",
+      "translations": ["please", "if you please"],
+      "definition": "Polite request expression (formal)",
+      "examples": [
+        { "fr": "Un café, s'il vous plaît.", "en": "A coffee, please." },
+        { "fr": "Pouvez-vous répéter, s'il vous plaît ?", "en": "Can you repeat, please?" }
+      ],
+      "mc_options": ["thank you", "sorry", "please", "goodbye"],
+      "cloze_sentence": "Un verre d'eau, {{blank}} !",
+      "blank_answer": "s'il vous plaît"
+    },
+    "tags_json": ["greetings", "politeness", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "au revoir",
+      "translations": ["goodbye", "farewell"],
+      "definition": "Standard farewell expression",
+      "examples": [
+        { "fr": "Au revoir et bonne journée !", "en": "Goodbye and have a nice day!" },
+        { "fr": "Elle dit au revoir avant de partir.", "en": "She says goodbye before leaving." }
+      ],
+      "mc_options": ["hello", "goodbye", "good night", "see you soon"],
+      "cloze_sentence": "— À demain ! — {{blank}} !",
+      "blank_answer": "Au revoir"
+    },
+    "tags_json": ["greetings", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "oui",
+      "translations": ["yes"],
+      "definition": "Affirmative response",
+      "examples": [
+        { "fr": "Oui, je comprends.", "en": "Yes, I understand." },
+        { "fr": "— Tu viens ? — Oui, j'arrive !", "en": "— Are you coming? — Yes, I'm coming!" }
+      ],
+      "mc_options": ["no", "maybe", "yes", "never"],
+      "cloze_sentence": "— Tu parles français ? — {{blank}}, un peu.",
+      "blank_answer": "Oui"
+    },
+    "tags_json": ["basics", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "non",
+      "translations": ["no"],
+      "definition": "Negative response",
+      "examples": [
+        { "fr": "Non, je ne comprends pas.", "en": "No, I don't understand." },
+        { "fr": "— C'est ton sac ? — Non, ce n'est pas le mien.", "en": "— Is that your bag? — No, it's not mine." }
+      ],
+      "mc_options": ["yes", "no", "maybe", "always"],
+      "cloze_sentence": "— Tu as faim ? — {{blank}}, merci.",
+      "blank_answer": "Non"
+    },
+    "tags_json": ["basics", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le chat",
+      "translations": ["the cat"],
+      "definition": "Domestic feline animal (masculine noun)",
+      "examples": [
+        { "fr": "Le chat dort sur le canapé.", "en": "The cat sleeps on the sofa." },
+        { "fr": "J'ai un chat noir et blanc.", "en": "I have a black and white cat." }
+      ],
+      "mc_options": ["the dog", "the cat", "the bird", "the fish"],
+      "cloze_sentence": "Le {{blank}} boit du lait.",
+      "blank_answer": "chat"
+    },
+    "tags_json": ["animals", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le chien",
+      "translations": ["the dog"],
+      "definition": "Domestic canine animal (masculine noun)",
+      "examples": [
+        { "fr": "Le chien aboie dans la rue.", "en": "The dog barks in the street." },
+        { "fr": "Mon chien s'appelle Rex.", "en": "My dog's name is Rex." }
+      ],
+      "mc_options": ["the cat", "the dog", "the horse", "the rabbit"],
+      "cloze_sentence": "Le {{blank}} court dans le parc.",
+      "blank_answer": "chien"
+    },
+    "tags_json": ["animals", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "manger",
+      "translations": ["to eat"],
+      "definition": "To consume food",
+      "examples": [
+        { "fr": "J'aime manger des fruits.", "en": "I like to eat fruit." },
+        { "fr": "Nous mangeons à midi.", "en": "We eat at noon." }
+      ],
+      "mc_options": ["to drink", "to eat", "to sleep", "to run"],
+      "cloze_sentence": "Je veux {{blank}} une pizza.",
+      "blank_answer": "manger"
+    },
+    "tags_json": ["verbs", "food", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "boire",
+      "translations": ["to drink"],
+      "definition": "To consume liquids",
+      "examples": [
+        { "fr": "Je veux boire de l'eau.", "en": "I want to drink water." },
+        { "fr": "Il boit un café chaque matin.", "en": "He drinks a coffee every morning." }
+      ],
+      "mc_options": ["to eat", "to drink", "to cook", "to buy"],
+      "cloze_sentence": "Tu veux {{blank}} quelque chose ?",
+      "blank_answer": "boire"
+    },
+    "tags_json": ["verbs", "food", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "la maison",
+      "translations": ["the house", "the home"],
+      "definition": "A building where people live (feminine noun)",
+      "examples": [
+        { "fr": "Ma maison est grande.", "en": "My house is big." },
+        { "fr": "Il rentre à la maison après le travail.", "en": "He goes home after work." }
+      ],
+      "mc_options": ["the apartment", "the house", "the school", "the shop"],
+      "cloze_sentence": "Je suis à la {{blank}}.",
+      "blank_answer": "maison"
+    },
+    "tags_json": ["places", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "l'école",
+      "translations": ["the school"],
+      "definition": "An educational institution (feminine noun)",
+      "examples": [
+        { "fr": "Les enfants vont à l'école le matin.", "en": "The children go to school in the morning." },
+        { "fr": "Mon école est près de chez moi.", "en": "My school is near my home." }
+      ],
+      "mc_options": ["the hospital", "the school", "the park", "the library"],
+      "cloze_sentence": "Les enfants vont à l'{{blank}} chaque jour.",
+      "blank_answer": "école"
+    },
+    "tags_json": ["places", "education", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "grand(e)",
+      "translations": ["big", "large", "tall"],
+      "definition": "Of large size or height (adjective, agrees with noun gender)",
+      "examples": [
+        { "fr": "C'est un grand appartement.", "en": "It's a big apartment." },
+        { "fr": "Elle est grande pour son âge.", "en": "She is tall for her age." }
+      ],
+      "mc_options": ["small", "big", "old", "young"],
+      "cloze_sentence": "Il habite dans une {{blank}} maison.",
+      "blank_answer": "grande",
+      "acceptable_answers": ["grand", "grande"]
+    },
+    "tags_json": ["adjectives", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "petit(e)",
+      "translations": ["small", "little", "short"],
+      "definition": "Of small size (adjective, agrees with noun gender)",
+      "examples": [
+        { "fr": "J'ai un petit appartement.", "en": "I have a small apartment." },
+        { "fr": "Elle est petite mais courageuse.", "en": "She is small but brave." }
+      ],
+      "mc_options": ["big", "small", "new", "beautiful"],
+      "cloze_sentence": "Mon chat est très {{blank}}.",
+      "blank_answer": "petit",
+      "acceptable_answers": ["petit", "petite"]
+    },
+    "tags_json": ["adjectives", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "rouge",
+      "translations": ["red"],
+      "definition": "The colour red (adjective, invariable in form for masc/fem)",
+      "examples": [
+        { "fr": "Elle porte une robe rouge.", "en": "She's wearing a red dress." },
+        { "fr": "Les fraises sont rouges.", "en": "Strawberries are red." }
+      ],
+      "mc_options": ["blue", "green", "red", "yellow"],
+      "cloze_sentence": "Il achète une voiture {{blank}}.",
+      "blank_answer": "rouge"
+    },
+    "tags_json": ["colours", "adjectives", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "bleu(e)",
+      "translations": ["blue"],
+      "definition": "The colour blue",
+      "examples": [
+        { "fr": "Le ciel est bleu aujourd'hui.", "en": "The sky is blue today." },
+        { "fr": "Il a les yeux bleus.", "en": "He has blue eyes." }
+      ],
+      "mc_options": ["red", "blue", "green", "black"],
+      "cloze_sentence": "Le ciel est {{blank}}.",
+      "blank_answer": "bleu",
+      "acceptable_answers": ["bleu", "bleue"]
+    },
+    "tags_json": ["colours", "adjectives", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "un / une",
+      "translations": ["a", "an", "one"],
+      "definition": "Indefinite article — un (masculine), une (feminine)",
+      "examples": [
+        { "fr": "J'ai un livre.", "en": "I have a book." },
+        { "fr": "C'est une bonne idée.", "en": "That's a good idea." }
+      ],
+      "mc_options": ["the", "a/an", "some", "this"],
+      "cloze_sentence": "Je veux {{blank}} café.",
+      "blank_answer": "un"
+    },
+    "tags_json": ["grammar", "articles", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le / la / l'",
+      "translations": ["the"],
+      "definition": "Definite article — le (masc), la (fem), l' (before vowel/h)",
+      "examples": [
+        { "fr": "Le garçon mange une pomme.", "en": "The boy eats an apple." },
+        { "fr": "La fille lit un livre.", "en": "The girl reads a book." }
+      ],
+      "mc_options": ["a/an", "the", "some", "this"],
+      "cloze_sentence": "{{blank}} enfant joue dans le jardin.",
+      "blank_answer": "L'",
+      "acceptable_answers": ["L'", "l'", "Le", "le", "La", "la"]
+    },
+    "tags_json": ["grammar", "articles", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "parler",
+      "translations": ["to speak", "to talk"],
+      "definition": "Regular -er verb: to speak or talk",
+      "examples": [
+        { "fr": "Je parle français.", "en": "I speak French." },
+        { "fr": "Ils parlent trop vite.", "en": "They speak too fast." }
+      ],
+      "mc_options": ["to listen", "to speak", "to write", "to read"],
+      "cloze_sentence": "Est-ce que tu {{blank}} espagnol ?",
+      "blank_answer": "parles",
+      "acceptable_answers": ["parles", "parler"]
+    },
+    "tags_json": ["verbs", "communication", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "comprendre",
+      "translations": ["to understand"],
+      "definition": "Irregular verb: to understand",
+      "examples": [
+        { "fr": "Je ne comprends pas.", "en": "I don't understand." },
+        { "fr": "Tu comprends la question ?", "en": "Do you understand the question?" }
+      ],
+      "mc_options": ["to hear", "to understand", "to know", "to think"],
+      "cloze_sentence": "Je ne {{blank}} pas ce mot.",
+      "blank_answer": "comprends"
+    },
+    "tags_json": ["verbs", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "travailler",
+      "translations": ["to work"],
+      "definition": "Regular -er verb: to work",
+      "examples": [
+        { "fr": "Elle travaille dans un hôpital.", "en": "She works in a hospital." },
+        { "fr": "Je travaille du lundi au vendredi.", "en": "I work from Monday to Friday." }
+      ],
+      "mc_options": ["to rest", "to work", "to play", "to travel"],
+      "cloze_sentence": "Mon père {{blank}} dans une usine.",
+      "blank_answer": "travaille"
+    },
+    "tags_json": ["verbs", "work", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "habiter",
+      "translations": ["to live (somewhere)", "to reside"],
+      "definition": "Regular -er verb: to live at a place",
+      "examples": [
+        { "fr": "J'habite à Paris.", "en": "I live in Paris." },
+        { "fr": "Où est-ce que tu habites ?", "en": "Where do you live?" }
+      ],
+      "mc_options": ["to visit", "to live", "to stay", "to move"],
+      "cloze_sentence": "Elle {{blank}} à Lyon depuis dix ans.",
+      "blank_answer": "habite"
+    },
+    "tags_json": ["verbs", "daily life", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le pain",
+      "translations": ["bread"],
+      "definition": "Staple food made from flour (masculine noun)",
+      "examples": [
+        { "fr": "Je mange du pain le matin.", "en": "I eat bread in the morning." },
+        { "fr": "La boulangerie vend du bon pain.", "en": "The bakery sells good bread." }
+      ],
+      "mc_options": ["cheese", "bread", "butter", "milk"],
+      "cloze_sentence": "Elle achète du {{blank}} à la boulangerie.",
+      "blank_answer": "pain"
+    },
+    "tags_json": ["food", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "l'eau",
+      "translations": ["water"],
+      "definition": "Water (feminine noun, takes l' before vowel)",
+      "examples": [
+        { "fr": "Je bois de l'eau.", "en": "I drink water." },
+        { "fr": "L'eau est froide.", "en": "The water is cold." }
+      ],
+      "mc_options": ["milk", "wine", "water", "juice"],
+      "cloze_sentence": "Il boit de l'{{blank}} minérale.",
+      "blank_answer": "eau"
+    },
+    "tags_json": ["food", "drinks", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le livre",
+      "translations": ["the book"],
+      "definition": "A book (masculine noun)",
+      "examples": [
+        { "fr": "J'ai un livre de français.", "en": "I have a French book." },
+        { "fr": "Elle lit un livre intéressant.", "en": "She's reading an interesting book." }
+      ],
+      "mc_options": ["the pen", "the book", "the table", "the chair"],
+      "cloze_sentence": "Je lis un {{blank}} chaque semaine.",
+      "blank_answer": "livre"
+    },
+    "tags_json": ["objects", "education", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "aujourd'hui",
+      "translations": ["today"],
+      "definition": "On this current day",
+      "examples": [
+        { "fr": "Qu'est-ce que tu fais aujourd'hui ?", "en": "What are you doing today?" },
+        { "fr": "Aujourd'hui, il fait beau.", "en": "Today, the weather is nice." }
+      ],
+      "mc_options": ["yesterday", "today", "tomorrow", "now"],
+      "cloze_sentence": "— Quel jour est-on ? — {{blank}}.",
+      "blank_answer": "Aujourd'hui"
+    },
+    "tags_json": ["time", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "demain",
+      "translations": ["tomorrow"],
+      "definition": "The day after today",
+      "examples": [
+        { "fr": "À demain !", "en": "See you tomorrow!" },
+        { "fr": "Demain, je pars en vacances.", "en": "Tomorrow, I'm going on holiday." }
+      ],
+      "mc_options": ["today", "yesterday", "tomorrow", "soon"],
+      "cloze_sentence": "Je te rappelle {{blank}} matin.",
+      "blank_answer": "demain"
+    },
+    "tags_json": ["time", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "hier",
+      "translations": ["yesterday"],
+      "definition": "The day before today",
+      "examples": [
+        { "fr": "Hier, il a plu toute la journée.", "en": "Yesterday, it rained all day." },
+        { "fr": "J'ai vu Marie hier.", "en": "I saw Marie yesterday." }
+      ],
+      "mc_options": ["today", "yesterday", "tomorrow", "before"],
+      "cloze_sentence": "{{blank}}, j'ai mangé une excellente pizza.",
+      "blank_answer": "Hier"
+    },
+    "tags_json": ["time", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "aller",
+      "translations": ["to go"],
+      "definition": "Highly irregular verb: to go (also used in aller + infinitive for near future)",
+      "examples": [
+        { "fr": "Je vais au marché.", "en": "I'm going to the market." },
+        { "fr": "Nous allons manger ce soir.", "en": "We're going to eat tonight." }
+      ],
+      "mc_options": ["to come", "to go", "to arrive", "to leave"],
+      "cloze_sentence": "Elle {{blank}} à l'école en vélo.",
+      "blank_answer": "va"
+    },
+    "tags_json": ["verbs", "irregular", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "venir",
+      "translations": ["to come"],
+      "definition": "Irregular verb: to come",
+      "examples": [
+        { "fr": "Tu viens avec nous ?", "en": "Are you coming with us?" },
+        { "fr": "Elle vient de Paris.", "en": "She comes from Paris." }
+      ],
+      "mc_options": ["to go", "to come", "to arrive", "to return"],
+      "cloze_sentence": "Il {{blank}} nous rendre visite dimanche.",
+      "blank_answer": "vient"
+    },
+    "tags_json": ["verbs", "irregular", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "aimer",
+      "translations": ["to like", "to love"],
+      "definition": "Regular -er verb: to like or to love (context dependent)",
+      "examples": [
+        { "fr": "J'aime le chocolat.", "en": "I like chocolate." },
+        { "fr": "Il aime sa famille.", "en": "He loves his family." }
+      ],
+      "mc_options": ["to hate", "to like/love", "to prefer", "to want"],
+      "cloze_sentence": "Tu {{blank}} la musique classique ?",
+      "blank_answer": "aimes"
+    },
+    "tags_json": ["verbs", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "vouloir",
+      "translations": ["to want"],
+      "definition": "Irregular modal verb: to want",
+      "examples": [
+        { "fr": "Je veux un café, s'il vous plaît.", "en": "I want a coffee, please." },
+        { "fr": "Elle veut apprendre le piano.", "en": "She wants to learn the piano." }
+      ],
+      "mc_options": ["to need", "to want", "to be able to", "to have to"],
+      "cloze_sentence": "Nous {{blank}} partir en vacances.",
+      "blank_answer": "voulons"
+    },
+    "tags_json": ["verbs", "modal", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "pouvoir",
+      "translations": ["to be able to", "can"],
+      "definition": "Irregular modal verb: to be able to / can",
+      "examples": [
+        { "fr": "Je peux t'aider ?", "en": "Can I help you?" },
+        { "fr": "Elle ne peut pas venir ce soir.", "en": "She can't come tonight." }
+      ],
+      "mc_options": ["to want", "to can/be able to", "to have to", "to know how"],
+      "cloze_sentence": "Tu {{blank}} répéter, s'il te plaît ?",
+      "blank_answer": "peux"
+    },
+    "tags_json": ["verbs", "modal", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "faire",
+      "translations": ["to do", "to make"],
+      "definition": "Irregular high-frequency verb: to do / make",
+      "examples": [
+        { "fr": "Qu'est-ce que tu fais ce soir ?", "en": "What are you doing tonight?" },
+        { "fr": "Il fait froid aujourd'hui.", "en": "It's cold today." }
+      ],
+      "mc_options": ["to do/make", "to have", "to take", "to give"],
+      "cloze_sentence": "Nous {{blank}} du sport le matin.",
+      "blank_answer": "faisons"
+    },
+    "tags_json": ["verbs", "irregular", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "savoir",
+      "translations": ["to know (a fact)", "to know how to"],
+      "definition": "Irregular verb: to know something / know how to do something",
+      "examples": [
+        { "fr": "Je sais parler français.", "en": "I know how to speak French." },
+        { "fr": "Tu sais l'heure ?", "en": "Do you know the time?" }
+      ],
+      "mc_options": ["to know (a person)", "to know (a fact)", "to learn", "to understand"],
+      "cloze_sentence": "Elle {{blank}} jouer du piano.",
+      "blank_answer": "sait"
+    },
+    "tags_json": ["verbs", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A1",
+    "data_json": {
+      "word": "savoir vs connaître",
+      "translations": ["to know (fact/skill) vs to know (person/place)"],
+      "definition": "savoir = to know facts or how to do something; connaître = to be familiar with a person or place",
+      "examples": [
+        { "fr": "Je sais nager. / Je connais Marie.", "en": "I know how to swim. / I know Marie." },
+        { "fr": "Il sait que tu mens. / Elle connaît Paris.", "en": "He knows you're lying. / She knows Paris." }
+      ],
+      "mc_options": ["savoir", "connaître"],
+      "cloze_sentence": "Je {{blank}} beaucoup de gens dans cette ville.",
+      "blank_answer": "connais"
+    },
+    "tags_json": ["verbs", "concepts", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "lundi",
+      "translations": ["Monday"],
+      "definition": "The first day of the working week",
+      "examples": [
+        { "fr": "Je travaille du lundi au vendredi.", "en": "I work from Monday to Friday." },
+        { "fr": "Le cours commence lundi.", "en": "The class starts on Monday." }
+      ],
+      "mc_options": ["Tuesday", "Monday", "Wednesday", "Sunday"],
+      "cloze_sentence": "La réunion est {{blank}} matin.",
+      "blank_answer": "lundi"
+    },
+    "tags_json": ["time", "days", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le matin",
+      "translations": ["the morning"],
+      "definition": "The period from sunrise to midday",
+      "examples": [
+        { "fr": "Je me lève à sept heures du matin.", "en": "I get up at seven in the morning." },
+        { "fr": "Le matin, je bois un café.", "en": "In the morning, I drink a coffee." }
+      ],
+      "mc_options": ["the evening", "the morning", "the afternoon", "the night"],
+      "cloze_sentence": "Chaque {{blank}}, il fait une promenade.",
+      "blank_answer": "matin"
+    },
+    "tags_json": ["time", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "le soir",
+      "translations": ["the evening"],
+      "definition": "The period from late afternoon to night",
+      "examples": [
+        { "fr": "Le soir, nous regardons la télévision.", "en": "In the evening, we watch television." },
+        { "fr": "Bonne soirée !", "en": "Have a good evening!" }
+      ],
+      "mc_options": ["the morning", "the afternoon", "the evening", "the night"],
+      "cloze_sentence": "On mange ensemble ce {{blank}}.",
+      "blank_answer": "soir"
+    },
+    "tags_json": ["time", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "la famille",
+      "translations": ["the family"],
+      "definition": "A group of related people (feminine noun)",
+      "examples": [
+        { "fr": "J'ai une grande famille.", "en": "I have a large family." },
+        { "fr": "La famille est importante.", "en": "Family is important." }
+      ],
+      "mc_options": ["the friend", "the family", "the neighbour", "the colleague"],
+      "cloze_sentence": "Ma {{blank}} habite en province.",
+      "blank_answer": "famille"
+    },
+    "tags_json": ["people", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "l'ami / l'amie",
+      "translations": ["the friend (m/f)"],
+      "definition": "A friend — ami (masculine), amie (feminine)",
+      "examples": [
+        { "fr": "C'est mon meilleur ami.", "en": "He is my best friend." },
+        { "fr": "Elle est mon amie depuis dix ans.", "en": "She has been my friend for ten years." }
+      ],
+      "mc_options": ["the colleague", "the friend", "the neighbour", "the classmate"],
+      "cloze_sentence": "Mon {{blank}} s'appelle Thomas.",
+      "blank_answer": "ami"
+    },
+    "tags_json": ["people", "A1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A1",
+    "data_json": {
+      "word": "beau / belle",
+      "translations": ["beautiful", "handsome", "nice"],
+      "definition": "Beautiful or attractive — beau (masc), belle (fem); beau becomes bel before vowel",
+      "examples": [
+        { "fr": "C'est un beau tableau.", "en": "That's a beautiful painting." },
+        { "fr": "Quelle belle journée !", "en": "What a beautiful day!" }
+      ],
+      "mc_options": ["ugly", "beautiful", "old", "new"],
+      "cloze_sentence": "Il fait {{blank}} temps aujourd'hui.",
+      "blank_answer": "beau"
+    },
+    "tags_json": ["adjectives", "A1"]
+  }
+]

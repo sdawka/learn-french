@@ -1,0 +1,205 @@
+/**
+ * Session Planner — composes a Session Plan from the Learner Model.
+ *
+ * Targeting principle: ~80% predicted accuracy (ZPD sweet spot).
+ * Items are a mix of:
+ *   - Due review items (lower retrievability → more challenge)
+ *   - New items (scaffold at easiest level initially)
+ *   - Optional exploration items (higher R, harder game type)
+ *
+ * Game type selection is weighted by:
+ *   - KLI knowledge type (fact → translate/cloze; concept → definition/odd-one-out; etc.)
+ *   - Learner style_weights (engagement signal)
+ *   - Session mood
+ */
+
+import { getDueItems } from "../srs/scheduler.ts";
+import { getProfile, proficiencyToCEFR } from "../learner-model/profile.ts";
+import { run, queryOne } from "../db/index.ts";
+
+export type GameType =
+  | "translate"
+  | "cloze"
+  | "idiomatic"
+  | "definition"
+  | "odd_one_out"
+  | "context_guess"
+  | "construct"
+  | "spot_error"
+  | "transform"
+  | "dictogloss"
+  | "naturalness";
+
+export type Mood = "challenge" | "review" | "explore" | "quick" | "deep";
+export type Subject = "vocabulary" | "grammar" | "mixed";
+
+export interface PlanItem {
+  kc_id: number;
+  game_type: GameType;
+  scaffold_level: number; // 0 = hardest, 3 = easiest
+  expected_difficulty: number; // 0.0–1.0
+  predicted_accuracy: number; // 0.0–1.0
+}
+
+export interface SessionPlan {
+  id: number;
+  subject: Subject;
+  topic: string | null;
+  level: string;
+  style: string;
+  mood: Mood;
+  items: PlanItem[];
+  expected_accuracy: number;
+}
+
+// KLI type → preferred game types
+const KLI_GAME_MAP: Record<string, GameType[]> = {
+  fact: ["translate", "cloze"],
+  concept: ["definition", "odd_one_out"],
+  procedure: ["construct", "transform", "spot_error"],
+  principle: ["idiomatic", "context_guess", "naturalness"],
+};
+
+// Vocabulary subtype game types
+const VOCAB_GAMES: GameType[] = [
+  "translate",
+  "cloze",
+  "idiomatic",
+  "definition",
+  "odd_one_out",
+  "context_guess",
+];
+
+// Grammar subtype game types
+const GRAMMAR_GAMES: GameType[] = [
+  "construct",
+  "spot_error",
+  "transform",
+  "dictogloss",
+  "naturalness",
+];
+
+// Mood → item count and challenge level
+const MOOD_CONFIG: Record<Mood, { count: number; challenge_bias: number }> = {
+  quick: { count: 10, challenge_bias: 0 },
+  review: { count: 15, challenge_bias: -0.1 }, // slightly easier
+  challenge: { count: 15, challenge_bias: 0.15 }, // slightly harder
+  explore: { count: 12, challenge_bias: 0 },
+  deep: { count: 25, challenge_bias: 0 },
+};
+
+/**
+ * Select game type for a KC based on its KLI subtype and learner weights.
+ */
+function selectGameType(
+  kc_subtype: string,
+  kc_type: "vocabulary" | "grammar",
+  style_weights: Record<string, number>
+): GameType {
+  const preferred = KLI_GAME_MAP[kc_subtype] ?? [];
+  const domain = kc_type === "vocabulary" ? VOCAB_GAMES : GRAMMAR_GAMES;
+  // Filter to domain-appropriate games
+  const candidates = preferred.filter((g) => domain.includes(g));
+  const pool = candidates.length > 0 ? candidates : domain;
+
+  // Weight by learner style preference
+  const weights = pool.map((g) => style_weights[g] ?? 1.0);
+  const total = weights.reduce((a, b) => a + b, 0);
+  const rand = Math.random() * total;
+  let cumulative = 0;
+  for (let i = 0; i < pool.length; i++) {
+    cumulative += weights[i];
+    if (rand < cumulative) return pool[i];
+  }
+  return pool[pool.length - 1];
+}
+
+/**
+ * Compute initial scaffold level based on predicted accuracy.
+ * If predicted accuracy is very low, start at easier scaffold.
+ */
+function scaffoldForAccuracy(predicted_accuracy: number): number {
+  if (predicted_accuracy >= 0.8) return 0; // hardest — they know it
+  if (predicted_accuracy >= 0.6) return 1;
+  if (predicted_accuracy >= 0.4) return 2;
+  return 3; // easiest
+}
+
+/**
+ * A simpler, synchronous planner that uses preloaded KC data from the due items query.
+ * This is the primary planner — kept here as an alias for clarity.
+ */
+export function planSessionSync(
+  subject: Subject = "mixed",
+  mood: Mood = "review",
+  topic: string | null = null
+): SessionPlan {
+  const profile = getProfile();
+  const { count, challenge_bias } = MOOD_CONFIG[mood];
+
+  const level =
+    subject === "grammar"
+      ? proficiencyToCEFR(
+          Object.values(profile.grammar_proficiency).reduce<number>(
+            (a, b) => a + (b ?? 0),
+            0
+          ) /
+            Math.max(
+              1,
+              Object.keys(profile.grammar_proficiency).length || 1
+            )
+        )
+      : proficiencyToCEFR(profile.vocabulary_proficiency);
+
+  const dueItems = getDueItems(subject, count);
+  const items: PlanItem[] = [];
+  let accuracySum = 0;
+
+  for (const item of dueItems) {
+    const data = item.kc_data as { subtype?: string; type?: string };
+    const subtype = (data.subtype as string) ??
+      (item.kc_type === "vocabulary" ? "fact" : "procedure");
+
+    const game_type = selectGameType(
+      subtype,
+      item.kc_type,
+      profile.style_weights as Record<string, number>
+    );
+
+    const predicted_accuracy = Math.max(
+      0,
+      Math.min(1, item.retrievability + challenge_bias)
+    );
+
+    items.push({
+      kc_id: item.kc_id,
+      game_type,
+      scaffold_level: scaffoldForAccuracy(predicted_accuracy),
+      expected_difficulty: item.card.difficulty,
+      predicted_accuracy,
+    });
+
+    accuracySum += predicted_accuracy;
+  }
+
+  const expected_accuracy =
+    items.length > 0 ? accuracySum / items.length : 0.8;
+
+  const planResult = run(
+    `INSERT INTO session_plans
+      (subject, topic, level, style, mood, items_json, expected_accuracy)
+     VALUES (?,?,?,?,?,?,?)`,
+    [subject, topic, level, mood, mood, JSON.stringify(items), expected_accuracy]
+  );
+
+  return {
+    id: planResult.lastInsertRowid as number,
+    subject,
+    topic,
+    level,
+    style: mood,
+    mood,
+    items,
+    expected_accuracy,
+  };
+}

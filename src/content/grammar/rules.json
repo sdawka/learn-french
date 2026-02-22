@@ -1,0 +1,653 @@
+[
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "être in the present tense: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont",
+      "category": "present",
+      "mc_options": ["sommes", "êtes", "sont", "suis", "es", "est"],
+      "correct_answer": "sommes",
+      "prompt": "Choose the correct form of 'être' for 'nous'.",
+      "explanation": "'Nous' takes 'sommes'. The full conjugation of être is: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont.",
+      "examples": [
+        {
+          "fr": "Nous sommes fatigués.",
+          "en": "We are tired.",
+          "breakdown": ["nous → sommes", "fatigués agrees with nous (masculine plural)"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "être"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "être in the present tense: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont",
+      "category": "present",
+      "mc_options": ["suis", "est", "es", "sommes", "êtes", "sont"],
+      "correct_answer": "sont",
+      "prompt": "Choose the correct form of 'être' for 'ils'.",
+      "explanation": "'Ils' and 'elles' both take 'sont'. Remember: ils/elles → sont.",
+      "examples": [
+        {
+          "fr": "Ils sont médecins.",
+          "en": "They are doctors.",
+          "breakdown": ["ils → sont", "médecins is a noun used without article after être"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "être"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "avoir in the present tense: j'ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont",
+      "category": "present",
+      "mc_options": ["ai", "as", "a", "avons", "avez", "ont"],
+      "correct_answer": "avons",
+      "prompt": "Choose the correct form of 'avoir' for 'nous'.",
+      "explanation": "'Nous' takes 'avons'. The full conjugation of avoir is: j'ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont.",
+      "examples": [
+        {
+          "fr": "Nous avons un chien.",
+          "en": "We have a dog.",
+          "breakdown": ["nous → avons", "un chien is the direct object"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "avoir"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "avoir in the present tense: j'ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont",
+      "category": "present",
+      "mc_options": ["ai", "as", "a", "avons", "avez", "ont"],
+      "correct_answer": "ont",
+      "prompt": "Choose the correct form of 'avoir' for 'ils'.",
+      "explanation": "'Ils/elles' takes 'ont'. Do not confuse 'ont' (have) with 'on' (one/we) which takes 'a'.",
+      "examples": [
+        {
+          "fr": "Ils ont faim.",
+          "en": "They are hungry.",
+          "breakdown": ["ils → ont", "avoir faim = to be hungry (idiomatic)"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "avoir"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "Regular -er verbs drop -er and add: -e, -es, -e, -ons, -ez, -ent",
+      "category": "present",
+      "mc_options": ["parle", "parles", "parlons", "parlez", "parlent", "parler"],
+      "correct_answer": "parlons",
+      "prompt": "Choose the correct present-tense form of 'parler' for 'nous'.",
+      "explanation": "For -er verbs, remove -er then add -ons for nous. parler → parl- + ons = parlons.",
+      "examples": [
+        {
+          "fr": "Nous parlons français.",
+          "en": "We speak French.",
+          "breakdown": ["parler → stem parl-", "nous → + ons → parlons"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "-er verbs"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "Regular -er verbs drop -er and add: -e, -es, -e, -ons, -ez, -ent",
+      "category": "present",
+      "mc_options": ["mange", "manges", "mangeons", "mangez", "mangent", "manger"],
+      "correct_answer": "mangent",
+      "prompt": "Choose the correct present-tense form of 'manger' for 'ils'.",
+      "explanation": "For -er verbs, remove -er then add -ent for ils/elles. manger → mange- + nt = mangent. The -e is kept before -nt for pronunciation.",
+      "examples": [
+        {
+          "fr": "Ils mangent une pizza.",
+          "en": "They are eating a pizza.",
+          "breakdown": ["manger → stem mange-", "ils → + nt → mangent (keeps -e- for soft g)"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "-er verbs"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "faire (to do/make) is irregular: je fais, tu fais, il fait, nous faisons, vous faites, ils font",
+      "category": "present",
+      "mc_options": ["fais", "fait", "faisons", "faites", "font", "faire"],
+      "correct_answer": "faites",
+      "prompt": "Choose the correct form of 'faire' for 'vous'.",
+      "explanation": "'Vous faites' is irregular — not 'faisez'. This is one of only two -er verbs with an irregular vous form (the other is être → êtes).",
+      "examples": [
+        {
+          "fr": "Qu'est-ce que vous faites ?",
+          "en": "What are you doing?",
+          "breakdown": ["faire is irregular", "vous → faites (not faisez)"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "faire", "irregular"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "aller (to go) is irregular: je vais, tu vas, il va, nous allons, vous allez, ils vont",
+      "category": "present",
+      "mc_options": ["vais", "vas", "va", "allons", "allez", "vont"],
+      "correct_answer": "vont",
+      "prompt": "Choose the correct form of 'aller' for 'ils'.",
+      "explanation": "'Ils vont' — aller is highly irregular in the present tense. The stem changes completely: all- for nous/vous but v- for other forms.",
+      "examples": [
+        {
+          "fr": "Ils vont à l'école.",
+          "en": "They go to school.",
+          "breakdown": ["aller → ils → vont", "à + le = au, à + la = à la, à + l' = à l'"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "aller", "irregular"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "prendre is irregular: je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent",
+      "category": "present",
+      "mc_options": ["prend", "prends", "prenons", "prenez", "prennent", "prendons"],
+      "correct_answer": "prennent",
+      "prompt": "Choose the correct form of 'prendre' for 'ils'.",
+      "explanation": "'Ils prennent' — note the double -nn- in the ils/elles form. This pattern applies to compounds: apprendre, comprendre, surprendre.",
+      "examples": [
+        {
+          "fr": "Ils prennent le bus.",
+          "en": "They take the bus.",
+          "breakdown": ["prendre → ils → prennent (double n)", "same pattern: ils apprennent, ils comprennent"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "prendre", "irregular"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "vouloir is irregular: je veux, tu veux, il veut, nous voulons, vous voulez, ils veulent",
+      "category": "present",
+      "mc_options": ["veux", "veut", "voulons", "voulez", "veulent", "voulont"],
+      "correct_answer": "veux",
+      "prompt": "Choose the correct form of 'vouloir' for 'je'.",
+      "explanation": "'Je veux' — vouloir has a stem change: voul- for nous/vous, veuil- (written veu-) for other persons. Do not say 'je voudrais' for present tense fact; that is conditional (I would like).",
+      "examples": [
+        {
+          "fr": "Je veux un café.",
+          "en": "I want a coffee.",
+          "breakdown": ["vouloir → je → veux", "contrast: je voudrais (I would like) = polite conditional"]
+        }
+      ]
+    },
+    "tags_json": ["present", "A1", "vouloir", "irregular"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "Basic negation: place 'ne' before the verb and 'pas' after it. Ne becomes n' before a vowel.",
+      "category": "negation",
+      "mc_options": ["ne parle pas", "parle pas", "ne pas parle", "pas parle ne", "parle ne pas", "ne parle ne"],
+      "correct_answer": "ne parle pas",
+      "prompt": "Choose the correct negative form of 'parle' for 'il ne ___ français'.",
+      "explanation": "Negation wraps the verb: ne + verb + pas. 'Il ne parle pas français.' In spoken French, 'ne' is often dropped, but write it in formal contexts.",
+      "examples": [
+        {
+          "fr": "Il ne parle pas français.",
+          "en": "He doesn't speak French.",
+          "breakdown": ["ne ... pas wraps the conjugated verb", "spoken French: 'il parle pas' (informal)"]
+        }
+      ]
+    },
+    "tags_json": ["negation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "rule": "ne...jamais (never) negates frequency. Structure mirrors ne...pas: ne + verb + jamais.",
+      "category": "negation",
+      "mc_options": ["ne mange jamais", "mange jamais", "jamais mange", "ne jamais mange", "mange ne jamais", "ne pas jamais"],
+      "correct_answer": "ne mange jamais",
+      "prompt": "Choose the correct phrase for 'he never eats meat': 'il ___ de viande'.",
+      "explanation": "ne...jamais = never. Like ne...pas, jamais follows the verb. After negation, un/une/du/de la/des → de: il ne mange jamais de viande.",
+      "examples": [
+        {
+          "fr": "Il ne mange jamais de viande.",
+          "en": "He never eats meat.",
+          "breakdown": ["ne ... jamais wraps the verb", "du/de la/des → de after negation"]
+        }
+      ]
+    },
+    "tags_json": ["negation", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "rule": "ne...plus (no longer/no more) indicates something that used to be true but is not now.",
+      "category": "negation",
+      "mc_options": ["ne fume plus", "fume plus", "ne fume pas plus", "ne plus fume", "fume ne plus", "plus ne fume"],
+      "correct_answer": "ne fume plus",
+      "prompt": "Choose the correct phrase meaning 'he no longer smokes': 'il ___'.",
+      "explanation": "ne...plus wraps the conjugated verb just like ne...pas. It implies a change from a past state: he used to smoke, but doesn't anymore.",
+      "examples": [
+        {
+          "fr": "Il ne fume plus.",
+          "en": "He no longer smokes.",
+          "breakdown": ["ne ... plus = no longer", "implies contrast with a past state"]
+        }
+      ]
+    },
+    "tags_json": ["negation", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "Intonation question: raise pitch at the end of a declarative sentence to form a yes/no question.",
+      "category": "question_formation",
+      "mc_options": ["Tu parles français ?", "Parles-tu français ?", "Est-ce que tu parles français ?", "Tu français parles ?", "Parles français tu ?", "Français tu parles ?"],
+      "correct_answer": "Tu parles français ?",
+      "prompt": "Which sentence is a correct intonation question meaning 'Do you speak French?'",
+      "explanation": "Intonation questions keep SVO order and raise pitch. They are common in spoken French. All three — intonation, est-ce que, and inversion — are grammatically correct.",
+      "examples": [
+        {
+          "fr": "Tu parles français ?",
+          "en": "Do you speak French?",
+          "breakdown": ["Same word order as statement", "Question conveyed by rising intonation or '?'"]
+        }
+      ]
+    },
+    "tags_json": ["question_formation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "est-ce que + subject + verb forms a question without changing word order.",
+      "category": "question_formation",
+      "mc_options": ["Est-ce que tu viens ?", "Tu est-ce que viens ?", "Est-ce tu que viens ?", "Viens-tu est-ce que ?", "Que est-ce tu viens ?", "Est-ce viens que tu ?"],
+      "correct_answer": "Est-ce que tu viens ?",
+      "prompt": "Choose the grammatically correct 'est-ce que' question for 'Are you coming?'",
+      "explanation": "est-ce que + normal SVO word order. Est-ce que becomes est-ce qu' before a vowel: Est-ce qu'il vient ?",
+      "examples": [
+        {
+          "fr": "Est-ce que tu viens ?",
+          "en": "Are you coming?",
+          "breakdown": ["est-ce que + subject + verb", "before vowel: est-ce qu'il/elle..."]
+        }
+      ]
+    },
+    "tags_json": ["question_formation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Inversion questions: verb-subject hyphenated. If il/elle verb ends in vowel, insert -t- for euphony.",
+      "category": "question_formation",
+      "mc_options": ["Parle-t-il français ?", "Il parle français ?", "Parle-il français ?", "Est-ce qu'il parle français ?", "Parlet-il français ?", "Parle il français ?"],
+      "correct_answer": "Parle-t-il français ?",
+      "prompt": "Choose the correct inversion question: 'Does he speak French?'",
+      "explanation": "When the verb ends in -e and the subject is il/elle/on, insert -t- between verb and pronoun for euphony: parle → parle-t-il. Without -t- would be 'parle-il' which is hard to pronounce.",
+      "examples": [
+        {
+          "fr": "Parle-t-il français ?",
+          "en": "Does he speak French?",
+          "breakdown": ["verb-t-pronoun when verb ends in vowel", "parle + -t- + il = parle-t-il"]
+        }
+      ]
+    },
+    "tags_json": ["question_formation", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Passé composé with avoir: subject + avoir (present) + past participle. -er verbs → -é, -ir verbs → -i, -re verbs → -u.",
+      "category": "passe_compose",
+      "mc_options": ["j'ai mangé", "j'ai manger", "j'ai mange", "j'avais mangé", "je suis mangé", "j'ai mangée"],
+      "correct_answer": "j'ai mangé",
+      "prompt": "Choose the correct passé composé of 'manger' for 'je'.",
+      "explanation": "Passé composé = avoir/être (present) + past participle. For manger: auxiliaire avoir + past participle mangé (remove -er, add -é).",
+      "examples": [
+        {
+          "fr": "J'ai mangé une pomme.",
+          "en": "I ate an apple.",
+          "breakdown": ["avoir (present): j'ai", "past participle: manger → mangé", "no agreement with avoir (unless object precedes)"]
+        }
+      ]
+    },
+    "tags_json": ["passe_compose", "A2", "avoir"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Passé composé with être: 17 verbs (DR & MRS VAN DER TRAMP) + reflexives use être; past participle agrees with subject.",
+      "category": "passe_compose",
+      "mc_options": ["elle est allée", "elle a allé", "elle est allé", "elle est alla", "elle a été allée", "elle est aller"],
+      "correct_answer": "elle est allée",
+      "prompt": "Choose the correct passé composé of 'aller' for 'elle'.",
+      "explanation": "Aller uses être as auxiliary. The past participle (allé) must agree with the subject: elle → allée (add -e). If subject were il → allé, ils → allés, elles → allées.",
+      "examples": [
+        {
+          "fr": "Elle est allée au marché.",
+          "en": "She went to the market.",
+          "breakdown": ["aller → être auxiliary", "subject elle (feminine singular) → allée (+e)"]
+        }
+      ]
+    },
+    "tags_json": ["passe_compose", "A2", "être"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "rule": "With avoir, the past participle agrees with a preceding direct object, not the subject.",
+      "category": "passe_compose",
+      "mc_options": ["Les fleurs qu'il a achetées", "Les fleurs qu'il a acheté", "Les fleurs qu'il a achetés", "Les fleurs qu'il est acheté", "Les fleurs qu'il avait achetées", "Les fleurs qui a acheté"],
+      "correct_answer": "Les fleurs qu'il a achetées",
+      "prompt": "Choose the sentence with correct past participle agreement: '___ sont belles.'",
+      "explanation": "When a direct object precedes the verb with avoir, the past participle agrees with it. 'fleurs' is feminine plural, so achetées (add -es). This is called l'accord du participe passé.",
+      "examples": [
+        {
+          "fr": "Les fleurs qu'il a achetées sont belles.",
+          "en": "The flowers he bought are beautiful.",
+          "breakdown": ["que refers to 'les fleurs' (f. pl.)", "preceding direct object → past participle agrees: achetées"]
+        }
+      ]
+    },
+    "tags_json": ["passe_compose", "A2", "agreement"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Imparfait formation: take the nous present tense stem + endings: -ais, -ais, -ait, -ions, -iez, -aient.",
+      "category": "imparfait",
+      "mc_options": ["je parlais", "je parle", "je parlai", "j'ai parlé", "je parlait", "je parlerais"],
+      "correct_answer": "je parlais",
+      "prompt": "Choose the correct imparfait form of 'parler' for 'je'.",
+      "explanation": "Imparfait stem = nous present minus -ons: parlons → parl-. Add -ais for je: parlais. Être is the only exception: stem is ét- (from étions).",
+      "examples": [
+        {
+          "fr": "Quand j'étais enfant, je parlais espagnol.",
+          "en": "When I was a child, I spoke Spanish.",
+          "breakdown": ["nous parlons → stem parl-", "je → + ais → parlais"]
+        }
+      ]
+    },
+    "tags_json": ["imparfait", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "rule": "Imparfait expresses habitual past actions or background states; passé composé expresses completed events.",
+      "category": "imparfait",
+      "mc_options": ["Il lisait quand le téléphone a sonné.", "Il lisait quand le téléphone sonnait.", "Il a lu quand le téléphone a sonné.", "Il lisait quand le téléphone sonner.", "Il a lu quand le téléphone sonnait.", "Il lisait quand le téléphone est sonné."],
+      "correct_answer": "Il lisait quand le téléphone a sonné.",
+      "prompt": "Choose the sentence that correctly contrasts imparfait (background) and passé composé (event).",
+      "explanation": "Lisait (imparfait) = ongoing background action. A sonné (passé composé) = sudden completed event that interrupted it. The classic signal: imparfait for 'was doing', passé composé for 'did/happened'.",
+      "examples": [
+        {
+          "fr": "Il lisait quand le téléphone a sonné.",
+          "en": "He was reading when the phone rang.",
+          "breakdown": ["lisait = background ongoing state (imparfait)", "a sonné = punctual event that interrupted (passé composé)"]
+        }
+      ]
+    },
+    "tags_json": ["imparfait", "B1", "passe_compose"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "A1",
+    "data_json": {
+      "rule": "French nouns are either masculine or feminine. Definite articles: le (masc.), la (fem.), l' (before vowel/h), les (plural).",
+      "category": "gender_agreement",
+      "mc_options": ["le livre", "la livre", "les livre", "l'livre", "un livre", "la livrée"],
+      "correct_answer": "le livre",
+      "prompt": "Choose the correct definite article for 'livre' (book), which is masculine.",
+      "explanation": "'Livre' is masculine, so it takes 'le'. There is no reliable rule for gender — it must be memorised with each noun. Tip: learn 'le livre', 'la table' not just 'livre', 'table'.",
+      "examples": [
+        {
+          "fr": "Le livre est sur la table.",
+          "en": "The book is on the table.",
+          "breakdown": ["le = masculine definite article", "la = feminine definite article"]
+        }
+      ]
+    },
+    "tags_json": ["gender_agreement", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "rule": "Adjectives agree in gender and number with the noun. Most add -e for feminine, -s for plural, -es for feminine plural.",
+      "category": "adjective_agreement",
+      "mc_options": ["grande", "grand", "grandes", "grands", "grandement", "grandeur"],
+      "correct_answer": "grande",
+      "prompt": "Choose the correct form of 'grand' to describe 'une maison' (feminine singular).",
+      "explanation": "Feminine singular adjectives add -e to the masculine base: grand → grande. If the masculine already ends in -e (rouge, jaune), no extra -e is added.",
+      "examples": [
+        {
+          "fr": "C'est une grande maison.",
+          "en": "It's a big house.",
+          "breakdown": ["maison = feminine singular", "grand + e = grande"]
+        }
+      ]
+    },
+    "tags_json": ["adjective_agreement", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Some adjectives have irregular feminine forms: beau → belle, nouveau → nouvelle, vieux → vieille, blanc → blanche.",
+      "category": "adjective_agreement",
+      "mc_options": ["belle", "beau", "beaux", "belles", "bel", "beaue"],
+      "correct_answer": "belle",
+      "prompt": "Choose the correct feminine singular form of 'beau'.",
+      "explanation": "Beau → belle (feminine). Before a masculine noun starting with a vowel, use the special form 'bel': un bel homme. Plural: beaux (masc.), belles (fem.).",
+      "examples": [
+        {
+          "fr": "C'est une belle journée.",
+          "en": "It's a beautiful day.",
+          "breakdown": ["journée = feminine → belle", "bel homme (masc. before vowel)"]
+        }
+      ]
+    },
+    "tags_json": ["adjective_agreement", "A2", "irregular"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Direct object pronouns replace the direct object: me, te, le/la, nous, vous, les. They go before the conjugated verb.",
+      "category": "pronoun_use",
+      "mc_options": ["Je le vois.", "Je vois le.", "Le je vois.", "Je vois lui.", "Je lui vois.", "Le vois je."],
+      "correct_answer": "Je le vois.",
+      "prompt": "Replace 'le garçon' with a pronoun: 'Je vois le garçon.' → ?",
+      "explanation": "Direct object pronouns precede the verb. 'Le garçon' is masculine singular, so le → 'Je le vois.' Before a vowel, le/la elide to l': 'Je l'entends.'",
+      "examples": [
+        {
+          "fr": "Je le vois. / Je la vois.",
+          "en": "I see him. / I see her.",
+          "breakdown": ["direct object pronoun goes before the verb", "le = masc., la = fem., les = plural"]
+        }
+      ]
+    },
+    "tags_json": ["pronoun_use", "A2", "direct object"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "rule": "Indirect object pronouns replace à + person: me, te, lui, nous, vous, leur. They also precede the verb.",
+      "category": "pronoun_use",
+      "mc_options": ["Je lui parle.", "Je le lui parle.", "Je parle lui.", "Je leur parle.", "Lui je parle.", "Je parle à lui."],
+      "correct_answer": "Je lui parle.",
+      "prompt": "Replace 'à Marie' with an indirect object pronoun: 'Je parle à Marie.' → ?",
+      "explanation": "'À Marie' (indirect object) → lui. Note: lui = him OR her for indirect objects, unlike direct objects (le/la). Do not confuse lui (indirect) with lui (stressed/disjunctive pronoun).",
+      "examples": [
+        {
+          "fr": "Je lui parle. (à Marie ou à Paul)",
+          "en": "I speak to her/him.",
+          "breakdown": ["lui replaces both à + masculine and à + feminine person", "leur replaces à + plural persons"]
+        }
+      ]
+    },
+    "tags_json": ["pronoun_use", "B1", "indirect object"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "rule": "Relative clause with 'qui': qui is the subject of the relative clause (who/that). It can refer to people or things.",
+      "category": "relative_clauses",
+      "mc_options": ["qui", "que", "dont", "où", "lequel", "quoi"],
+      "correct_answer": "qui",
+      "prompt": "Choose the correct relative pronoun: 'L'homme ___ parle est mon père.'",
+      "explanation": "'Qui' is the subject of the relative clause: 'l'homme parle' → l'homme qui parle. Use qui when the relative pronoun is the subject of its clause. Use que when it is the object.",
+      "examples": [
+        {
+          "fr": "L'homme qui parle est mon père.",
+          "en": "The man who is speaking is my father.",
+          "breakdown": ["qui = subject of relative clause", "l'homme (subject) parle → l'homme qui parle"]
+        }
+      ]
+    },
+    "tags_json": ["relative_clauses", "B1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "rule": "Relative clause with 'que': que is the direct object of the relative clause (whom/that). It elides to qu' before a vowel.",
+      "category": "relative_clauses",
+      "mc_options": ["que", "qui", "dont", "où", "lequel", "quoi"],
+      "correct_answer": "que",
+      "prompt": "Choose the correct relative pronoun: 'Le livre ___ tu lis est intéressant.'",
+      "explanation": "'Que' is the object: 'tu lis le livre' → 'le livre que tu lis'. Notice that a subject (tu) follows que. If a verb follows directly, use qui.",
+      "examples": [
+        {
+          "fr": "Le livre que tu lis est intéressant.",
+          "en": "The book (that) you are reading is interesting.",
+          "breakdown": ["que = direct object of relative clause", "que + subject + verb (tu lis)"]
+        }
+      ]
+    },
+    "tags_json": ["relative_clauses", "B1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "rule": "'dont' replaces de + noun in a relative clause (whose, of which, about which).",
+      "category": "relative_clauses",
+      "mc_options": ["dont", "que", "qui", "duquel", "où", "de qui"],
+      "correct_answer": "dont",
+      "prompt": "Choose the correct relative pronoun: 'C'est le film ___ je t'ai parlé.'",
+      "explanation": "'Parler de quelque chose' → dont replaces 'de ce film'. Dont is used when the relative pronoun replaces de + noun. Also used for possession: 'l'homme dont la femme est médecin'.",
+      "examples": [
+        {
+          "fr": "C'est le film dont je t'ai parlé.",
+          "en": "That's the film I told you about.",
+          "breakdown": ["parler de → dont", "dont = de + quoi/qui combined"]
+        }
+      ]
+    },
+    "tags_json": ["relative_clauses", "B1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "rule": "Futur simple: add endings to the infinitive (-ai, -as, -a, -ons, -ez, -ont). For -re verbs, drop final -e first.",
+      "category": "futur",
+      "mc_options": ["je parlerai", "je parlerait", "je parlerais", "je parleraie", "je parler", "j'aurai parlé"],
+      "correct_answer": "je parlerai",
+      "prompt": "Choose the correct futur simple of 'parler' for 'je'.",
+      "explanation": "Futur simple = infinitive + endings. parler + -ai = parlerai. Note: -rais (with s) is the conditional — easy to confuse with -rai (futur, no s).",
+      "examples": [
+        {
+          "fr": "Demain je parlerai au directeur.",
+          "en": "Tomorrow I will speak to the director.",
+          "breakdown": ["parler (infinitive) + ai = parlerai", "do not drop -er before adding ending for -er verbs"]
+        }
+      ]
+    },
+    "tags_json": ["futur", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "rule": "Several verbs have irregular futur stems: être → ser-, avoir → aur-, aller → ir-, faire → fer-, vouloir → voudr-, pouvoir → pourr-.",
+      "category": "futur",
+      "mc_options": ["ils seront", "ils seréront", "ils êtreront", "ils seraient", "ils sont", "ils serent"],
+      "correct_answer": "ils seront",
+      "prompt": "Choose the correct futur simple of 'être' for 'ils'.",
+      "explanation": "Être has the irregular stem 'ser-'. Add -ont for ils: seront. Key irregular stems: être→ser, avoir→aur, aller→ir, faire→fer, pouvoir→pourr, vouloir→voudr, venir→viendr.",
+      "examples": [
+        {
+          "fr": "Ils seront là demain.",
+          "en": "They will be there tomorrow.",
+          "breakdown": ["être → irregular stem ser-", "ils + -ont → seront"]
+        }
+      ]
+    },
+    "tags_json": ["futur", "B1", "irregular"]
+  }
+]

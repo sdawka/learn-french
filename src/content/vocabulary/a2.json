@@ -1,0 +1,838 @@
+[
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le train",
+      "translations": ["train"],
+      "definition": "A railway vehicle used for passenger or freight transport",
+      "examples": [
+        { "fr": "Je prends le train pour aller à Paris.", "en": "I take the train to go to Paris." },
+        { "fr": "Le train part à neuf heures.", "en": "The train leaves at nine o'clock." }
+      ],
+      "mc_options": ["bus", "train", "plane", "car"],
+      "cloze_sentence": "Je prends {{blank}} pour aller à Lyon.",
+      "blank_answer": "le train",
+      "acceptable_answers": ["le train"]
+    },
+    "tags_json": ["travel", "transport", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "l'avion",
+      "translations": ["airplane", "plane"],
+      "definition": "A powered flying vehicle with wings used for air travel",
+      "examples": [
+        { "fr": "Nous allons prendre l'avion pour aller en Espagne.", "en": "We are going to take the plane to go to Spain." },
+        { "fr": "L'avion atterrit dans une heure.", "en": "The plane lands in one hour." }
+      ],
+      "mc_options": ["train", "boat", "airplane", "bicycle"],
+      "cloze_sentence": "Elle a peur de prendre {{blank}}.",
+      "blank_answer": "l'avion",
+      "acceptable_answers": ["l'avion"]
+    },
+    "tags_json": ["travel", "transport", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le billet",
+      "translations": ["ticket", "bill", "banknote"],
+      "definition": "A document giving the right to travel or attend an event; also a banknote",
+      "examples": [
+        { "fr": "J'ai acheté un billet de train pour Marseille.", "en": "I bought a train ticket for Marseille." },
+        { "fr": "Combien coûte le billet aller-retour ?", "en": "How much does the round-trip ticket cost?" }
+      ],
+      "mc_options": ["passport", "ticket", "luggage", "seat"],
+      "cloze_sentence": "Il faut acheter {{blank}} avant de monter dans le train.",
+      "blank_answer": "le billet",
+      "acceptable_answers": ["le billet", "un billet"]
+    },
+    "tags_json": ["travel", "transport", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la gare",
+      "translations": ["train station", "railway station"],
+      "definition": "A building where trains stop to let passengers on and off",
+      "examples": [
+        { "fr": "On se retrouve devant la gare à midi.", "en": "We meet in front of the train station at noon." },
+        { "fr": "La gare est loin du centre-ville.", "en": "The train station is far from the city centre." }
+      ],
+      "mc_options": ["airport", "train station", "bus stop", "harbour"],
+      "cloze_sentence": "Mon taxi m'a déposé à {{blank}}.",
+      "blank_answer": "la gare",
+      "acceptable_answers": ["la gare"]
+    },
+    "tags_json": ["travel", "transport", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "voyager",
+      "translations": ["to travel"],
+      "definition": "To go from one place to another, especially over a long distance",
+      "examples": [
+        { "fr": "J'adore voyager en Europe.", "en": "I love travelling in Europe." },
+        { "fr": "Elle voyage souvent pour son travail.", "en": "She travels often for work." }
+      ],
+      "mc_options": ["to arrive", "to leave", "to travel", "to stay"],
+      "cloze_sentence": "Ils veulent {{blank}} au Japon l'année prochaine.",
+      "blank_answer": "voyager",
+      "acceptable_answers": ["voyager"]
+    },
+    "tags_json": ["travel", "transport", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "partir",
+      "translations": ["to leave", "to depart"],
+      "definition": "To go away from a place; to begin a journey",
+      "examples": [
+        { "fr": "Le bus part à huit heures du matin.", "en": "The bus leaves at eight in the morning." },
+        { "fr": "Nous partons en vacances demain.", "en": "We are leaving for holiday tomorrow." }
+      ],
+      "mc_options": ["to arrive", "to leave", "to stay", "to return"],
+      "cloze_sentence": "À quelle heure est-ce que vous {{blank}} ?",
+      "blank_answer": "partez",
+      "acceptable_answers": ["partez", "partir"]
+    },
+    "tags_json": ["travel", "transport", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "arriver",
+      "translations": ["to arrive", "to reach"],
+      "definition": "To reach a destination at the end of a journey",
+      "examples": [
+        { "fr": "Le train arrive à dix-sept heures.", "en": "The train arrives at five o'clock." },
+        { "fr": "Quand est-ce que tu arrives à Paris ?", "en": "When do you arrive in Paris?" }
+      ],
+      "mc_options": ["to leave", "to travel", "to arrive", "to miss"],
+      "cloze_sentence": "Nous {{blank}} à Bordeaux demain matin.",
+      "blank_answer": "arrivons",
+      "acceptable_answers": ["arrivons", "arriver"]
+    },
+    "tags_json": ["travel", "transport", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "acheter",
+      "translations": ["to buy", "to purchase"],
+      "definition": "To obtain something by paying money for it",
+      "examples": [
+        { "fr": "Je voudrais acheter des souvenirs.", "en": "I would like to buy some souvenirs." },
+        { "fr": "Elle achète ses légumes au marché.", "en": "She buys her vegetables at the market." }
+      ],
+      "mc_options": ["to sell", "to buy", "to return", "to find"],
+      "cloze_sentence": "Il va {{blank}} un nouveau manteau demain.",
+      "blank_answer": "acheter",
+      "acceptable_answers": ["acheter"]
+    },
+    "tags_json": ["shopping", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le magasin",
+      "translations": ["shop", "store"],
+      "definition": "A building or part of a building where goods are sold",
+      "examples": [
+        { "fr": "Il y a beaucoup de magasins dans le centre-ville.", "en": "There are many shops in the city centre." },
+        { "fr": "Le magasin ferme à vingt heures.", "en": "The shop closes at eight o'clock." }
+      ],
+      "mc_options": ["market", "shop", "bank", "restaurant"],
+      "cloze_sentence": "Je dois aller au {{blank}} pour acheter du pain.",
+      "blank_answer": "magasin",
+      "acceptable_answers": ["magasin"]
+    },
+    "tags_json": ["shopping", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "cher / chère",
+      "translations": ["expensive", "dear"],
+      "definition": "Costing a lot of money; also used as an affectionate form of address",
+      "examples": [
+        { "fr": "Ce restaurant est trop cher pour moi.", "en": "This restaurant is too expensive for me." },
+        { "fr": "Les billets d'avion sont très chers en été.", "en": "Plane tickets are very expensive in summer." }
+      ],
+      "mc_options": ["cheap", "expensive", "free", "discounted"],
+      "cloze_sentence": "Cette veste est trop {{blank}}, je ne peux pas me la payer.",
+      "blank_answer": "chère",
+      "acceptable_answers": ["chère", "cher"]
+    },
+    "tags_json": ["shopping", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "bon marché",
+      "translations": ["cheap", "inexpensive", "good value"],
+      "definition": "Costing little money; affordable",
+      "examples": [
+        { "fr": "Ce marché est très bon marché.", "en": "This market is very cheap." },
+        { "fr": "J'ai trouvé des chaussures bon marché en solde.", "en": "I found cheap shoes on sale." }
+      ],
+      "mc_options": ["expensive", "cheap", "rare", "popular"],
+      "cloze_sentence": "Les fruits et légumes sont {{blank}} au marché.",
+      "blank_answer": "bon marché",
+      "acceptable_answers": ["bon marché"]
+    },
+    "tags_json": ["shopping", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "payer",
+      "translations": ["to pay"],
+      "definition": "To give money in exchange for goods or services",
+      "examples": [
+        { "fr": "Est-ce que je peux payer par carte ?", "en": "Can I pay by card?" },
+        { "fr": "Il a payé l'addition au restaurant.", "en": "He paid the bill at the restaurant." }
+      ],
+      "mc_options": ["to buy", "to sell", "to pay", "to owe"],
+      "cloze_sentence": "Je voudrais {{blank}} en espèces, s'il vous plaît.",
+      "blank_answer": "payer",
+      "acceptable_answers": ["payer"]
+    },
+    "tags_json": ["shopping", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le prix",
+      "translations": ["price", "prize"],
+      "definition": "The amount of money for which something is bought or sold; also an award",
+      "examples": [
+        { "fr": "Quel est le prix de cette robe ?", "en": "What is the price of this dress?" },
+        { "fr": "Le prix des légumes a augmenté.", "en": "The price of vegetables has gone up." }
+      ],
+      "mc_options": ["discount", "size", "price", "colour"],
+      "cloze_sentence": "Je voudrais connaître {{blank}} avant d'acheter.",
+      "blank_answer": "le prix",
+      "acceptable_answers": ["le prix"]
+    },
+    "tags_json": ["shopping", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "malade",
+      "translations": ["sick", "ill", "unwell"],
+      "definition": "Suffering from an illness or disease",
+      "examples": [
+        { "fr": "Je suis malade, je ne peux pas aller au travail.", "en": "I am sick, I cannot go to work." },
+        { "fr": "Son enfant est malade depuis deux jours.", "en": "Her child has been ill for two days." }
+      ],
+      "mc_options": ["tired", "sick", "happy", "busy"],
+      "cloze_sentence": "Il est {{blank}} et il doit voir un médecin.",
+      "blank_answer": "malade",
+      "acceptable_answers": ["malade"]
+    },
+    "tags_json": ["health", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le médecin",
+      "translations": ["doctor", "physician"],
+      "definition": "A person qualified to practise medicine",
+      "examples": [
+        { "fr": "Je dois prendre rendez-vous chez le médecin.", "en": "I need to make an appointment with the doctor." },
+        { "fr": "Le médecin m'a prescrit des médicaments.", "en": "The doctor prescribed me some medicine." }
+      ],
+      "mc_options": ["nurse", "doctor", "dentist", "pharmacist"],
+      "cloze_sentence": "Elle est allée voir {{blank}} parce qu'elle avait de la fièvre.",
+      "blank_answer": "le médecin",
+      "acceptable_answers": ["le médecin", "un médecin"]
+    },
+    "tags_json": ["health", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir mal à",
+      "translations": ["to have a pain in", "to hurt"],
+      "definition": "To feel pain in a specific part of the body",
+      "examples": [
+        { "fr": "J'ai mal à la tête depuis ce matin.", "en": "I have had a headache since this morning." },
+        { "fr": "Elle a mal au dos après le déménagement.", "en": "She has back pain after the move." }
+      ],
+      "mc_options": ["to feel well", "to be hungry", "to have a pain in", "to be afraid"],
+      "cloze_sentence": "Il {{blank}} aux dents et doit aller chez le dentiste.",
+      "blank_answer": "a mal",
+      "acceptable_answers": ["a mal", "avoir mal"]
+    },
+    "tags_json": ["health", "expression", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la pharmacie",
+      "translations": ["pharmacy", "chemist's"],
+      "definition": "A shop where medicines and health products are sold",
+      "examples": [
+        { "fr": "Je vais à la pharmacie chercher de l'aspirine.", "en": "I am going to the pharmacy to get some aspirin." },
+        { "fr": "La pharmacie est ouverte jusqu'à vingt heures.", "en": "The pharmacy is open until eight o'clock." }
+      ],
+      "mc_options": ["hospital", "clinic", "pharmacy", "surgery"],
+      "cloze_sentence": "Il faut aller à {{blank}} pour acheter ces médicaments.",
+      "blank_answer": "la pharmacie",
+      "acceptable_answers": ["la pharmacie"]
+    },
+    "tags_json": ["health", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "se sentir",
+      "translations": ["to feel"],
+      "definition": "To experience a particular physical or emotional state",
+      "examples": [
+        { "fr": "Je ne me sens pas bien aujourd'hui.", "en": "I do not feel well today." },
+        { "fr": "Comment vous sentez-vous après l'opération ?", "en": "How do you feel after the operation?" }
+      ],
+      "mc_options": ["to look", "to hear", "to feel", "to smell"],
+      "cloze_sentence": "Elle {{blank}} beaucoup mieux après avoir dormi.",
+      "blank_answer": "se sent",
+      "acceptable_answers": ["se sent", "s'est sentie"]
+    },
+    "tags_json": ["health", "feelings", "verb", "reflexive", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "travailler",
+      "translations": ["to work"],
+      "definition": "To do a job or task, especially as an occupation",
+      "examples": [
+        { "fr": "Je travaille dans une banque depuis cinq ans.", "en": "I have been working in a bank for five years." },
+        { "fr": "Elle travaille de neuf heures à dix-sept heures.", "en": "She works from nine o'clock to five o'clock." }
+      ],
+      "mc_options": ["to study", "to rest", "to work", "to play"],
+      "cloze_sentence": "Mon père {{blank}} dans une grande entreprise.",
+      "blank_answer": "travaille",
+      "acceptable_answers": ["travaille", "travailler"]
+    },
+    "tags_json": ["work", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le bureau",
+      "translations": ["office", "desk"],
+      "definition": "A room or building where people work at desks; also a piece of furniture with a flat top for working at",
+      "examples": [
+        { "fr": "Je travaille au bureau cinq jours par semaine.", "en": "I work in the office five days a week." },
+        { "fr": "Mon bureau est au troisième étage.", "en": "My office is on the third floor." }
+      ],
+      "mc_options": ["factory", "school", "office", "shop"],
+      "cloze_sentence": "Elle range ses dossiers sur son {{blank}}.",
+      "blank_answer": "bureau",
+      "acceptable_answers": ["bureau"]
+    },
+    "tags_json": ["work", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le collègue / la collègue",
+      "translations": ["colleague", "coworker"],
+      "definition": "A person you work with",
+      "examples": [
+        { "fr": "Mes collègues sont très sympas.", "en": "My colleagues are very nice." },
+        { "fr": "J'ai déjeuné avec une collègue aujourd'hui.", "en": "I had lunch with a colleague today." }
+      ],
+      "mc_options": ["boss", "client", "colleague", "employee"],
+      "cloze_sentence": "Mon {{blank}} m'a aidé à finir le rapport.",
+      "blank_answer": "collègue",
+      "acceptable_answers": ["collègue"]
+    },
+    "tags_json": ["work", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la réunion",
+      "translations": ["meeting", "gathering"],
+      "definition": "A formal occasion when people come together to discuss something",
+      "examples": [
+        { "fr": "J'ai une réunion importante à quatorze heures.", "en": "I have an important meeting at two o'clock." },
+        { "fr": "La réunion a duré deux heures.", "en": "The meeting lasted two hours." }
+      ],
+      "mc_options": ["interview", "meeting", "conference", "seminar"],
+      "cloze_sentence": "Nous avons une {{blank}} d'équipe tous les lundis.",
+      "blank_answer": "réunion",
+      "acceptable_answers": ["réunion"]
+    },
+    "tags_json": ["work", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "chercher un emploi",
+      "translations": ["to look for a job", "to job hunt"],
+      "definition": "To search for work or paid employment",
+      "examples": [
+        { "fr": "Il cherche un emploi depuis trois mois.", "en": "He has been looking for a job for three months." },
+        { "fr": "Elle cherche un emploi dans le domaine de la santé.", "en": "She is looking for a job in the health sector." }
+      ],
+      "mc_options": ["to apply for a visa", "to look for a job", "to start a business", "to retire"],
+      "cloze_sentence": "Après ses études, il va {{blank}}.",
+      "blank_answer": "chercher un emploi",
+      "acceptable_answers": ["chercher un emploi", "chercher du travail"]
+    },
+    "tags_json": ["work", "expression", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "content / contente",
+      "translations": ["happy", "pleased", "glad"],
+      "definition": "Feeling pleased or satisfied",
+      "examples": [
+        { "fr": "Je suis très content de te voir !", "en": "I am very happy to see you!" },
+        { "fr": "Elle est contente de son nouveau travail.", "en": "She is pleased with her new job." }
+      ],
+      "mc_options": ["sad", "angry", "happy", "tired"],
+      "cloze_sentence": "Il est {{blank}} parce qu'il a eu une bonne note.",
+      "blank_answer": "content",
+      "acceptable_answers": ["content", "contente"]
+    },
+    "tags_json": ["feelings", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "triste",
+      "translations": ["sad", "unhappy"],
+      "definition": "Feeling sorrow or unhappiness",
+      "examples": [
+        { "fr": "Elle est triste parce que son ami est parti.", "en": "She is sad because her friend has left." },
+        { "fr": "Ce film est très triste, j'ai pleuré.", "en": "This film is very sad, I cried." }
+      ],
+      "mc_options": ["happy", "angry", "bored", "sad"],
+      "cloze_sentence": "Je suis {{blank}} quand il pleut toute la journée.",
+      "blank_answer": "triste",
+      "acceptable_answers": ["triste"]
+    },
+    "tags_json": ["feelings", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "fatigué / fatiguée",
+      "translations": ["tired", "exhausted", "weary"],
+      "definition": "Feeling the need to rest or sleep after effort or work",
+      "examples": [
+        { "fr": "Je suis fatigué après cette longue journée.", "en": "I am tired after this long day." },
+        { "fr": "Elle était très fatiguée après le marathon.", "en": "She was very tired after the marathon." }
+      ],
+      "mc_options": ["hungry", "bored", "tired", "nervous"],
+      "cloze_sentence": "Les enfants sont {{blank}} après leur journée à l'école.",
+      "blank_answer": "fatigués",
+      "acceptable_answers": ["fatigués", "fatigué", "fatiguée", "fatiguées"]
+    },
+    "tags_json": ["feelings", "adjective", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "penser",
+      "translations": ["to think", "to believe", "to consider"],
+      "definition": "To use one's mind to form opinions or ideas",
+      "examples": [
+        { "fr": "Je pense que c'est une bonne idée.", "en": "I think it is a good idea." },
+        { "fr": "Qu'est-ce que tu penses de ce film ?", "en": "What do you think of this film?" }
+      ],
+      "mc_options": ["to know", "to think", "to forget", "to remember"],
+      "cloze_sentence": "Elle {{blank}} que le projet va réussir.",
+      "blank_answer": "pense",
+      "acceptable_answers": ["pense", "penser"]
+    },
+    "tags_json": ["feelings", "opinions", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "croire",
+      "translations": ["to believe", "to think"],
+      "definition": "To accept that something is true or real; to have faith in",
+      "examples": [
+        { "fr": "Je crois que tu as raison.", "en": "I believe you are right." },
+        { "fr": "Il ne croit pas que c'est possible.", "en": "He does not believe it is possible." }
+      ],
+      "mc_options": ["to doubt", "to deny", "to believe", "to forget"],
+      "cloze_sentence": "Tu {{blank}} vraiment que cette histoire est vraie ?",
+      "blank_answer": "crois",
+      "acceptable_answers": ["crois", "croire"]
+    },
+    "tags_json": ["feelings", "opinions", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "préférer",
+      "translations": ["to prefer"],
+      "definition": "To like one thing more than another",
+      "examples": [
+        { "fr": "Je préfère le café au thé.", "en": "I prefer coffee to tea." },
+        { "fr": "Elle préfère voyager en train.", "en": "She prefers to travel by train." }
+      ],
+      "mc_options": ["to hate", "to prefer", "to enjoy", "to refuse"],
+      "cloze_sentence": "Nous {{blank}} rester à la maison ce soir.",
+      "blank_answer": "préférons",
+      "acceptable_answers": ["préférons", "préférer"]
+    },
+    "tags_json": ["feelings", "opinions", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "il fait chaud / il fait froid",
+      "translations": ["it is hot / it is cold"],
+      "definition": "Weather expressions describing high or low temperature",
+      "examples": [
+        { "fr": "Il fait très chaud en été dans le sud de la France.", "en": "It is very hot in summer in the south of France." },
+        { "fr": "Il fait froid ce matin, mets un manteau.", "en": "It is cold this morning, put on a coat." }
+      ],
+      "mc_options": ["it is windy", "it is raining", "it is hot", "it is cloudy"],
+      "cloze_sentence": "En hiver, {{blank}} et il neige souvent.",
+      "blank_answer": "il fait froid",
+      "acceptable_answers": ["il fait froid"]
+    },
+    "tags_json": ["weather", "expression", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la pluie",
+      "translations": ["rain"],
+      "definition": "Water that falls from clouds in drops",
+      "examples": [
+        { "fr": "La pluie empêche les enfants de jouer dehors.", "en": "The rain stops the children from playing outside." },
+        { "fr": "J'aime écouter la pluie la nuit.", "en": "I like listening to the rain at night." }
+      ],
+      "mc_options": ["snow", "wind", "rain", "fog"],
+      "cloze_sentence": "{{blank}} a duré toute la nuit.",
+      "blank_answer": "La pluie",
+      "acceptable_answers": ["La pluie"]
+    },
+    "tags_json": ["weather", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le soleil",
+      "translations": ["sun", "sunshine"],
+      "definition": "The star around which the Earth orbits; sunlight or sunshine",
+      "examples": [
+        { "fr": "Le soleil brille aujourd'hui.", "en": "The sun is shining today." },
+        { "fr": "On va se promener s'il y a du soleil.", "en": "We are going for a walk if there is sunshine." }
+      ],
+      "mc_options": ["moon", "cloud", "sun", "star"],
+      "cloze_sentence": "{{blank}} se couche à vingt et une heures en été.",
+      "blank_answer": "Le soleil",
+      "acceptable_answers": ["Le soleil"]
+    },
+    "tags_json": ["weather", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "neiger",
+      "translations": ["to snow"],
+      "definition": "When snow falls from the sky",
+      "examples": [
+        { "fr": "Il neige souvent dans les Alpes en hiver.", "en": "It often snows in the Alps in winter." },
+        { "fr": "Est-ce qu'il va neiger ce week-end ?", "en": "Is it going to snow this weekend?" }
+      ],
+      "mc_options": ["to rain", "to blow", "to snow", "to freeze"],
+      "cloze_sentence": "Il commence à {{blank}}, faites attention sur la route.",
+      "blank_answer": "neiger",
+      "acceptable_answers": ["neiger"]
+    },
+    "tags_json": ["weather", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la météo",
+      "translations": ["weather forecast", "weather report"],
+      "definition": "A broadcast or report giving predictions of future weather",
+      "examples": [
+        { "fr": "J'écoute la météo tous les matins.", "en": "I listen to the weather forecast every morning." },
+        { "fr": "Selon la météo, il va pleuvoir demain.", "en": "According to the weather forecast, it will rain tomorrow." }
+      ],
+      "mc_options": ["weather forecast", "temperature", "climate", "season"],
+      "cloze_sentence": "D'après {{blank}}, il fera beau ce week-end.",
+      "blank_answer": "la météo",
+      "acceptable_answers": ["la météo"]
+    },
+    "tags_json": ["weather", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le loyer",
+      "translations": ["rent"],
+      "definition": "A regular payment made by a tenant to a landlord for use of a property",
+      "examples": [
+        { "fr": "Le loyer est très cher à Paris.", "en": "Rent is very expensive in Paris." },
+        { "fr": "Je paye mon loyer le premier du mois.", "en": "I pay my rent on the first of the month." }
+      ],
+      "mc_options": ["mortgage", "rent", "bill", "tax"],
+      "cloze_sentence": "Son {{blank}} représente la moitié de son salaire.",
+      "blank_answer": "loyer",
+      "acceptable_answers": ["loyer"]
+    },
+    "tags_json": ["housing", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "le quartier",
+      "translations": ["neighbourhood", "district", "area"],
+      "definition": "A distinct area or part of a town or city",
+      "examples": [
+        { "fr": "J'habite dans un quartier calme.", "en": "I live in a quiet neighbourhood." },
+        { "fr": "Ce quartier est très animé le soir.", "en": "This district is very lively in the evening." }
+      ],
+      "mc_options": ["street", "neighbourhood", "building", "city"],
+      "cloze_sentence": "Elle cherche un appartement dans ce {{blank}}.",
+      "blank_answer": "quartier",
+      "acceptable_answers": ["quartier"]
+    },
+    "tags_json": ["housing", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "A2",
+    "data_json": {
+      "word": "déménager",
+      "translations": ["to move house", "to move out"],
+      "definition": "To move one's home from one place to another",
+      "examples": [
+        { "fr": "Nous allons déménager le mois prochain.", "en": "We are going to move house next month." },
+        { "fr": "Elle a déménagé dans un autre quartier.", "en": "She moved to another neighbourhood." }
+      ],
+      "mc_options": ["to decorate", "to move house", "to rent", "to buy"],
+      "cloze_sentence": "Ils ont décidé de {{blank}} à Lyon pour le travail.",
+      "blank_answer": "déménager",
+      "acceptable_answers": ["déménager"]
+    },
+    "tags_json": ["housing", "verb", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la cuisine",
+      "translations": ["kitchen", "cooking", "cuisine"],
+      "definition": "The room in a house where food is prepared; also the style of cooking",
+      "examples": [
+        { "fr": "La cuisine est petite mais bien équipée.", "en": "The kitchen is small but well equipped." },
+        { "fr": "J'adore la cuisine italienne.", "en": "I love Italian cuisine." }
+      ],
+      "mc_options": ["bedroom", "bathroom", "kitchen", "living room"],
+      "cloze_sentence": "Il prépare le dîner dans {{blank}}.",
+      "blank_answer": "la cuisine",
+      "acceptable_answers": ["la cuisine"]
+    },
+    "tags_json": ["housing", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "A2",
+    "data_json": {
+      "word": "la chambre",
+      "translations": ["bedroom", "room"],
+      "definition": "A room in a house used for sleeping",
+      "examples": [
+        { "fr": "Ma chambre donne sur le jardin.", "en": "My bedroom looks out onto the garden." },
+        { "fr": "L'appartement a deux chambres.", "en": "The flat has two bedrooms." }
+      ],
+      "mc_options": ["bathroom", "bedroom", "kitchen", "hallway"],
+      "cloze_sentence": "Les enfants font leurs devoirs dans leur {{blank}}.",
+      "blank_answer": "chambre",
+      "acceptable_answers": ["chambre"]
+    },
+    "tags_json": ["housing", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir faim",
+      "translations": ["to be hungry"],
+      "definition": "An idiomatic expression using 'avoir' to express hunger (literally: to have hunger)",
+      "examples": [
+        { "fr": "J'ai faim, est-ce qu'on peut manger bientôt ?", "en": "I am hungry, can we eat soon?" },
+        { "fr": "Les enfants ont toujours faim après l'école.", "en": "The children are always hungry after school." }
+      ],
+      "mc_options": ["to be thirsty", "to be hungry", "to be cold", "to be afraid"],
+      "cloze_sentence": "Je n'ai pas mangé depuis ce matin, j'{{blank}}.",
+      "blank_answer": "ai faim",
+      "acceptable_answers": ["ai faim"]
+    },
+    "tags_json": ["idiomatic", "avoir_expressions", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir soif",
+      "translations": ["to be thirsty"],
+      "definition": "An idiomatic expression using 'avoir' to express thirst (literally: to have thirst)",
+      "examples": [
+        { "fr": "Après le sport, j'ai toujours soif.", "en": "After sport, I am always thirsty." },
+        { "fr": "Tu as soif ? Je peux te donner de l'eau.", "en": "Are you thirsty? I can give you some water." }
+      ],
+      "mc_options": ["to be hungry", "to be thirsty", "to be tired", "to be hot"],
+      "cloze_sentence": "Il fait très chaud et les enfants {{blank}}.",
+      "blank_answer": "ont soif",
+      "acceptable_answers": ["ont soif"]
+    },
+    "tags_json": ["idiomatic", "avoir_expressions", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir raison",
+      "translations": ["to be right", "to be correct"],
+      "definition": "An idiomatic expression using 'avoir' to say someone is right (literally: to have reason)",
+      "examples": [
+        { "fr": "Tu as raison, c'est une meilleure idée.", "en": "You are right, it is a better idea." },
+        { "fr": "Elle avait raison de partir tôt.", "en": "She was right to leave early." }
+      ],
+      "mc_options": ["to be wrong", "to be right", "to be sure", "to agree"],
+      "cloze_sentence": "Le professeur {{blank}} : cette réponse est correcte.",
+      "blank_answer": "a raison",
+      "acceptable_answers": ["a raison"]
+    },
+    "tags_json": ["idiomatic", "avoir_expressions", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir tort",
+      "translations": ["to be wrong", "to be mistaken"],
+      "definition": "An idiomatic expression using 'avoir' to say someone is wrong (literally: to have wrong)",
+      "examples": [
+        { "fr": "J'ai tort, je m'excuse.", "en": "I am wrong, I apologise." },
+        { "fr": "Il avait tort de croire ça.", "en": "He was wrong to believe that." }
+      ],
+      "mc_options": ["to be right", "to be wrong", "to be late", "to be sorry"],
+      "cloze_sentence": "Non, tu {{blank}} : la gare est à gauche, pas à droite.",
+      "blank_answer": "as tort",
+      "acceptable_answers": ["as tort"]
+    },
+    "tags_json": ["idiomatic", "avoir_expressions", "A2"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "A2",
+    "data_json": {
+      "word": "avoir peur",
+      "translations": ["to be afraid", "to be scared", "to fear"],
+      "definition": "An idiomatic expression using 'avoir' to express fear (literally: to have fear)",
+      "examples": [
+        { "fr": "Elle a peur des araignées.", "en": "She is afraid of spiders." },
+        { "fr": "J'ai peur de rater mon examen.", "en": "I am afraid of failing my exam." }
+      ],
+      "mc_options": ["to be cold", "to be hungry", "to be afraid", "to be ashamed"],
+      "cloze_sentence": "Mon petit frère {{blank}} du noir.",
+      "blank_answer": "a peur",
+      "acceptable_answers": ["a peur"]
+    },
+    "tags_json": ["idiomatic", "avoir_expressions", "A2"]
+  }
+]

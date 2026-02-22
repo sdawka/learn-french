@@ -1,0 +1,118 @@
+[
+  {
+    "kc_name": "present tense avoir",
+    "requires": []
+  },
+  {
+    "kc_name": "present tense être",
+    "requires": []
+  },
+  {
+    "kc_name": "present tense -er verbs",
+    "requires": []
+  },
+  {
+    "kc_name": "present tense irregular: faire",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "present tense irregular: aller",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "present tense irregular: prendre",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "present tense irregular: vouloir",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "negation ne...pas",
+    "requires": ["present tense -er verbs", "present tense être"]
+  },
+  {
+    "kc_name": "negation ne...jamais",
+    "requires": ["negation ne...pas"]
+  },
+  {
+    "kc_name": "negation ne...plus",
+    "requires": ["negation ne...pas"]
+  },
+  {
+    "kc_name": "question formation: intonation",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "question formation: est-ce que",
+    "requires": ["question formation: intonation"]
+  },
+  {
+    "kc_name": "question formation: inversion",
+    "requires": ["question formation: est-ce que"]
+  },
+  {
+    "kc_name": "gender agreement: articles",
+    "requires": []
+  },
+  {
+    "kc_name": "adjective agreement: regular",
+    "requires": ["gender agreement: articles"]
+  },
+  {
+    "kc_name": "adjective agreement: irregular",
+    "requires": ["adjective agreement: regular"]
+  },
+  {
+    "kc_name": "passé composé with avoir",
+    "requires": ["present tense avoir", "present tense -er verbs"]
+  },
+  {
+    "kc_name": "passé composé with être",
+    "requires": ["present tense être", "passé composé with avoir"]
+  },
+  {
+    "kc_name": "passé composé: past participle agreement with avoir",
+    "requires": ["passé composé with avoir", "adjective agreement: regular"]
+  },
+  {
+    "kc_name": "imparfait: formation",
+    "requires": ["present tense -er verbs", "present tense avoir", "present tense être"]
+  },
+  {
+    "kc_name": "imparfait vs passé composé: usage contrast",
+    "requires": ["imparfait: formation", "passé composé with avoir", "passé composé with être"]
+  },
+  {
+    "kc_name": "direct object pronouns",
+    "requires": ["present tense -er verbs", "gender agreement: articles"]
+  },
+  {
+    "kc_name": "indirect object pronouns",
+    "requires": ["direct object pronouns"]
+  },
+  {
+    "kc_name": "relative clauses: qui",
+    "requires": ["present tense -er verbs", "question formation: est-ce que"]
+  },
+  {
+    "kc_name": "relative clauses: que",
+    "requires": ["relative clauses: qui"]
+  },
+  {
+    "kc_name": "relative clauses: dont",
+    "requires": ["relative clauses: que"]
+  },
+  {
+    "kc_name": "futur simple: regular",
+    "requires": ["present tense -er verbs"]
+  },
+  {
+    "kc_name": "futur simple: irregular stems",
+    "requires": ["futur simple: regular", "present tense être", "present tense avoir", "present tense irregular: aller", "present tense irregular: faire", "present tense irregular: vouloir"]
+  },
+  {
+    "kc_name": "pluperfect (plus-que-parfait)",
+    "requires": ["passé composé with avoir", "passé composé with être", "imparfait: formation"]
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "present",
+      "cloze_sentence": "Je {{blank}} étudiant.",
+      "blank_answer": "suis",
+      "acceptable_answers": [],
+      "translation": "I (blank) a student.",
+      "mc_options": ["suis", "es", "est", "sommes"],
+      "rule": "être present tense: je → suis"
+    },
+    "tags_json": ["present", "A1", "être"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "present",
+      "cloze_sentence": "Vous {{blank}} de la musique.",
+      "blank_answer": "écoutez",
+      "acceptable_answers": [],
+      "translation": "You (blank) music.",
+      "mc_options": ["écoutez", "écoute", "écoutons", "écoutent"],
+      "rule": "Regular -er verb: vous → -ez ending. écouter → écoutez"
+    },
+    "tags_json": ["present", "A1", "-er verbs"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "present",
+      "cloze_sentence": "Nous {{blank}} du sport le samedi.",
+      "blank_answer": "faisons",
+      "acceptable_answers": [],
+      "translation": "We (blank) sport on Saturdays.",
+      "mc_options": ["faisons", "faites", "font", "faisent"],
+      "rule": "faire (irregular): nous → faisons"
+    },
+    "tags_json": ["present", "A1", "faire"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "present",
+      "cloze_sentence": "Elle {{blank}} au supermarché.",
+      "blank_answer": "va",
+      "acceptable_answers": [],
+      "translation": "She (blank) to the supermarket.",
+      "mc_options": ["va", "vais", "allons", "vont"],
+      "rule": "aller (irregular): il/elle → va"
+    },
+    "tags_json": ["present", "A1", "aller"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "present",
+      "cloze_sentence": "Ils {{blank}} le bus pour aller au travail.",
+      "blank_answer": "prennent",
+      "acceptable_answers": [],
+      "translation": "They (blank) the bus to go to work.",
+      "mc_options": ["prennent", "prend", "prenons", "prendons"],
+      "rule": "prendre (irregular): ils → prennent (double -nn-)"
+    },
+    "tags_json": ["present", "A1", "prendre"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "negation",
+      "cloze_sentence": "Je {{blank}} comprends {{blank}} le professeur.",
+      "blank_answer": "ne",
+      "acceptable_answers": ["n'"],
+      "translation": "I do (blank) understand the teacher.",
+      "mc_options": ["ne", "pas", "jamais", "plus"],
+      "rule": "Negation: ne + verb + pas. First blank = ne, second blank = pas"
+    },
+    "tags_json": ["negation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "negation",
+      "cloze_sentence": "Elle ne mange {{blank}} de viande.",
+      "blank_answer": "pas",
+      "acceptable_answers": ["jamais", "plus"],
+      "translation": "She does not eat (blank) meat.",
+      "mc_options": ["pas", "jamais", "plus", "rien"],
+      "rule": "ne...pas = not. After negation, du/de la/des → de"
+    },
+    "tags_json": ["negation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "negation",
+      "cloze_sentence": "Il ne fume {{blank}}. Il a arrêté l'année dernière.",
+      "blank_answer": "plus",
+      "acceptable_answers": [],
+      "translation": "He no longer smokes. He stopped last year.",
+      "mc_options": ["plus", "pas", "jamais", "rien"],
+      "rule": "ne...plus = no longer. Implies a past state that has changed."
+    },
+    "tags_json": ["negation", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "question_formation",
+      "cloze_sentence": "{{blank}} tu habites à Paris ?",
+      "blank_answer": "Est-ce que",
+      "acceptable_answers": ["Est-ce qu'"],
+      "translation": "(blank) do you live in Paris?",
+      "mc_options": ["Est-ce que", "Que", "Qui", "Comment"],
+      "rule": "est-ce que + subject + verb = yes/no question without inversion"
+    },
+    "tags_json": ["question_formation", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "question_formation",
+      "cloze_sentence": "Mange-{{blank}}-elle du chocolat ?",
+      "blank_answer": "t",
+      "acceptable_answers": [],
+      "translation": "Does she eat chocolate?",
+      "mc_options": ["t", "s", "il", "elle"],
+      "rule": "Inversion: insert -t- between verb ending in vowel and il/elle/on for euphony"
+    },
+    "tags_json": ["question_formation", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "passe_compose",
+      "cloze_sentence": "Hier, nous {{blank}} un bon repas.",
+      "blank_answer": "avons mangé",
+      "acceptable_answers": ["avons mangés"],
+      "translation": "Yesterday, we (blank) a good meal.",
+      "mc_options": ["avons mangé", "mangions", "mangeons", "sommes mangés"],
+      "rule": "Passé composé with avoir: avoir (present) + past participle. manger → mangé"
+    },
+    "tags_json": ["passe_compose", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "passe_compose",
+      "cloze_sentence": "Elle {{blank}} en France l'été dernier.",
+      "blank_answer": "est allée",
+      "acceptable_answers": [],
+      "translation": "She (blank) to France last summer.",
+      "mc_options": ["est allée", "a allé", "est allé", "allait"],
+      "rule": "aller uses être in passé composé. Past participle agrees with subject: elle → allée"
+    },
+    "tags_json": ["passe_compose", "A2", "être"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "imparfait",
+      "cloze_sentence": "Quand j'étais petit, je {{blank}} au foot tous les jours.",
+      "blank_answer": "jouais",
+      "acceptable_answers": [],
+      "translation": "When I was little, I (blank) football every day.",
+      "mc_options": ["jouais", "joue", "ai joué", "jouera"],
+      "rule": "Imparfait for habitual past actions. jouer → stem jou- + ais = jouais"
+    },
+    "tags_json": ["imparfait", "A2"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "category": "imparfait",
+      "cloze_sentence": "Il {{blank}} (dormir) quand son ami {{blank}} (appeler).",
+      "blank_answer": "dormait",
+      "acceptable_answers": [],
+      "translation": "He (blank) sleeping when his friend (blank) called.",
+      "mc_options": ["dormait", "a dormi", "dort", "dormira"],
+      "rule": "Imparfait for ongoing background action interrupted by a passé composé event"
+    },
+    "tags_json": ["imparfait", "B1", "passe_compose"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "gender_agreement",
+      "cloze_sentence": "Je voudrais {{blank}} café, s'il vous plaît.",
+      "blank_answer": "un",
+      "acceptable_answers": [],
+      "translation": "I would like (blank) coffee, please.",
+      "mc_options": ["un", "une", "le", "la"],
+      "rule": "Café is masculine. Indefinite article for masculine = un."
+    },
+    "tags_json": ["gender_agreement", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A1",
+    "data_json": {
+      "category": "adjective_agreement",
+      "cloze_sentence": "Ma sœur est très {{blank}}.",
+      "blank_answer": "intelligente",
+      "acceptable_answers": [],
+      "translation": "My sister is very (blank).",
+      "mc_options": ["intelligente", "intelligent", "intelligents", "intelligentes"],
+      "rule": "Adjectives agree with noun: sœur is feminine singular → add -e: intelligent → intelligente"
+    },
+    "tags_json": ["adjective_agreement", "A1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "pronoun_use",
+      "cloze_sentence": "Ce livre est intéressant. Tu {{blank}} lis ?",
+      "blank_answer": "le",
+      "acceptable_answers": [],
+      "translation": "This book is interesting. Are you reading (blank)?",
+      "mc_options": ["le", "la", "lui", "les"],
+      "rule": "Direct object pronoun: replace masculine singular noun 'le livre' with 'le' before the verb"
+    },
+    "tags_json": ["pronoun_use", "A2", "direct object"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "category": "pronoun_use",
+      "cloze_sentence": "J'ai écrit à mes parents. Je {{blank}} ai écrit une longue lettre.",
+      "blank_answer": "leur",
+      "acceptable_answers": [],
+      "translation": "I wrote to my parents. I wrote (blank) a long letter.",
+      "mc_options": ["leur", "les", "lui", "y"],
+      "rule": "Indirect object pronoun: à + plural persons → leur (replaces 'à mes parents')"
+    },
+    "tags_json": ["pronoun_use", "B1", "indirect object"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "B1",
+    "data_json": {
+      "category": "relative_clauses",
+      "cloze_sentence": "La femme {{blank}} habite à côté est professeure.",
+      "blank_answer": "qui",
+      "acceptable_answers": [],
+      "translation": "The woman (blank) lives next door is a teacher.",
+      "mc_options": ["qui", "que", "dont", "où"],
+      "rule": "qui = subject relative pronoun. 'la femme habite' → 'la femme qui habite'"
+    },
+    "tags_json": ["relative_clauses", "B1"]
+  },
+  {
+    "type": "grammar",
+    "subtype": "procedure",
+    "level": "A2",
+    "data_json": {
+      "category": "futur",
+      "cloze_sentence": "L'année prochaine, nous {{blank}} en Espagne.",
+      "blank_answer": "irons",
+      "acceptable_answers": [],
+      "translation": "Next year, we (blank) to Spain.",
+      "mc_options": ["irons", "allons", "iraont", "allerons"],
+      "rule": "Futur simple of aller: irregular stem ir- + ons = irons"
+    },
+    "tags_json": ["futur", "A2", "aller"]
+  }
+]

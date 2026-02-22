@@ -1,0 +1,213 @@
+---
+/**
+ * Dashboard — stats overview, due items, weak areas, forgetting curve.
+ */
+
+import { getDb } from "~/lib/db/index.ts";
+import { SCHEMA_SQL } from "~/lib/db/schema.ts";
+import { getDueCount } from "~/lib/srs/scheduler.ts";
+import { getProfile, proficiencyToCEFR } from "~/lib/learner-model/profile.ts";
+import { query, queryOne, parseJson } from "~/lib/db/index.ts";
+import { predictRetrievability } from "~/lib/srs/fsrs.ts";
+import type { FSRSCard } from "~/lib/srs/fsrs.ts";
+
+import KnowledgeStateRing from "~/components/dashboard/KnowledgeStateRing.tsx";
+import ForgettingCurve from "~/components/dashboard/ForgettingCurve.tsx";
+import ActivityHeatmap from "~/components/dashboard/ActivityHeatmap.tsx";
+import WeakAreasList from "~/components/dashboard/WeakAreasList.tsx";
+import RetentionMap from "~/components/dashboard/RetentionMap.tsx";
+
+// Ensure DB is migrated on first load
+try {
+  getDb().exec(SCHEMA_SQL);
+} catch {}
+
+const due = getDueCount("mixed");
+const profile = getProfile();
+const cefr = proficiencyToCEFR(profile.vocabulary_proficiency);
+
+const stateRing = queryOne<{
+  new_count: number;
+  learning_count: number;
+  review_count: number;
+  mastered_count: number;
+}>(`
+  SELECT
+    SUM(CASE WHEN state = 'new' THEN 1 ELSE 0 END) AS new_count,
+    SUM(CASE WHEN state = 'learning' THEN 1 ELSE 0 END) AS learning_count,
+    SUM(CASE WHEN state = 'review' AND stability < 21 THEN 1 ELSE 0 END) AS review_count,
+    SUM(CASE WHEN state = 'review' AND stability >= 21 THEN 1 ELSE 0 END) AS mastered_count
+  FROM srs_cards
+`) ?? { new_count: 0, learning_count: 0, review_count: 0, mastered_count: 0 };
+
+const weakAreas = query<{
+  kc_id: number;
+  retrievability: number;
+  due_at: string | null;
+  data_json: string;
+  type: string;
+}>(`
+  SELECT sc.kc_id, sc.retrievability, sc.due_at, kc.data_json, kc.type
+  FROM srs_cards sc
+  JOIN knowledge_components kc ON kc.id = sc.kc_id
+  WHERE sc.state != 'new'
+  ORDER BY sc.retrievability ASC
+  LIMIT 10
+`).map((row) => {
+  const data = parseJson<{ word?: string; rule?: string }>(row.data_json, {});
+  return {
+    kc_id: row.kc_id,
+    retrievability: row.retrievability,
+    due_at: row.due_at,
+    label: data.word ?? data.rule ?? `KC ${row.kc_id}`,
+    type: row.type,
+  };
+});
+
+const now = new Date();
+const activeCards = query<{
+  stability: number;
+  difficulty: number;
+  retrievability: number;
+  state: string;
+  last_reviewed_at: string | null;
+}>("SELECT stability, difficulty, retrievability, state, last_reviewed_at FROM srs_cards WHERE state != 'new'");
+
+const forgettingCurve = Array.from({ length: 8 }, (_, day) => {
+  const at = new Date(now.getTime() + day * 86_400_000);
+  const predictions = activeCards.map((row) => {
+    const card: FSRSCard = {
+      stability: row.stability,
+      difficulty: row.difficulty,
+      retrievability: row.retrievability,
+      state: row.state as FSRSCard["state"],
+      due_at: null,
+      review_count: 0,
+      lapse_count: 0,
+      last_reviewed_at: row.last_reviewed_at ? new Date(row.last_reviewed_at) : null,
+    };
+    return predictRetrievability(card, at);
+  });
+  const avg = predictions.length > 0
+    ? predictions.reduce((a, b) => a + b, 0) / predictions.length
+    : 1;
+  return { day, avg_retrievability: Math.round(avg * 1000) / 1000 };
+});
+
+const heatmap = query<{ date: string; cards_reviewed: number; accuracy: number; minutes_studied: number }>(
+  "SELECT date, cards_reviewed, accuracy, minutes_studied FROM daily_stats ORDER BY date ASC"
+);
+
+let streak = 0;
+for (let i = 0; i < 365; i++) {
+  const d = new Date(now);
+  d.setDate(d.getDate() - i);
+  const ds = d.toISOString().split("T")[0];
+  const e = heatmap.find((h) => h.date === ds);
+  if (e && e.cards_reviewed > 0) streak++;
+  else break;
+}
+
+const retentionByTag = query<{ tag: string; avg_ret: number }>(`
+  SELECT json_each.value AS tag, AVG(sc.retrievability) AS avg_ret
+  FROM srs_cards sc
+  JOIN knowledge_components kc ON kc.id = sc.kc_id,
+       json_each(kc.tags_json)
+  WHERE sc.state != 'new'
+  GROUP BY json_each.value
+  ORDER BY avg_ret ASC
+`);
+
+const totalCards = Object.values(stateRing).reduce((a, b) => a + b, 0);
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>French — Dashboard</title>
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+  <nav class="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <span class="font-bold text-lg">French</span>
+      <a href="/" class="text-sm text-blue-400">Dashboard</a>
+      <a href="/skills/vocabulary" class="text-sm text-gray-400 hover:text-white">Vocabulary</a>
+      <a href="/skills/grammar" class="text-sm text-gray-400 hover:text-white">Grammar</a>
+    </div>
+    <span class="text-xs text-gray-500">{cefr} · {Math.round(profile.vocabulary_proficiency * 10) / 10}</span>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+    <!-- Hero stats -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="/games/vocabulary?mood=review" class="bg-gray-900 rounded-2xl p-5 border border-gray-800 hover:border-blue-500 transition-colors group">
+        <p class="text-3xl font-bold">{due.due}</p>
+        <p class="text-xs text-gray-400 mt-1">Due today</p>
+        <p class="text-xs text-blue-400 mt-2 group-hover:underline">Review now →</p>
+      </a>
+      <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+        <p class="text-3xl font-bold text-purple-400">{due.new_cards}</p>
+        <p class="text-xs text-gray-400 mt-1">New to learn</p>
+      </div>
+      <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+        <p class="text-3xl font-bold text-green-400">{stateRing.mastered_count}</p>
+        <p class="text-xs text-gray-400 mt-1">Mastered</p>
+      </div>
+      <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+        <p class="text-3xl font-bold text-amber-400">{streak}</p>
+        <p class="text-xs text-gray-400 mt-1">Day streak</p>
+      </div>
+    </section>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Knowledge State</h2>
+        {totalCards > 0
+          ? <KnowledgeStateRing client:load {...stateRing} />
+          : <p class="text-sm text-gray-600">Start studying to see your progress</p>
+        }
+      </div>
+
+      <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Retention Forecast</h2>
+        {activeCards.length > 0
+          ? <ForgettingCurve client:load data={forgettingCurve} />
+          : <p class="text-sm text-gray-600">Review cards to see your forgetting curve</p>
+        }
+      </div>
+    </div>
+
+    {retentionByTag.length > 0 && (
+      <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Retention by Topic</h2>
+        <RetentionMap client:load data={retentionByTag} />
+      </div>
+    )}
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Weak Areas</h2>
+        <WeakAreasList client:load items={weakAreas} />
+      </div>
+
+      <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Activity</h2>
+        <ActivityHeatmap client:load data={heatmap} streak={streak} />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <a href="/games/vocabulary?mood=review" class="px-5 py-3 bg-blue-700 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors">
+        Review vocabulary
+      </a>
+      <a href="/games/grammar?mood=challenge" class="px-5 py-3 bg-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
+        Grammar challenge
+      </a>
+      <a href="/games/vocabulary?mood=explore" class="px-5 py-3 bg-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
+        Explore new words
+      </a>
+    </div>
+  </main>
+</body>
+</html>

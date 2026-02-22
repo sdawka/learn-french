@@ -1,0 +1,666 @@
+[
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "actuellement",
+      "translations": ["currently", "at the moment"],
+      "definition": "FALSE COGNATE: means 'currently' or 'at this moment in time', NOT 'actually'. Use 'en fait' or 'en réalité' for 'actually'.",
+      "examples": [
+        { "fr": "Il travaille actuellement à Paris.", "en": "He is currently working in Paris." },
+        { "fr": "Actuellement, les prix sont très élevés.", "en": "Currently, prices are very high." }
+      ],
+      "mc_options": ["actually", "currently", "formerly", "eventually"],
+      "cloze_sentence": "Elle vit {{blank}} à Lyon, mais elle déménagera bientôt.",
+      "blank_answer": "actuellement",
+      "acceptable_answers": ["en ce moment"]
+    },
+    "tags_json": ["false_cognate", "adverb", "time", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "sensible",
+      "translations": ["sensitive", "perceptible"],
+      "definition": "FALSE COGNATE: means 'sensitive' (emotionally or physically), NOT 'sensible/reasonable'. Use 'raisonnable' or 'sensé' for 'sensible'.",
+      "examples": [
+        { "fr": "Elle est très sensible aux critiques.", "en": "She is very sensitive to criticism." },
+        { "fr": "Il a la peau sensible.", "en": "He has sensitive skin." }
+      ],
+      "mc_options": ["sensible", "sensitive", "reasonable", "logical"],
+      "cloze_sentence": "Mon fils est très {{blank}} — il pleure facilement.",
+      "blank_answer": "sensible",
+      "acceptable_answers": []
+    },
+    "tags_json": ["false_cognate", "adjective", "personality", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "rester",
+      "translations": ["to stay", "to remain"],
+      "definition": "FALSE COGNATE: means 'to stay' or 'to remain', NOT 'to rest'. Use 'se reposer' for 'to rest'.",
+      "examples": [
+        { "fr": "Je vais rester chez moi ce soir.", "en": "I'm going to stay home tonight." },
+        { "fr": "Il reste calme dans les situations difficiles.", "en": "He remains calm in difficult situations." }
+      ],
+      "mc_options": ["to rest", "to stay", "to return", "to resist"],
+      "cloze_sentence": "Elle a décidé de {{blank}} en France pour deux semaines de plus.",
+      "blank_answer": "rester",
+      "acceptable_answers": ["demeurer"]
+    },
+    "tags_json": ["false_cognate", "verb", "movement", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "assister à",
+      "translations": ["to attend", "to witness"],
+      "definition": "FALSE COGNATE: means 'to attend' or 'to be present at', NOT 'to assist/help'. Use 'aider' for 'to help/assist'.",
+      "examples": [
+        { "fr": "J'ai assisté à la conférence hier.", "en": "I attended the conference yesterday." },
+        { "fr": "Nous allons assister à son mariage.", "en": "We are going to attend his wedding." }
+      ],
+      "mc_options": ["to assist someone", "to attend an event", "to help out", "to support"],
+      "cloze_sentence": "Tous les étudiants doivent {{blank}} la réunion obligatoire.",
+      "blank_answer": "assister à",
+      "acceptable_answers": ["participer à"]
+    },
+    "tags_json": ["false_cognate", "verb", "social", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "passer un examen",
+      "translations": ["to take an exam", "to sit an exam"],
+      "definition": "FALSE COGNATE: 'passer un examen' means 'to take/sit an exam', NOT 'to pass an exam'. Use 'réussir un examen' to mean 'to pass an exam'.",
+      "examples": [
+        { "fr": "Je vais passer mon bac en juin.", "en": "I am going to take my baccalaureate exam in June." },
+        { "fr": "Elle a passé l'examen mais elle ne l'a pas réussi.", "en": "She took the exam but she did not pass it." }
+      ],
+      "mc_options": ["to pass an exam", "to take an exam", "to study for an exam", "to fail an exam"],
+      "cloze_sentence": "Il doit {{blank}} avant la fin du mois.",
+      "blank_answer": "passer un examen",
+      "acceptable_answers": ["passer l'examen"]
+    },
+    "tags_json": ["false_cognate", "expression", "education", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "la liberté",
+      "translations": ["freedom", "liberty"],
+      "definition": "The state of being free from constraints, oppression, or external control; the right to act, speak, or think as one wants.",
+      "examples": [
+        { "fr": "La liberté d'expression est un droit fondamental.", "en": "Freedom of expression is a fundamental right." },
+        { "fr": "Elle cherche la liberté dans sa vie professionnelle.", "en": "She seeks freedom in her professional life." }
+      ],
+      "mc_options": ["responsibility", "freedom", "equality", "authority"],
+      "cloze_sentence": "La {{blank}} de la presse est essentielle dans une démocratie.",
+      "blank_answer": "liberté",
+      "acceptable_answers": []
+    },
+    "tags_json": ["abstract", "noun", "society", "values", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "la confiance",
+      "translations": ["trust", "confidence"],
+      "definition": "Belief in the reliability, truth, or ability of someone or something; also self-assurance (confiance en soi = self-confidence).",
+      "examples": [
+        { "fr": "Il faut gagner la confiance des clients.", "en": "You have to earn the trust of clients." },
+        { "fr": "Elle manque de confiance en elle.", "en": "She lacks self-confidence." }
+      ],
+      "mc_options": ["doubt", "trust", "patience", "knowledge"],
+      "cloze_sentence": "Après ce mensonge, j'ai perdu toute {{blank}} en lui.",
+      "blank_answer": "confiance",
+      "acceptable_answers": []
+    },
+    "tags_json": ["abstract", "noun", "emotion", "relationships", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "l'espoir",
+      "translations": ["hope"],
+      "definition": "A feeling of expectation and desire for a positive outcome; optimism about the future.",
+      "examples": [
+        { "fr": "Il garde espoir malgré les difficultés.", "en": "He keeps hope despite the difficulties." },
+        { "fr": "L'espoir d'une vie meilleure les a poussés à émigrer.", "en": "The hope of a better life pushed them to emigrate." }
+      ],
+      "mc_options": ["fear", "regret", "hope", "pride"],
+      "cloze_sentence": "Ne perds jamais {{blank}} — les choses peuvent changer.",
+      "blank_answer": "l'espoir",
+      "acceptable_answers": ["espoir"]
+    },
+    "tags_json": ["abstract", "noun", "emotion", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "l'inquiétude",
+      "translations": ["worry", "anxiety", "concern"],
+      "definition": "A feeling of unease or anxiety about something uncertain or potentially threatening.",
+      "examples": [
+        { "fr": "Son absence m'a causé beaucoup d'inquiétude.", "en": "His absence caused me a lot of worry." },
+        { "fr": "Il y a une inquiétude grandissante face au chômage.", "en": "There is a growing concern about unemployment." }
+      ],
+      "mc_options": ["curiosity", "relief", "worry", "boredom"],
+      "cloze_sentence": "Les parents ressentent souvent de l'{{blank}} quand leurs enfants rentrent tard.",
+      "blank_answer": "inquiétude",
+      "acceptable_answers": []
+    },
+    "tags_json": ["abstract", "noun", "emotion", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "le hasard",
+      "translations": ["chance", "coincidence", "luck"],
+      "definition": "The occurrence of events without apparent cause or intention; coincidence or randomness.",
+      "examples": [
+        { "fr": "Par hasard, j'ai rencontré mon ancien professeur.", "en": "By chance, I ran into my old teacher." },
+        { "fr": "C'est le hasard qui a décidé de notre rencontre.", "en": "It was chance that determined our meeting." }
+      ],
+      "mc_options": ["fate", "chance", "skill", "choice"],
+      "cloze_sentence": "Je ne crois pas au {{blank}} — tout arrive pour une raison.",
+      "blank_answer": "hasard",
+      "acceptable_answers": []
+    },
+    "tags_json": ["abstract", "noun", "philosophy", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "cependant",
+      "translations": ["however", "yet", "nevertheless"],
+      "definition": "A discourse marker indicating contrast or concession, similar to 'however'. Connects two contrasting ideas at sentence or paragraph level.",
+      "examples": [
+        { "fr": "Il travaille dur. Cependant, ses résultats restent médiocres.", "en": "He works hard. However, his results remain poor." },
+        { "fr": "Le projet est ambitieux ; cependant, il est réalisable.", "en": "The project is ambitious; however, it is achievable." }
+      ],
+      "mc_options": ["therefore", "however", "furthermore", "similarly"],
+      "cloze_sentence": "Elle aime voyager ; {{blank}}, elle n'a pas assez d'argent.",
+      "blank_answer": "cependant",
+      "acceptable_answers": ["pourtant", "néanmoins", "toutefois"]
+    },
+    "tags_json": ["discourse_marker", "connector", "contrast", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "pourtant",
+      "translations": ["yet", "still", "and yet"],
+      "definition": "A discourse marker expressing contrast or surprise at an unexpected result; stronger sense of 'and yet' or 'still' despite what was said before.",
+      "examples": [
+        { "fr": "Il était fatigué, pourtant il a continué à courir.", "en": "He was tired, yet he kept on running." },
+        { "fr": "C'est simple, pourtant personne ne l'a compris.", "en": "It's simple, and yet nobody understood it." }
+      ],
+      "mc_options": ["therefore", "moreover", "yet/still", "in other words"],
+      "cloze_sentence": "Je lui ai tout expliqué, {{blank}} il a fait la même erreur.",
+      "blank_answer": "pourtant",
+      "acceptable_answers": ["cependant", "néanmoins"]
+    },
+    "tags_json": ["discourse_marker", "connector", "contrast", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "d'ailleurs",
+      "translations": ["besides", "moreover", "incidentally", "what's more"],
+      "definition": "A discourse marker used to add supplementary information or a supporting point; introduces an additional argument or aside.",
+      "examples": [
+        { "fr": "Ce restaurant est excellent. D'ailleurs, il a reçu une étoile Michelin.", "en": "This restaurant is excellent. What's more, it received a Michelin star." },
+        { "fr": "Je ne l'aime pas beaucoup. D'ailleurs, je ne le connais pas vraiment.", "en": "I don't like him much. Besides, I don't really know him." }
+      ],
+      "mc_options": ["on the other hand", "besides/moreover", "as a result", "in contrast"],
+      "cloze_sentence": "Ce film est très bien noté ; {{blank}}, il a gagné plusieurs prix.",
+      "blank_answer": "d'ailleurs",
+      "acceptable_answers": ["de plus", "en outre"]
+    },
+    "tags_json": ["discourse_marker", "connector", "addition", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "en revanche",
+      "translations": ["on the other hand", "however", "in contrast"],
+      "definition": "A discourse marker that introduces a contrasting element; used to balance two opposing facts, often with a positive following a negative.",
+      "examples": [
+        { "fr": "Il n'est pas ponctuel. En revanche, il travaille très bien.", "en": "He is not punctual. On the other hand, he works very well." },
+        { "fr": "Le prix est élevé ; en revanche, la qualité est irréprochable.", "en": "The price is high; on the other hand, the quality is impeccable." }
+      ],
+      "mc_options": ["as a result", "on the other hand", "furthermore", "in conclusion"],
+      "cloze_sentence": "Cette ville est petite ; {{blank}}, elle est très animée.",
+      "blank_answer": "en revanche",
+      "acceptable_answers": ["cependant", "pourtant"]
+    },
+    "tags_json": ["discourse_marker", "connector", "contrast", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "par conséquent",
+      "translations": ["therefore", "consequently", "as a result"],
+      "definition": "A discourse marker indicating that what follows is a logical result or consequence of what preceded it.",
+      "examples": [
+        { "fr": "Il a menti. Par conséquent, on ne lui fait plus confiance.", "en": "He lied. Therefore, no one trusts him anymore." },
+        { "fr": "Les routes sont verglacées ; par conséquent, conduisez prudemment.", "en": "The roads are icy; consequently, drive carefully." }
+      ],
+      "mc_options": ["however", "besides", "therefore", "in contrast"],
+      "cloze_sentence": "Elle a travaillé dur toute l'année ; {{blank}}, elle a réussi son diplôme.",
+      "blank_answer": "par conséquent",
+      "acceptable_answers": ["donc", "ainsi", "c'est pourquoi"]
+    },
+    "tags_json": ["discourse_marker", "connector", "consequence", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "néanmoins",
+      "translations": ["nevertheless", "nonetheless", "even so"],
+      "definition": "A formal discourse marker expressing concession; introduces a statement that holds true despite what was just said. More formal than 'pourtant' or 'quand même'.",
+      "examples": [
+        { "fr": "La situation est grave. Néanmoins, il ne faut pas paniquer.", "en": "The situation is serious. Nevertheless, we must not panic." },
+        { "fr": "Ce n'est pas parfait ; néanmoins, c'est un bon début.", "en": "It's not perfect; nonetheless, it's a good start." }
+      ],
+      "mc_options": ["therefore", "moreover", "nevertheless", "in fact"],
+      "cloze_sentence": "Les résultats sont décevants ; {{blank}}, nous continuons nos efforts.",
+      "blank_answer": "néanmoins",
+      "acceptable_answers": ["cependant", "pourtant", "toutefois"]
+    },
+    "tags_json": ["discourse_marker", "connector", "concession", "formal", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "souhaiter",
+      "translations": ["to wish", "to hope", "to desire"],
+      "definition": "Formal verb meaning 'to wish' or 'to hope for'. More formal and polished than 'vouloir'; common in professional and written contexts.",
+      "examples": [
+        { "fr": "Je souhaite vous remercier pour votre aide.", "en": "I wish to thank you for your help." },
+        { "fr": "Nous vous souhaitons une bonne année.", "en": "We wish you a happy new year." }
+      ],
+      "mc_options": ["to know", "to need", "to wish", "to believe"],
+      "cloze_sentence": "Elle {{blank}} obtenir un poste dans une grande entreprise.",
+      "blank_answer": "souhaite",
+      "acceptable_answers": ["souhaiterait"]
+    },
+    "tags_json": ["formal_register", "verb", "desire", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "s'avérer",
+      "translations": ["to turn out to be", "to prove to be"],
+      "definition": "Formal reflexive verb meaning 'to turn out to be' or 'to prove'. Used to describe something that reveals itself to be a certain way upon reflection or investigation.",
+      "examples": [
+        { "fr": "La tâche s'est avérée plus difficile que prévu.", "en": "The task turned out to be more difficult than expected." },
+        { "fr": "Ses craintes se sont avérées fondées.", "en": "His fears proved to be well-founded." }
+      ],
+      "mc_options": ["to avoid", "to turn out to be", "to remember", "to happen"],
+      "cloze_sentence": "La solution qu'il proposait {{blank}} inefficace.",
+      "blank_answer": "s'est avérée",
+      "acceptable_answers": ["s'avérait"]
+    },
+    "tags_json": ["formal_register", "verb", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "constater",
+      "translations": ["to notice", "to observe", "to note", "to establish"],
+      "definition": "Formal verb meaning 'to observe' or 'to establish as fact'; implies an objective, often official recognition of a fact. More formal than 'remarquer'.",
+      "examples": [
+        { "fr": "Le médecin a constaté une amélioration significative.", "en": "The doctor noted a significant improvement." },
+        { "fr": "Nous constatons que les résultats sont positifs.", "en": "We note that the results are positive." }
+      ],
+      "mc_options": ["to discuss", "to ignore", "to notice/establish", "to question"],
+      "cloze_sentence": "Les experts ont {{blank}} que la situation s'était améliorée.",
+      "blank_answer": "constaté",
+      "acceptable_answers": []
+    },
+    "tags_json": ["formal_register", "verb", "observation", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "mentionner",
+      "translations": ["to mention", "to refer to"],
+      "definition": "Formal verb meaning 'to mention' or 'to bring up'. Neutral in register but common in formal written and professional communication.",
+      "examples": [
+        { "fr": "Il a mentionné ce problème lors de la réunion.", "en": "He mentioned this problem during the meeting." },
+        { "fr": "N'oubliez pas de mentionner vos diplômes dans le CV.", "en": "Don't forget to mention your qualifications in the CV." }
+      ],
+      "mc_options": ["to avoid", "to mention", "to question", "to discuss at length"],
+      "cloze_sentence": "Elle a {{blank}} que le projet serait retardé.",
+      "blank_answer": "mentionné",
+      "acceptable_answers": []
+    },
+    "tags_json": ["formal_register", "verb", "communication", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "formuler",
+      "translations": ["to formulate", "to express", "to put into words"],
+      "definition": "Formal verb meaning 'to formulate' or 'to express clearly in words'. Used for expressing ideas, requests, or objections in precise language.",
+      "examples": [
+        { "fr": "Il a du mal à formuler ses idées.", "en": "He has difficulty putting his ideas into words." },
+        { "fr": "Veuillez formuler votre demande par écrit.", "en": "Please express your request in writing." }
+      ],
+      "mc_options": ["to form a group", "to fill out a form", "to formulate/express", "to translate"],
+      "cloze_sentence": "Elle a {{blank}} une critique très pertinente de la politique actuelle.",
+      "blank_answer": "formulé",
+      "acceptable_answers": ["formulée"]
+    },
+    "tags_json": ["formal_register", "verb", "communication", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "il s'en fout",
+      "translations": ["he doesn't care", "he couldn't care less"],
+      "definition": "IDIOM (informal/vulgar): means 'he/she doesn't care at all' or 'he/she couldn't care less'. Derived from 'se foutre de'. Informal and mildly vulgar — avoid in formal contexts.",
+      "examples": [
+        { "fr": "Tu peux lui dire n'importe quoi — il s'en fout.", "en": "You can tell him anything — he couldn't care less." },
+        { "fr": "Elle s'en fout complètement de l'opinion des autres.", "en": "She doesn't care at all about other people's opinions." }
+      ],
+      "mc_options": ["he is confused", "he doesn't care", "he is angry", "he is busy"],
+      "cloze_sentence": "Il n'a pas regardé ses notes avant l'examen — vraiment, il {{blank}}.",
+      "blank_answer": "s'en fout",
+      "acceptable_answers": ["s'en fichait"]
+    },
+    "tags_json": ["idiom", "informal", "attitude", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "ça ne vaut pas le coup",
+      "translations": ["it's not worth it", "it's not worth the trouble"],
+      "definition": "IDIOM: means 'it's not worth it' or 'it's not worth the effort/trouble'. 'Coup' here means the blow/effort. Note: 'ça ne vaut pas le coût' (cost) is a different phrase.",
+      "examples": [
+        { "fr": "Ça ne vaut pas le coup de se disputer pour ça.", "en": "It's not worth arguing about that." },
+        { "fr": "Le film est mauvais — ça ne vaut vraiment pas le coup.", "en": "The film is bad — it's really not worth it." }
+      ],
+      "mc_options": ["it's too expensive", "it's not worth it", "it's too complicated", "it's not legal"],
+      "cloze_sentence": "Ne prends pas le train juste pour une heure — {{blank}}.",
+      "blank_answer": "ça ne vaut pas le coup",
+      "acceptable_answers": ["c'est pas la peine"]
+    },
+    "tags_json": ["idiom", "expression", "value", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "mettre les pieds dans le plat",
+      "translations": ["to put one's foot in it", "to blunder", "to bring up a sensitive topic bluntly"],
+      "definition": "IDIOM: means 'to put one's foot in it' — to say something tactless or to raise a sensitive subject in a clumsy way, causing embarrassment.",
+      "examples": [
+        { "fr": "Il a vraiment mis les pieds dans le plat en parlant de son divorce.", "en": "He really put his foot in it by bringing up her divorce." },
+        { "fr": "Tu as mis les pieds dans le plat — il ne fallait pas mentionner ça.", "en": "You put your foot in it — you shouldn't have mentioned that." }
+      ],
+      "mc_options": ["to cook a meal", "to enter without knocking", "to put one's foot in it", "to make a mess of the kitchen"],
+      "cloze_sentence": "Quand il a demandé si elle était enceinte, il a vraiment {{blank}}.",
+      "blank_answer": "mis les pieds dans le plat",
+      "acceptable_answers": []
+    },
+    "tags_json": ["idiom", "expression", "social", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "avoir le cafard",
+      "translations": ["to feel down", "to have the blues", "to feel depressed"],
+      "definition": "IDIOM: means 'to feel down' or 'to have the blues'. Literally 'to have the cockroach'. Expresses mild depression or melancholy, not clinical depression.",
+      "examples": [
+        { "fr": "J'ai le cafard depuis que mon ami est parti.", "en": "I've been feeling down since my friend left." },
+        { "fr": "En hiver, beaucoup de gens ont le cafard.", "en": "In winter, many people have the blues." }
+      ],
+      "mc_options": ["to be afraid of insects", "to feel down/have the blues", "to be very hungry", "to feel nervous"],
+      "cloze_sentence": "Depuis son déménagement à l'étranger, elle {{blank}} souvent.",
+      "blank_answer": "a le cafard",
+      "acceptable_answers": ["avait le cafard"]
+    },
+    "tags_json": ["idiom", "expression", "emotion", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "principle",
+    "level": "B1",
+    "data_json": {
+      "word": "casser les pieds",
+      "translations": ["to annoy", "to be a pain", "to get on someone's nerves"],
+      "definition": "IDIOM: means 'to annoy someone' or 'to be a nuisance'. Literally 'to break the feet'. Informal expression used when someone is being tiresome or a bother.",
+      "examples": [
+        { "fr": "Tu me casses les pieds avec tes questions !", "en": "You're getting on my nerves with your questions!" },
+        { "fr": "Ce bruit me casse les pieds.", "en": "That noise is really annoying me." }
+      ],
+      "mc_options": ["to injure someone's foot", "to dance badly", "to annoy/be a pain", "to leave quickly"],
+      "cloze_sentence": "Arrête de {{blank}} — je travaille !", "blank_answer": "me casser les pieds",
+      "acceptable_answers": ["casser les pieds"]
+    },
+    "tags_json": ["idiom", "expression", "emotion", "informal", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "manquer",
+      "translations": ["to miss (someone/something)", "to be missing", "to lack"],
+      "definition": "Nuanced verb with inverted subject-object structure for 'to miss': 'Tu me manques' = 'I miss you' (lit: you are missing to me). Also means 'to lack' or 'to be absent'.",
+      "examples": [
+        { "fr": "Tu me manques beaucoup depuis ton départ.", "en": "I miss you a lot since you left." },
+        { "fr": "Il manque dix euros dans la caisse.", "en": "There are ten euros missing from the till." }
+      ],
+      "mc_options": ["to arrive late", "to miss/be missing", "to forget", "to lose"],
+      "cloze_sentence": "Mes amis me {{blank}} quand je suis à l'étranger.",
+      "blank_answer": "manquent",
+      "acceptable_answers": []
+    },
+    "tags_json": ["nuanced_verb", "verb", "emotion", "grammar_trap", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "se rendre compte",
+      "translations": ["to realize", "to become aware of"],
+      "definition": "Reflexive verbal phrase meaning 'to realize' or 'to become aware of something'. Do not confuse with 'réaliser' which in French more commonly means 'to carry out/achieve'.",
+      "examples": [
+        { "fr": "Je me suis rendu compte de mon erreur trop tard.", "en": "I realized my mistake too late." },
+        { "fr": "Tu te rends compte à quel point c'est difficile ?", "en": "Do you realize how difficult this is?" }
+      ],
+      "mc_options": ["to give an account", "to go back", "to realize/become aware", "to count again"],
+      "cloze_sentence": "Elle ne s'est pas {{blank}} qu'elle avait oublié ses clés.",
+      "blank_answer": "rendu compte",
+      "acceptable_answers": []
+    },
+    "tags_json": ["nuanced_verb", "verb", "cognition", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "s'en aller",
+      "translations": ["to go away", "to leave", "to be off"],
+      "definition": "Reflexive verbal phrase meaning 'to go away' or 'to leave'. More definitive and emotionally weighted than 'partir'; often implies leaving for good or with finality.",
+      "examples": [
+        { "fr": "Il s'en est allé sans dire au revoir.", "en": "He went away without saying goodbye." },
+        { "fr": "Allez, je m'en vais — à demain !", "en": "Right, I'm off — see you tomorrow!" }
+      ],
+      "mc_options": ["to go somewhere", "to go away/leave", "to come back", "to get lost"],
+      "cloze_sentence": "Après l'argument, elle {{blank}} en claquant la porte.",
+      "blank_answer": "s'en est allée",
+      "acceptable_answers": ["s'en alla"]
+    },
+    "tags_json": ["nuanced_verb", "verb", "movement", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "tenir à",
+      "translations": ["to care about", "to value", "to be keen on", "to insist on"],
+      "definition": "Verbal phrase meaning 'to care about something/someone' or 'to insist on doing something'. Expresses strong attachment or determination. Not to be confused with 'tenir' alone (to hold).",
+      "examples": [
+        { "fr": "Je tiens beaucoup à cette vieille montre.", "en": "I care a lot about this old watch." },
+        { "fr": "Elle tient à venir avec nous.", "en": "She is keen on / insists on coming with us." }
+      ],
+      "mc_options": ["to hold onto physically", "to care about/value", "to wait for", "to reach for"],
+      "cloze_sentence": "Il {{blank}} sa famille avant tout.",
+      "blank_answer": "tient à",
+      "acceptable_answers": []
+    },
+    "tags_json": ["nuanced_verb", "verb", "emotion", "relationships", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "la déception",
+      "translations": ["disappointment"],
+      "definition": "The feeling of sadness or displeasure caused by the non-fulfillment of one's hopes or expectations.",
+      "examples": [
+        { "fr": "Sa déception était visible sur son visage.", "en": "His disappointment was visible on his face." },
+        { "fr": "Quelle déception de ne pas avoir été sélectionné !", "en": "What a disappointment not to have been selected!" }
+      ],
+      "mc_options": ["deception", "disappointment", "decision", "delay"],
+      "cloze_sentence": "La {{blank}} était grande quand ils ont appris la nouvelle.",
+      "blank_answer": "déception",
+      "acceptable_answers": []
+    },
+    "tags_json": ["false_cognate", "noun", "emotion", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "le soutien",
+      "translations": ["support", "backing"],
+      "definition": "Help, encouragement, or backing given to someone; moral, financial, or practical assistance.",
+      "examples": [
+        { "fr": "Merci pour votre soutien durant cette période difficile.", "en": "Thank you for your support during this difficult period." },
+        { "fr": "Elle a besoin du soutien de sa famille.", "en": "She needs the support of her family." }
+      ],
+      "mc_options": ["worry", "support", "solution", "sustenance"],
+      "cloze_sentence": "Sans le {{blank}} de ses amis, il n'aurait pas réussi.",
+      "blank_answer": "soutien",
+      "acceptable_answers": []
+    },
+    "tags_json": ["abstract", "noun", "relationships", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "se plaindre",
+      "translations": ["to complain", "to grumble"],
+      "definition": "Reflexive verb meaning 'to complain' about something. Often followed by 'de' + noun/infinitive.",
+      "examples": [
+        { "fr": "Il se plaint tout le temps du bruit.", "en": "He constantly complains about the noise." },
+        { "fr": "Elle s'est plainte de douleurs à l'épaule.", "en": "She complained of shoulder pain." }
+      ],
+      "mc_options": ["to explain", "to apologize", "to complain", "to claim"],
+      "cloze_sentence": "Les clients {{blank}} souvent du mauvais service.",
+      "blank_answer": "se plaignent",
+      "acceptable_answers": ["se plaignaient"]
+    },
+    "tags_json": ["verb", "communication", "emotion", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "concept",
+    "level": "B1",
+    "data_json": {
+      "word": "prendre conscience de",
+      "translations": ["to become aware of", "to realize", "to come to terms with"],
+      "definition": "Verbal phrase meaning 'to become aware of' or 'to come to a realization about'. Implies a gradual or significant shift in awareness.",
+      "examples": [
+        { "fr": "Il a pris conscience de l'importance de sa santé.", "en": "He became aware of the importance of his health." },
+        { "fr": "Il faut prendre conscience des conséquences de nos actes.", "en": "We must become aware of the consequences of our actions." }
+      ],
+      "mc_options": ["to take control of", "to become aware of", "to remember clearly", "to take advantage of"],
+      "cloze_sentence": "Les jeunes doivent {{blank}} l'impact de leurs choix sur l'environnement.",
+      "blank_answer": "prendre conscience de",
+      "acceptable_answers": ["prendre conscience des"]
+    },
+    "tags_json": ["verbal_phrase", "cognition", "awareness", "B1"]
+  },
+  {
+    "type": "vocabulary",
+    "subtype": "fact",
+    "level": "B1",
+    "data_json": {
+      "word": "malgré",
+      "translations": ["despite", "in spite of"],
+      "definition": "Preposition meaning 'despite' or 'in spite of'. Followed by a noun or pronoun, not a clause. For a clause, use 'bien que' + subjunctive.",
+      "examples": [
+        { "fr": "Malgré la pluie, nous avons fait une promenade.", "en": "Despite the rain, we went for a walk." },
+        { "fr": "Elle sourit malgré sa tristesse.", "en": "She smiled in spite of her sadness." }
+      ],
+      "mc_options": ["although", "despite", "because of", "thanks to"],
+      "cloze_sentence": "{{blank}} ses efforts, il n'a pas obtenu le poste.",
+      "blank_answer": "Malgré",
+      "acceptable_answers": ["En dépit de"]
+    },
+    "tags_json": ["preposition", "connector", "concession", "B1"]
+  }
+]

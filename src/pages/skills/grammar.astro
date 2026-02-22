@@ -1,0 +1,77 @@
+---
+import { query, queryOne } from "~/lib/db/index.ts";
+import { getDueCount } from "~/lib/srs/scheduler.ts";
+import { getProfile } from "~/lib/learner-model/profile.ts";
+
+const due = getDueCount("grammar");
+const profile = getProfile();
+const grammarCategories = Object.entries(profile.grammar_proficiency);
+
+const totalKCs = queryOne<{ n: number }>(
+  "SELECT COUNT(*) AS n FROM knowledge_components WHERE type = 'grammar'"
+)?.n ?? 0;
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar — French</title>
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+  <nav class="border-b border-gray-800 px-6 py-4 flex items-center gap-6">
+    <a href="/" class="text-gray-400 hover:text-white text-sm">← Dashboard</a>
+    <span class="font-semibold">Grammar</span>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-4 py-8 space-y-8">
+    <section class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+      <div class="flex items-center justify-between mb-2">
+        <h1 class="text-2xl font-bold">Grammar</h1>
+        <div class="text-right">
+          <p class="text-3xl font-bold text-blue-400">{due.due}</p>
+          <p class="text-xs text-gray-400">due today</p>
+        </div>
+      </div>
+      <p class="text-sm text-gray-400">{totalKCs} grammar exercises in your deck</p>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {[
+        { mood: "review", label: "Review", desc: "Reinforce grammar rules" },
+        { mood: "challenge", label: "Challenge", desc: "Test your mastery" },
+        { mood: "explore", label: "Explore", desc: "New grammar structures" },
+      ].map(({ mood, label, desc }) => (
+        <a
+          href={`/games/grammar?mood=${mood}`}
+          class="bg-gray-900 border border-gray-800 hover:border-blue-500 rounded-2xl p-5 transition-colors"
+        >
+          <p class="font-semibold text-blue-400">{label}</p>
+          <p class="text-xs text-gray-400 mt-1">{desc}</p>
+        </a>
+      ))}
+    </section>
+
+    {grammarCategories.length > 0 && (
+      <section class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+        <h2 class="text-sm font-semibold text-gray-300 mb-4">Proficiency by category</h2>
+        <div class="space-y-3">
+          {grammarCategories.map(([cat, p]) => {
+            const pct = Math.round(((p ?? 0) / 6) * 100);
+            return (
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="text-gray-300 capitalize">{cat.replace("_", " ")}</span>
+                  <span class="text-gray-400">{pct}%</span>
+                </div>
+                <div class="h-1.5 bg-gray-800 rounded-full">
+                  <div class="h-full bg-blue-500 rounded-full" style={`width:${pct}%`}></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    )}
+  </main>
+</body>
+</html>
