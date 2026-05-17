@@ -13,7 +13,7 @@
     "d1:migrate": "wrangler d1 execute french-learning --remote --file=./migrations/schema.sql"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.1",
+    "@astrojs/cloudflare": "11.2.0",
     "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.16.0",

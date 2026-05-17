@@ -8,3 +8,4 @@ french.db-wal
 .env
 .env.*
 migrations/data.sql
+.wrangler/

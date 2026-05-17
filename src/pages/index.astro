@@ -3,7 +3,7 @@
  * Dashboard — stats overview, due items, weak areas, forgetting curve.
  */
 
-import { execSync } from "~/lib/db/index.ts";
+import { exec } from "~/lib/db/index.ts";
 import { SCHEMA_SQL } from "~/lib/db/schema.ts";
 import { getDueCount } from "~/lib/srs/scheduler.ts";
 import { getProfile, proficiencyToCEFR } from "~/lib/learner-model/profile.ts";
@@ -17,12 +17,10 @@ import ActivityHeatmap from "~/components/dashboard/ActivityHeatmap.tsx";
 import WeakAreasList from "~/components/dashboard/WeakAreasList.tsx";
 import RetentionMap from "~/components/dashboard/RetentionMap.tsx";
 
-// Ensure DB is migrated on first load (dev only — prod uses migration runner)
-if (import.meta.env.DEV) {
-  try {
-    execSync(SCHEMA_SQL);
-  } catch {}
-}
+// Ensure DB schema exists (uses D1's exec which handles IF NOT EXISTS gracefully)
+try {
+  await exec(SCHEMA_SQL);
+} catch {}
 
 const due = await getDueCount("mixed");
 const profile = await getProfile();
