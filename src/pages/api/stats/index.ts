@@ -15,11 +15,11 @@ import { getProfile, proficiencyToCEFR } from "~/lib/learner-model/profile.ts";
 
 export const GET: APIRoute = async () => {
   try {
-    const profile = getProfile();
-    const due = getDueCount("mixed");
+    const profile = await getProfile();
+    const due = await getDueCount("mixed");
 
     // Knowledge state ring (new/learning/review/mastered)
-    const stateRing = queryOne<{
+    const stateRing = await queryOne<{
       new_count: number;
       learning_count: number;
       review_count: number;
@@ -34,7 +34,7 @@ export const GET: APIRoute = async () => {
     `) ?? { new_count: 0, learning_count: 0, review_count: 0, mastered_count: 0 };
 
     // Weak areas (bottom 10 by retrievability)
-    const weakAreas = query<{
+    const weakAreas = (await query<{
       kc_id: number;
       retrievability: number;
       due_at: string | null;
@@ -47,7 +47,7 @@ export const GET: APIRoute = async () => {
       WHERE sc.state != 'new'
       ORDER BY sc.retrievability ASC
       LIMIT 10
-    `).map((row) => {
+    `)).map((row) => {
       const data = parseJson<{ word?: string; rule?: string }>(row.data_json, {});
       return {
         kc_id: row.kc_id,
@@ -59,7 +59,7 @@ export const GET: APIRoute = async () => {
     });
 
     // Retention map by topic/tag (average retrievability per tag)
-    const retentionByTag = query<{ tag: string; avg_ret: number }>(`
+    const retentionByTag = await query<{ tag: string; avg_ret: number }>(`
       SELECT json_each.value AS tag, AVG(sc.retrievability) AS avg_ret
       FROM srs_cards sc
       JOIN knowledge_components kc ON kc.id = sc.kc_id,
@@ -71,7 +71,7 @@ export const GET: APIRoute = async () => {
 
     // 7-day forgetting curve: predict retrievability each day for all active cards
     const now = new Date();
-    const activeCards = query<{
+    const activeCards = await query<{
       stability: number;
       difficulty: number;
       retrievability: number;
@@ -107,7 +107,7 @@ export const GET: APIRoute = async () => {
     });
 
     // Daily stats for heatmap (last 365 days)
-    const heatmap = query<{
+    const heatmap = await query<{
       date: string;
       cards_reviewed: number;
       accuracy: number;

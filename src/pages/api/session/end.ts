@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Load all responses for this session
-    const responseRows = query<{
+    const responseRows = await query<{
       kc_id: number;
       is_correct: number;
       response_time_ms: number;
@@ -52,22 +52,17 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const trajectory = getScaffoldTrajectory(session_id);
-    const minutes =
-      (() => {
-        const s = queryOne<{ started_at: string; ended_at: string | null }>(
-          "SELECT started_at, ended_at FROM sessions WHERE id = ?",
-          [session_id]
-        );
-        if (!s?.ended_at) return 0;
-        return (
-          (new Date(s.ended_at).getTime() - new Date(s.started_at).getTime()) /
-          60_000
-        );
-      })();
+    const sessionRow = await queryOne<{ started_at: string; ended_at: string | null }>(
+      "SELECT started_at, ended_at FROM sessions WHERE id = ?",
+      [session_id]
+    );
+    const minutes = sessionRow?.ended_at
+      ? (new Date(sessionRow.ended_at).getTime() - new Date(sessionRow.started_at).getTime()) / 60_000
+      : 0;
 
     // Update minutes in daily_stats
     const today = new Date().toISOString().split("T")[0];
-    run(
+    await run(
       "UPDATE daily_stats SET minutes_studied = minutes_studied + ? WHERE date = ?",
       [minutes, today]
     );

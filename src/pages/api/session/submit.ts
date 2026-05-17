@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Persist response
-    run(
+    await run(
       `INSERT INTO responses
         (session_id, kc_id, game_type, answer, is_correct, response_time_ms,
          scaffold_level, hints_used, error_type)
@@ -130,7 +130,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Load session plan to get next item
-    const planRow = queryOne<{ items_json: string }>(
+    const planRow = await queryOne<{ items_json: string }>(
       "SELECT items_json FROM session_plans WHERE id = ?",
       [plan_id]
     );
@@ -147,7 +147,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     let next_item = null;
     if (nextItem) {
-      const kc = queryOne<{ data_json: string }>(
+      const kc = await queryOne<{ data_json: string }>(
         "SELECT data_json FROM knowledge_components WHERE id = ?",
         [nextItem.kc_id]
       );

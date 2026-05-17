@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
     const mood: Mood = body.mood ?? "review";
     const topic: string | null = body.topic ?? null;
 
-    const dueCount = getDueCount(subject === "mixed" ? "mixed" : subject);
+    const dueCount = await getDueCount(subject === "mixed" ? "mixed" : subject);
     if (dueCount.due + dueCount.new_cards === 0) {
       return new Response(
         JSON.stringify({ error: "no_items_due", message: "Nothing due for review right now." }),
@@ -33,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
     const plan = planSessionSync(subject, mood, topic);
 
     // Create session row
-    const sessionResult = run(
+    const sessionResult = await run(
       "INSERT INTO sessions (plan_id, started_at) VALUES (?,?)",
       [plan.id, new Date().toISOString()]
     );
@@ -55,7 +55,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const firstItem = plan.items[0];
-    const kc = queryOne<{ data_json: string }>(
+    const kc = await queryOne<{ data_json: string }>(
       "SELECT data_json FROM knowledge_components WHERE id = ?",
       [firstItem.kc_id]
     );
