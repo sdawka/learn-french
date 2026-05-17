@@ -1,0 +1,11 @@
+name = "french-learning"
+compatibility_date = "2024-01-01"
+main = "dist/_worker.js"
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "french-learning"
+database_id = "placeholder"
