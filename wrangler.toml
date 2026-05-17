@@ -8,4 +8,4 @@ enabled = true
 [[d1_databases]]
 binding = "DB"
 database_name = "french-learning"
-database_id = "placeholder"
+database_id = "24feb8bc-15d6-4c1f-9735-a613ee03bd68"
