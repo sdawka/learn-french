@@ -7,3 +7,4 @@ french.db-wal
 *.db-*
 .env
 .env.*
+migrations/data.sql
