@@ -3,13 +3,13 @@ import { query, queryOne } from "~/lib/db/index.ts";
 import { getDueCount } from "~/lib/srs/scheduler.ts";
 import { getProfile } from "~/lib/learner-model/profile.ts";
 
-const due = getDueCount("grammar");
-const profile = getProfile();
+const due = await getDueCount("grammar");
+const profile = await getProfile();
 const grammarCategories = Object.entries(profile.grammar_proficiency);
 
-const totalKCs = queryOne<{ n: number }>(
+const totalKCs = (await queryOne<{ n: number }>(
   "SELECT COUNT(*) AS n FROM knowledge_components WHERE type = 'grammar'"
-)?.n ?? 0;
+))?.n ?? 0;
 ---
 
 <html lang="en">
