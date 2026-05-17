@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "portless run astro dev",
+    "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "migrate": "bun src/lib/db/migrate.ts",
     "seed": "bun src/content/vocabulary/seed.ts",
     "migrate:export": "bun scripts/export-data.ts",
-    "deploy": "astro build && wrangler deploy",
-    "d1:migrate": "wrangler d1 execute french-learning --remote --file=./migrations/schema.sql"
+    "deploy": "astro build && bunx wrangler deploy",
+    "d1:schema": "bunx wrangler d1 execute french-learning --file=./migrations/schema.sql",
+    "d1:import": "bunx wrangler d1 execute french-learning --file=./migrations/data.sql"
   },
   "dependencies": {
     "@astrojs/cloudflare": "11.2.0",
