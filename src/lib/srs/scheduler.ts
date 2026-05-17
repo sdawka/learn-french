@@ -31,12 +31,12 @@ const LEVEL_UNLOCK_THRESHOLD = 0.7; // fraction of KCs in review/mastered to unl
  * Each level is unlocked once LEVEL_UNLOCK_THRESHOLD of the prior level's KCs
  * are in review or mastered state. Levels with no KCs are skipped.
  */
-function getUnlockedLevels(type: "vocabulary" | "grammar" | "mixed"): string[] {
+async function getUnlockedLevels(type: "vocabulary" | "grammar" | "mixed"): Promise<string[]> {
   const typeFilter = type === "mixed" ? "" : `AND kc.type = '${type}'`;
   const unlocked: string[] = [];
   for (const level of CEFR_LEVEL_ORDER) {
     unlocked.push(level);
-    const stats = queryOne<{ total: number; mastered: number }>(`
+    const stats = await queryOne<{ total: number; mastered: number }>(`
       SELECT
         COUNT(kc.id) AS total,
         SUM(CASE WHEN sc.state IN ('review','mastered') THEN 1 ELSE 0 END) AS mastered
@@ -54,17 +54,17 @@ function getUnlockedLevels(type: "vocabulary" | "grammar" | "mixed"): string[] {
  * Return items due for review, ordered by urgency.
  * subject: 'vocabulary' | 'grammar' | 'mixed'
  */
-export function getDueItems(
+export async function getDueItems(
   subject: "vocabulary" | "grammar" | "mixed" = "mixed",
   limit = 20,
   now: Date = new Date()
-): DueItem[] {
+): Promise<DueItem[]> {
   const nowIso = now.toISOString();
   const typeFilter =
     subject === "mixed" ? "" : `AND kc.type = '${subject}'`;
 
   // Due + learning/relearning cards (overdue first)
-  const due = query<{
+  const due = await query<{
     kc_id: number;
     card_id: number;
     stability: number;
@@ -106,9 +106,9 @@ export function getDueItems(
   const newLimit = Math.max(0, limit - due.length);
   let newKcs: { kc_id: number; kc_type: string; kc_level: string; data_json: string }[] = [];
   if (newLimit > 0) {
-    const unlockedLevels = getUnlockedLevels(subject);
+    const unlockedLevels = await getUnlockedLevels(subject);
     const levelPlaceholders = unlockedLevels.map(() => "?").join(",");
-    newKcs = query<{ kc_id: number; kc_type: string; kc_level: string; data_json: string }>(`
+    newKcs = await query<{ kc_id: number; kc_type: string; kc_level: string; data_json: string }>(`
       SELECT kc.id AS kc_id, kc.type AS kc_type, kc.level AS kc_level, kc.data_json
       FROM knowledge_components kc
       LEFT JOIN srs_cards sc ON sc.kc_id = kc.id
@@ -175,14 +175,14 @@ export function getDueItems(
  * Persist updated FSRS state back to srs_cards.
  * Creates the card row if it's new (card_id === -1).
  */
-export function saveCardState(kc_id: number, card: FSRSCard): number {
-  const existing = queryOne<{ id: number }>(
+export async function saveCardState(kc_id: number, card: FSRSCard): Promise<number> {
+  const existing = await queryOne<{ id: number }>(
     "SELECT id FROM srs_cards WHERE kc_id = ?",
     [kc_id]
   );
 
   if (existing) {
-    run(
+    await run(
       `UPDATE srs_cards SET
         stability = ?, difficulty = ?, retrievability = ?,
         state = ?, due_at = ?, review_count = ?,
@@ -202,7 +202,7 @@ export function saveCardState(kc_id: number, card: FSRSCard): number {
     );
     return existing.id;
   } else {
-    const result = run(
+    const result = await run(
       `INSERT INTO srs_cards
         (kc_id, stability, difficulty, retrievability, state, due_at,
          review_count, lapse_count, last_reviewed_at)
@@ -224,26 +224,26 @@ export function saveCardState(kc_id: number, card: FSRSCard): number {
 }
 
 /** Count of items due today (for dashboard). */
-export function getDueCount(subject = "mixed"): {
+export async function getDueCount(subject = "mixed"): Promise<{
   due: number;
   new_cards: number;
-} {
+}> {
   const typeFilter =
     subject === "mixed" ? "" : `AND kc.type = '${subject}'`;
   const now = new Date().toISOString();
 
-  const due = queryOne<{ n: number }>(`
+  const due = (await queryOne<{ n: number }>(`
     SELECT COUNT(*) AS n FROM srs_cards sc
     JOIN knowledge_components kc ON kc.id = sc.kc_id
     WHERE (sc.due_at <= ? OR sc.state IN ('learning','relearning'))
       ${typeFilter}
-  `, [now])?.n ?? 0;
+  `, [now]))?.n ?? 0;
 
-  const newCards = queryOne<{ n: number }>(`
+  const newCards = (await queryOne<{ n: number }>(`
     SELECT COUNT(*) AS n FROM knowledge_components kc
     LEFT JOIN srs_cards sc ON sc.kc_id = kc.id
     WHERE sc.id IS NULL ${typeFilter}
-  `)?.n ?? 0;
+  `))?.n ?? 0;
 
   return { due, new_cards: Math.min(newCards, NEW_CARDS_PER_SESSION) };
 }
