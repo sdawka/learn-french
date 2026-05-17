@@ -60,8 +60,8 @@ export function proficiencyToCEFR(p: number): CEFRLevel {
   return "C2";
 }
 
-export function getProfile(): LearnerProfile {
-  const row = queryOne<{
+export async function getProfile(): Promise<LearnerProfile> {
+  const row = await queryOne<{
     vocabulary_proficiency: number;
     grammar_proficiency_json: string;
     forgetting_rate: number;
@@ -71,7 +71,7 @@ export function getProfile(): LearnerProfile {
 
   if (!row) {
     // Singleton must exist (seeded in schema)
-    run("INSERT OR IGNORE INTO learner_profile (id) VALUES (1)");
+    await run("INSERT OR IGNORE INTO learner_profile (id) VALUES (1)");
     return {
       vocabulary_proficiency: 0,
       grammar_proficiency: {},
@@ -93,8 +93,8 @@ export function getProfile(): LearnerProfile {
   };
 }
 
-export function updateProfile(patch: Partial<LearnerProfile>): void {
-  const current = getProfile();
+export async function updateProfile(patch: Partial<LearnerProfile>): Promise<void> {
+  const current = await getProfile();
 
   const merged: LearnerProfile = {
     vocabulary_proficiency:
@@ -108,7 +108,7 @@ export function updateProfile(patch: Partial<LearnerProfile>): void {
     session_pattern: { ...current.session_pattern, ...patch.session_pattern },
   };
 
-  run(
+  await run(
     `UPDATE learner_profile SET
       vocabulary_proficiency   = ?,
       grammar_proficiency_json = ?,
@@ -130,26 +130,26 @@ export function updateProfile(patch: Partial<LearnerProfile>): void {
  * Update vocabulary proficiency based on recent session accuracy.
  * Uses exponential moving average (α=0.1) — gradual drift, not jumps.
  */
-export function updateVocabProficiency(sessionAccuracy: number): void {
-  const { vocabulary_proficiency } = getProfile();
+export async function updateVocabProficiency(sessionAccuracy: number): Promise<void> {
+  const { vocabulary_proficiency } = await getProfile();
   // Accuracy maps linearly to proficiency changes: +0.1 at 100%, -0.1 at 0%
   const delta = (sessionAccuracy - 0.5) * 0.2;
   const updated = Math.max(0, Math.min(6, vocabulary_proficiency + delta));
-  updateProfile({ vocabulary_proficiency: updated });
+  await updateProfile({ vocabulary_proficiency: updated });
 }
 
 /**
  * Update grammar proficiency for a specific category.
  */
-export function updateGrammarProficiency(
+export async function updateGrammarProficiency(
   category: string,
   sessionAccuracy: number
-): void {
-  const { grammar_proficiency } = getProfile();
+): Promise<void> {
+  const { grammar_proficiency } = await getProfile();
   const current = grammar_proficiency[category] ?? 0;
   const delta = (sessionAccuracy - 0.5) * 0.2;
   const updated = Math.max(0, Math.min(6, current + delta));
-  updateProfile({
+  await updateProfile({
     grammar_proficiency: { ...grammar_proficiency, [category]: updated },
   });
 }
@@ -158,10 +158,10 @@ export function updateGrammarProficiency(
  * Update style weights based on engagement signal.
  * Higher accuracy in a game type → slightly higher weight (learned preference).
  */
-export function updateStyleWeight(gameType: string, accuracy: number): void {
-  const { style_weights } = getProfile();
+export async function updateStyleWeight(gameType: string, accuracy: number): Promise<void> {
+  const { style_weights } = await getProfile();
   const current = style_weights[gameType] ?? 1.0;
   // Small drift toward engagement signal
   const updated = current * 0.95 + accuracy * 0.05;
-  updateProfile({ style_weights: { ...style_weights, [gameType]: updated } });
+  await updateProfile({ style_weights: { ...style_weights, [gameType]: updated } });
 }
