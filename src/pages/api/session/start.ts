@@ -12,6 +12,7 @@ import { planSession } from "~/lib/adaptation/session-planner.ts";
 import type { Subject, Mood } from "~/lib/adaptation/session-planner.ts";
 import { run, queryOne } from "~/lib/db/index.ts";
 import { resolveVariant } from "~/lib/game-engine/executor.ts";
+import { enrichKcDataForGame } from "~/lib/game-engine/distractors.ts";
 import { logEvent } from "~/lib/audit/logger.ts";
 import { getDueCount } from "~/lib/srs/scheduler.ts";
 
@@ -59,7 +60,13 @@ export const POST: APIRoute = async ({ request }) => {
       "SELECT data_json FROM knowledge_components WHERE id = ?",
       [firstItem.kc_id]
     );
-    const kc_data = JSON.parse(kc?.data_json ?? "{}");
+    const rawKcData = JSON.parse(kc?.data_json ?? "{}");
+    const kc_data = await enrichKcDataForGame(
+      firstItem.game_type,
+      firstItem.scaffold_level,
+      firstItem.kc_id,
+      rawKcData
+    );
 
     const variant = resolveVariant(
       firstItem.game_type,

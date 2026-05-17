@@ -23,6 +23,7 @@ import {
 } from "~/lib/game-engine/executor.ts";
 import type { ExecutorState } from "~/lib/game-engine/executor.ts";
 import { generateTeachingCard } from "~/lib/game-engine/teaching.ts";
+import { enrichKcDataForGame } from "~/lib/game-engine/distractors.ts";
 import { recordError, recordConfusion } from "~/lib/learner-model/misconceptions.ts";
 import type { ErrorType } from "~/lib/learner-model/misconceptions.ts";
 import { run, queryOne, parseJson } from "~/lib/db/index.ts";
@@ -151,10 +152,16 @@ export const POST: APIRoute = async ({ request }) => {
         "SELECT data_json FROM knowledge_components WHERE id = ?",
         [nextItem.kc_id]
       );
-      const kc_data = JSON.parse(kc?.data_json ?? "{}");
+      const rawKcData = JSON.parse(kc?.data_json ?? "{}");
       const effectiveScaffold = Math.max(
         nextItem.scaffold_level,
         newExecState.scaffold_level
+      );
+      const kc_data = await enrichKcDataForGame(
+        nextItem.game_type,
+        effectiveScaffold,
+        nextItem.kc_id,
+        rawKcData
       );
       const variant = resolveVariant(nextItem.game_type, effectiveScaffold, kc_data);
 
