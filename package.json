@@ -7,7 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "migrate": "bun src/lib/db/migrate.ts",
-    "seed": "bun src/content/vocabulary/seed.ts"
+    "seed": "bun src/content/vocabulary/seed.ts",
+    "migrate:export": "bun scripts/export-data.ts",
+    "deploy": "astro build && wrangler deploy",
+    "d1:migrate": "wrangler d1 execute french-learning --remote --file=./migrations/schema.sql"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
