@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "portless run astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "migrate": "bun src/lib/db/migrate.ts",
     "seed": "bun src/content/vocabulary/seed.ts"
   },
   "dependencies": {
-    "@astrojs/node": "8.3.4",
+    "@astrojs/cloudflare": "^13.5.1",
     "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.16.0",
