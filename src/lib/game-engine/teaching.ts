@@ -27,11 +27,11 @@ export interface WorkedExample {
 /**
  * Generate a teaching card for a KC that has triggered max scaffolding.
  */
-export function generateTeachingCard(
+export async function generateTeachingCard(
   kc_id: number,
   misconception_id: number | null
-): TeachingCard {
-  const kc = queryOne<{
+): Promise<TeachingCard> {
+  const kc = await queryOne<{
     type: string;
     subtype: string;
     data_json: string;
@@ -63,7 +63,7 @@ export function generateTeachingCard(
   }>(kc.data_json, {});
 
   const misconception = misconception_id
-    ? getMisconception(misconception_id)
+    ? await getMisconception(misconception_id)
     : null;
 
   // Build worked example from KC data

@@ -12,8 +12,8 @@ export interface AuditEvent {
   ts: string;
 }
 
-export function getSessionTimeline(session_id: number): AuditEvent[] {
-  return query<{
+export async function getSessionTimeline(session_id: number): Promise<AuditEvent[]> {
+  const rows = await query<{
     id: number;
     session_id: number;
     event_type: string;
@@ -22,7 +22,8 @@ export function getSessionTimeline(session_id: number): AuditEvent[] {
   }>(
     "SELECT * FROM audit_events WHERE session_id = ? ORDER BY ts ASC",
     [session_id]
-  ).map((row) => ({
+  );
+  return rows.map((row) => ({
     id: row.id,
     session_id: row.session_id,
     event_type: row.event_type,
@@ -31,13 +32,14 @@ export function getSessionTimeline(session_id: number): AuditEvent[] {
   }));
 }
 
-export function getScaffoldTrajectory(
+export async function getScaffoldTrajectory(
   session_id: number
-): Array<{ ts: string; direction: string; new_level: number }> {
-  return query<{ payload_json: string; ts: string }>(
+): Promise<Array<{ ts: string; direction: string; new_level: number }>> {
+  const rows = await query<{ payload_json: string; ts: string }>(
     "SELECT payload_json, ts FROM audit_events WHERE session_id = ? AND event_type = 'scaffold_changed' ORDER BY ts",
     [session_id]
-  ).map((row) => {
+  );
+  return rows.map((row) => {
     const p = parseJson<{ direction: string; new_level: number }>(row.payload_json, { direction: "none", new_level: 0 });
     return { ts: row.ts, direction: p.direction, new_level: p.new_level };
   });

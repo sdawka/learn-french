@@ -43,15 +43,15 @@ export const POST: APIRoute = async ({ request }) => {
       error_type: r.error_type as SessionResponse["error_type"],
     }));
 
-    const result = runPostSession(session_id, responses);
+    const result = await runPostSession(session_id, responses);
 
-    logEvent(session_id, "session_ended", {
+    await logEvent(session_id, "session_ended", {
       accuracy: result.accuracy,
       kcs_updated: result.kcs_updated,
       misconceptions_triggered: result.misconceptions_triggered,
     });
 
-    const trajectory = getScaffoldTrajectory(session_id);
+    const trajectory = await getScaffoldTrajectory(session_id);
     const sessionRow = await queryOne<{ started_at: string; ended_at: string | null }>(
       "SELECT started_at, ended_at FROM sessions WHERE id = ?",
       [session_id]

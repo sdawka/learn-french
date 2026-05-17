@@ -40,11 +40,11 @@ export interface PostSessionResult {
 /**
  * Run all post-session updates for a completed session.
  */
-export function runPostSession(
+export async function runPostSession(
   session_id: number,
   responses: SessionResponse[],
   now: Date = new Date()
-): PostSessionResult {
+): Promise<PostSessionResult> {
   const misconceptions_triggered: string[] = [];
   let kcs_updated = 0;
 
@@ -52,7 +52,7 @@ export function runPostSession(
   const kcIds = [...new Set(responses.map((r) => r.kc_id))];
   const kcTypes: Record<number, { type: string; subtype: string }> = {};
   for (const id of kcIds) {
-    const row = queryOne<{ type: string; subtype: string }>(
+    const row = await queryOne<{ type: string; subtype: string }>(
       "SELECT type, subtype FROM knowledge_components WHERE id = ?",
       [id]
     );
@@ -86,7 +86,7 @@ export function runPostSession(
       accuracy >= 0.9 ? 4 : accuracy >= 0.7 ? 3 : accuracy >= 0.4 ? 2 : 1;
 
     // Load current card state
-    const cardRow = queryOne<{
+    const cardRow = await queryOne<{
       stability: number;
       difficulty: number;
       retrievability: number;
@@ -122,19 +122,19 @@ export function runPostSession(
         };
 
     const { card: updatedCard } = schedule(currentCard, grade, now);
-    saveCardState(kc_id, updatedCard);
+    await saveCardState(kc_id, updatedCard);
     kcs_updated++;
 
     // Error tracking
     for (const resp of kcResponses) {
       if (!resp.is_correct && resp.error_type) {
-        const misconception = recordError(kc_id, resp.error_type, now);
+        const misconception = await recordError(kc_id, resp.error_type, now);
         if (misconception && !misconceptions_triggered.includes(misconception.name)) {
           misconceptions_triggered.push(misconception.name);
         }
       }
       if (!resp.is_correct && resp.confused_with_kc_id) {
-        recordConfusion(kc_id, resp.confused_with_kc_id, now);
+        await recordConfusion(kc_id, resp.confused_with_kc_id, now);
       }
 
       // Accumulate for proficiency updates
@@ -156,12 +156,12 @@ export function runPostSession(
   // Update proficiency estimates
   if (vocabResults.length > 0) {
     const acc = vocabResults.filter(Boolean).length / vocabResults.length;
-    updateVocabProficiency(acc);
+    await updateVocabProficiency(acc);
   }
   for (const [category, results] of Object.entries(grammarResults)) {
     if (results.length > 0) {
       const acc = results.filter(Boolean).length / results.length;
-      updateGrammarProficiency(category, acc);
+      await updateGrammarProficiency(category, acc);
     }
   }
 
@@ -169,7 +169,7 @@ export function runPostSession(
   for (const [gameType, results] of Object.entries(gameTypeResults)) {
     if (results.length > 0) {
       const acc = results.filter(Boolean).length / results.length;
-      updateStyleWeight(gameType, acc);
+      await updateStyleWeight(gameType, acc);
     }
   }
 
@@ -179,7 +179,7 @@ export function runPostSession(
       : 0;
 
   // Update session record
-  run(
+  await run(
     `UPDATE sessions SET
       ended_at = ?, cards_reviewed = ?, accuracy = ?
      WHERE id = ?`,
@@ -188,7 +188,7 @@ export function runPostSession(
 
   // Update daily stats
   const today = now.toISOString().split("T")[0];
-  run(
+  await run(
     `INSERT INTO daily_stats (date, cards_reviewed, accuracy, new_kcs_learned)
      VALUES (?, ?, ?, 0)
      ON CONFLICT(date) DO UPDATE SET
@@ -198,13 +198,13 @@ export function runPostSession(
   );
 
   // Load predicted accuracy from plan
-  const sessionRow = queryOne<{ plan_id: number | null }>(
+  const sessionRow = await queryOne<{ plan_id: number | null }>(
     "SELECT plan_id FROM sessions WHERE id = ?",
     [session_id]
   );
   let predicted = 0.8;
   if (sessionRow?.plan_id) {
-    const planRow = queryOne<{ expected_accuracy: number }>(
+    const planRow = await queryOne<{ expected_accuracy: number }>(
       "SELECT expected_accuracy FROM session_plans WHERE id = ?",
       [sessionRow.plan_id]
     );

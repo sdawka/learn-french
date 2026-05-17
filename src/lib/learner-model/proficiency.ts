@@ -57,10 +57,10 @@ interface VocabLevelRow {
  * then scales it into the level's [floor, floor+1) band and takes a
  * card-count-weighted average across all levels.
  */
-export function estimateVocabProficiency(): number {
+export async function estimateVocabProficiency(): Promise<number> {
   // SQLite has no native CASE in GROUP BY position, so we compute
   // state_weight inline via a CASE expression.
-  const rows = query<VocabLevelRow>(`
+  const rows = await query<VocabLevelRow>(`
     SELECT
       kc.level,
       AVG(sc.retrievability)                                            AS avg_retrievability,
@@ -120,9 +120,9 @@ interface GrammarCategoryRow {
  *
  * Returns { category: proficiency_score_0_to_6 }.
  */
-export function estimateGrammarProficiency(): Record<string, number> {
+export async function estimateGrammarProficiency(): Promise<Record<string, number>> {
   // Subquery: rank responses per kc_id by recency, keep last 20.
-  const rows = query<GrammarCategoryRow>(`
+  const rows = await query<GrammarCategoryRow>(`
     SELECT
       kc.data_json ->> '$.category'  AS category,
       kc.level                       AS level,
@@ -198,11 +198,11 @@ interface KcIdRow {
 /**
  * Returns all kc_ids for the given CEFR level and type.
  */
-export function getKCsAtLevel(
+export async function getKCsAtLevel(
   level: string,
   type: "vocabulary" | "grammar"
-): number[] {
-  const rows = query<KcIdRow>(
+): Promise<number[]> {
+  const rows = await query<KcIdRow>(
     `SELECT id FROM knowledge_components WHERE level = ? AND type = ?`,
     [level, type]
   );
@@ -225,8 +225,8 @@ interface SrsStateRow {
  * Returns true if all prerequisite KCs for the given kc_id are in state
  * 'review' or 'mastered'. Returns true if the KC has no prerequisites.
  */
-export function getPrerequisitesSatisfied(kc_id: number): boolean {
-  const prereqs = query<PrereqRow>(
+export async function getPrerequisitesSatisfied(kc_id: number): Promise<boolean> {
+  const prereqs = await query<PrereqRow>(
     `SELECT requires_kc_id FROM kc_prerequisites WHERE kc_id = ?`,
     [kc_id]
   );
@@ -234,7 +234,7 @@ export function getPrerequisitesSatisfied(kc_id: number): boolean {
   if (prereqs.length === 0) return true;
 
   for (const { requires_kc_id } of prereqs) {
-    const card = queryOne<SrsStateRow>(
+    const card = await queryOne<SrsStateRow>(
       `SELECT state FROM srs_cards WHERE kc_id = ?`,
       [requires_kc_id]
     );

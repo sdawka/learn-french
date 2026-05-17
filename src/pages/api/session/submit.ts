@@ -81,7 +81,7 @@ export const POST: APIRoute = async ({ request }) => {
       ]
     );
 
-    logEvent(session_id, "answer_submitted", {
+    await logEvent(session_id, "answer_submitted", {
       item_index,
       kc_id,
       game_type,
@@ -93,7 +93,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Misconception tracking
     let misconception_id: number | null = null;
     if (!gradeResult.is_correct && gradeResult.error_type) {
-      const m = recordError(kc_id, gradeResult.error_type as ErrorType);
+      const m = await recordError(kc_id, gradeResult.error_type as ErrorType);
       misconception_id = m?.id ?? null;
 
       if (gradeResult.confused_with && options) {
@@ -111,7 +111,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
     if (scaffold_update.changed) {
-      logEvent(session_id, "scaffold_changed", {
+      await logEvent(session_id, "scaffold_changed", {
         direction: scaffold_update.direction,
         new_level: scaffold_update.new_scaffold_level,
         item_index,
@@ -121,8 +121,8 @@ export const POST: APIRoute = async ({ request }) => {
     // Teaching card?
     let teaching_card = null;
     if (scaffold_update.teaching_triggered) {
-      teaching_card = generateTeachingCard(kc_id, misconception_id);
-      logEvent(session_id, "teaching_inserted", {
+      teaching_card = await generateTeachingCard(kc_id, misconception_id);
+      await logEvent(session_id, "teaching_inserted", {
         kc_id,
         misconception_id,
         teaching_name: teaching_card.misconception_name,
@@ -158,7 +158,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
       const variant = resolveVariant(nextItem.game_type, effectiveScaffold, kc_data);
 
-      logEvent(session_id, "item_shown", {
+      await logEvent(session_id, "item_shown", {
         item_index: nextIndex,
         kc_id: nextItem.kc_id,
         game_type: nextItem.game_type,

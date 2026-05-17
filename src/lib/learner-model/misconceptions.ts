@@ -67,9 +67,9 @@ export const KNOWN_MISCONCEPTIONS: Omit<MisconceptionRecord, "id">[] = [
   },
 ];
 
-export function seedMisconceptions(): void {
+export async function seedMisconceptions(): Promise<void> {
   for (const m of KNOWN_MISCONCEPTIONS) {
-    run(
+    await run(
       `INSERT OR IGNORE INTO misconceptions (name, description, kc_ids_json, error_type)
        VALUES (?,?,?,?)`,
       [m.name, m.description, JSON.stringify(m.kc_ids), m.error_type]
@@ -85,13 +85,13 @@ export function seedMisconceptions(): void {
  * Record an error for a KC.
  * Increments the count, detects misconceptions when count >= 2.
  */
-export function recordError(
+export async function recordError(
   kc_id: number,
   error_type: ErrorType,
   now: Date = new Date()
-): MisconceptionRecord | null {
+): Promise<MisconceptionRecord | null> {
   // Upsert error count
-  run(
+  await run(
     `INSERT INTO learner_kc_errors (kc_id, error_type, count, last_seen_at)
      VALUES (?, ?, 1, ?)
      ON CONFLICT(kc_id, error_type) DO UPDATE SET
@@ -100,7 +100,7 @@ export function recordError(
     [kc_id, error_type, now.toISOString()]
   );
 
-  const row = queryOne<{ count: number }>(
+  const row = await queryOne<{ count: number }>(
     "SELECT count FROM learner_kc_errors WHERE kc_id = ? AND error_type = ?",
     [kc_id, error_type]
   );
@@ -112,11 +112,11 @@ export function recordError(
   return null;
 }
 
-function detectMisconception(
+async function detectMisconception(
   kc_id: number,
   error_type: ErrorType
-): MisconceptionRecord | null {
-  const match = queryOne<{
+): Promise<MisconceptionRecord | null> {
+  const match = await queryOne<{
     id: number;
     name: string;
     description: string | null;
@@ -130,7 +130,7 @@ function detectMisconception(
   if (!match) return null;
 
   // Link the KC to this misconception if not already linked
-  run(
+  await run(
     `UPDATE learner_kc_errors SET misconception_id = ?
      WHERE kc_id = ? AND error_type = ? AND misconception_id IS NULL`,
     [match.id, kc_id, error_type]
@@ -148,13 +148,13 @@ function detectMisconception(
 /**
  * Record a confusion between two KCs (learner confused A with B's answer).
  */
-export function recordConfusion(
+export async function recordConfusion(
   kc_id_a: number,
   kc_id_b: number,
   now: Date = new Date()
-): void {
+): Promise<void> {
   const [a, b] = [Math.min(kc_id_a, kc_id_b), Math.max(kc_id_a, kc_id_b)];
-  run(
+  await run(
     `INSERT INTO learner_confusion_pairs (kc_id_a, kc_id_b, confusion_count, last_seen_at)
      VALUES (?, ?, 1, ?)
      ON CONFLICT(kc_id_a, kc_id_b) DO UPDATE SET
@@ -168,8 +168,8 @@ export function recordConfusion(
 // Queries
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function getActiveMisconceptions(): MisconceptionRecord[] {
-  return query<{
+export async function getActiveMisconceptions(): Promise<MisconceptionRecord[]> {
+  const rows = await query<{
     id: number;
     name: string;
     description: string | null;
@@ -181,7 +181,8 @@ export function getActiveMisconceptions(): MisconceptionRecord[] {
      JOIN learner_kc_errors e ON e.misconception_id = m.id
      WHERE e.count >= 2
      ORDER BY e.last_seen_at DESC`
-  ).map((row) => ({
+  );
+  return rows.map((row) => ({
     id: row.id,
     name: row.name,
     description: row.description,
@@ -190,8 +191,8 @@ export function getActiveMisconceptions(): MisconceptionRecord[] {
   }));
 }
 
-export function getMisconception(id: number): MisconceptionRecord | null {
-  const row = queryOne<{
+export async function getMisconception(id: number): Promise<MisconceptionRecord | null> {
+  const row = await queryOne<{
     id: number;
     name: string;
     description: string | null;

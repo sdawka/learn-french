@@ -8,7 +8,7 @@
  */
 
 import type { APIRoute } from "astro";
-import { planSessionSync } from "~/lib/adaptation/session-planner.ts";
+import { planSession } from "~/lib/adaptation/session-planner.ts";
 import type { Subject, Mood } from "~/lib/adaptation/session-planner.ts";
 import { run, queryOne } from "~/lib/db/index.ts";
 import { resolveVariant } from "~/lib/game-engine/executor.ts";
@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const plan = planSessionSync(subject, mood, topic);
+    const plan = await planSession(subject, mood, topic);
 
     // Create session row
     const sessionResult = await run(
@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
     const session_id = sessionResult.lastInsertRowid as number;
 
-    logEvent(session_id, "session_started", {
+    await logEvent(session_id, "session_started", {
       plan_id: plan.id,
       subject,
       mood,
@@ -67,7 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
       kc_data
     );
 
-    logEvent(session_id, "item_shown", {
+    await logEvent(session_id, "item_shown", {
       item_index: 0,
       kc_id: firstItem.kc_id,
       game_type: firstItem.game_type,

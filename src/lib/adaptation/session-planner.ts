@@ -15,7 +15,7 @@
 
 import { getDueItems } from "../srs/scheduler.ts";
 import { getProfile, proficiencyToCEFR } from "../learner-model/profile.ts";
-import { run, queryOne } from "../db/index.ts";
+import { run } from "../db/index.ts";
 
 export type GameType =
   | "translate"
@@ -156,15 +156,14 @@ function scaffoldForAccuracy(predicted_accuracy: number): number {
 }
 
 /**
- * A simpler, synchronous planner that uses preloaded KC data from the due items query.
- * This is the primary planner — kept here as an alias for clarity.
+ * Plan a session by loading due items and learner profile, then persisting the plan.
  */
-export function planSessionSync(
+export async function planSession(
   subject: Subject = "mixed",
   mood: Mood = "review",
   topic: string | null = null
-): SessionPlan {
-  const profile = getProfile();
+): Promise<SessionPlan> {
+  const profile = await getProfile();
   const { count, challenge_bias } = MOOD_CONFIG[mood];
 
   const level =
@@ -181,7 +180,7 @@ export function planSessionSync(
         )
       : proficiencyToCEFR(profile.vocabulary_proficiency);
 
-  const dueItems = getDueItems(subject, count);
+  const dueItems = await getDueItems(subject, count);
   const items: PlanItem[] = [];
   let accuracySum = 0;
 
@@ -216,7 +215,7 @@ export function planSessionSync(
   const expected_accuracy =
     items.length > 0 ? accuracySum / items.length : 0.8;
 
-  const planResult = run(
+  const planResult = await run(
     `INSERT INTO session_plans
       (subject, topic, level, style, mood, items_json, expected_accuracy)
      VALUES (?,?,?,?,?,?,?)`,
@@ -234,3 +233,6 @@ export function planSessionSync(
     expected_accuracy,
   };
 }
+
+/** @deprecated Use planSession instead */
+export const planSessionSync = planSession;
