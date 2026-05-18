@@ -3,6 +3,8 @@
  * Displays a worked example with rule annotation, then lets learner continue.
  */
 
+import { useEffect, useRef } from "react";
+
 interface WorkedExample {
   prompt: string;
   steps: string[];
@@ -23,12 +25,55 @@ export default function TeachingCard({
   worked_example,
   on_continue,
 }: Props) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Focus the continue button when modal opens
+  useEffect(() => {
+    buttonRef.current?.focus();
+  }, []);
+
+  // Handle Escape key to dismiss
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        on_continue();
+      }
+      // Focus trap: if Tab pressed, keep focus within modal
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [on_continue]);
+
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900 border border-amber-500/30 rounded-2xl max-w-lg w-full p-6 space-y-4">
+    <div
+      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="teaching-title"
+    >
+      <div
+        ref={dialogRef}
+        className="bg-gray-900 border border-amber-500/30 rounded-2xl max-w-lg w-full p-6 space-y-4"
+      >
         <div className="flex items-center gap-2">
-          <span className="text-amber-400 text-lg">!</span>
-          <h2 className="text-amber-400 font-semibold">Let's learn this together</h2>
+          <span className="text-amber-400 text-lg" aria-hidden="true">!</span>
+          <h2 id="teaching-title" className="text-amber-400 font-semibold">Let's learn this together</h2>
         </div>
 
         {misconception_name && (
@@ -64,6 +109,7 @@ export default function TeachingCard({
         )}
 
         <button
+          ref={buttonRef}
           onClick={on_continue}
           className="w-full bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 rounded-xl transition-colors"
         >

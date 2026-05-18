@@ -77,10 +77,19 @@ export default function KnowledgeStateRing({
       return arc;
     });
 
+  const ariaLabel = `Knowledge state: ${new_count} new, ${learning_count} learning, ${review_count} review, ${mastered_count} mastered, ${total} total cards`;
+
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="relative">
-        <svg width="160" height="160" viewBox="0 0 160 160">
+        <svg
+          width="160"
+          height="160"
+          viewBox="0 0 160 160"
+          role="img"
+          aria-label={ariaLabel}
+        >
+          <title>{ariaLabel}</title>
           {/* Background ring */}
           <circle
             cx={cx}
@@ -98,6 +107,7 @@ export default function KnowledgeStateRing({
               stroke={arc.color}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
+              aria-label={`${arc.label}: ${arc.count} cards`}
             />
           ))}
           {/* Center total */}
@@ -108,6 +118,7 @@ export default function KnowledgeStateRing({
             fill="white"
             fontSize="20"
             fontWeight="bold"
+            aria-hidden="true"
           >
             {total}
           </text>
@@ -117,6 +128,7 @@ export default function KnowledgeStateRing({
             textAnchor="middle"
             fill="#6b7280"
             fontSize="10"
+            aria-hidden="true"
           >
             cards
           </text>

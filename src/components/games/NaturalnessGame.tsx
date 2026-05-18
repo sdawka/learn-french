@@ -57,7 +57,7 @@ export default function NaturalnessGame({
   useEffect(() => {
     setSelected(null);
     seedRef.current = Date.now();
-  }, [correctAnswer]);
+  }, [correctAnswer, scaffold_level]);
 
   if (!rawOptions.length) {
     return (

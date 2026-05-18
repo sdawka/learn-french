@@ -96,14 +96,15 @@ function generateRuleFromType(
   data: Record<string, unknown>
 ): string {
   if (type === "vocabulary" && subtype === "fact") {
-    const word = data.word as string;
-    const translations = data.translations as string[];
-    return `"${word}" means "${translations?.[0] ?? "—"}". ${
-      data.definition ?? ""
-    }`;
+    const word = typeof data.word === "string" ? data.word : null;
+    const translations = Array.isArray(data.translations) ? data.translations : [];
+    const definition = typeof data.definition === "string" ? data.definition : "";
+    if (!word) return "Review this vocabulary word.";
+    return `"${word}" means "${translations[0] ?? "—"}". ${definition}`;
   }
   if (type === "grammar") {
-    return (data.rule as string) ?? "Study the pattern in the example.";
+    const rule = typeof data.rule === "string" ? data.rule : null;
+    return rule ?? "Study the pattern in the example.";
   }
   return "Review the example carefully before trying again.";
 }

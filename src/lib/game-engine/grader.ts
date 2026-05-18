@@ -119,11 +119,14 @@ function gradeTranslate(input: GradeInput): GradeResult {
   }
 
   // Accept missing/wrong accents — correct with a soft reminder
-  const givenFlat = normalize(input.answer, false);
-  const expectedFlat = normalize(input.expected, false);
-  const altFlats = (input.acceptable_answers ?? []).map((s) => normalize(s, false));
-  if (givenFlat === expectedFlat || altFlats.includes(givenFlat)) {
+  if (hasDiacriticError(input.answer, input.expected)) {
     return { is_correct: true, feedback: accentReminder(input.expected) };
+  }
+  // Check alternatives for diacritic errors too
+  for (const alt of input.acceptable_answers ?? []) {
+    if (hasDiacriticError(input.answer, alt)) {
+      return { is_correct: true, feedback: accentReminder(alt) };
+    }
   }
 
   // Fuzzy match — near miss (typo)
@@ -152,15 +155,15 @@ function gradeCloze(input: GradeInput): GradeResult {
   }
 
   // Accept missing/wrong accents — correct with a soft reminder
-  const givenFlat = normalize(input.answer, false);
-  const expectedFlat = normalize(input.expected, false);
-  if (givenFlat === expectedFlat) {
+  if (hasDiacriticError(input.answer, input.expected)) {
     return { is_correct: true, feedback: accentReminder(input.expected) };
   }
 
   // Morphological error (right root, wrong ending)
-  const expectedRoot = expected.slice(0, Math.max(3, expected.length - 3));
-  if (given.startsWith(expectedRoot)) {
+  // Use ~60% of the word as root to catch conjugation/agreement errors
+  const rootLen = Math.max(2, Math.ceil(expected.length * 0.6));
+  const expectedRoot = expected.slice(0, rootLen);
+  if (given.startsWith(expectedRoot) && given.length >= rootLen) {
     return {
       is_correct: false,
       error_type: "morphological",
@@ -217,9 +220,7 @@ function gradeTransform(input: GradeInput): GradeResult {
   }
 
   // Accept missing accents
-  const givenFlat = normalize(input.answer, false);
-  const expectedFlat = normalize(input.expected, false);
-  if (givenFlat === expectedFlat) {
+  if (hasDiacriticError(input.answer, input.expected)) {
     return { is_correct: true, feedback: accentReminder(input.expected) };
   }
 

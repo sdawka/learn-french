@@ -54,13 +54,25 @@ export default function ActivityHeatmap({ data, streak }: Props) {
   const W = weeks.length * (cellSize + gap);
   const H = 7 * (cellSize + gap);
 
+  const totalCards = data.reduce((sum, d) => sum + d.cards_reviewed, 0);
+  const totalDays = data.filter((d) => d.cards_reviewed > 0).length;
+  const ariaLabel = `Study activity over the last 365 days: ${totalCards} cards reviewed across ${totalDays} days, current streak ${streak} days`;
+
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs text-gray-500">
         <span>{streak > 0 ? `${streak} day streak` : "Start your streak today"}</span>
         <span>last 365 days</span>
       </div>
-      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="w-full max-w-sm">
+      <svg
+        width={W}
+        height={H}
+        viewBox={`0 0 ${W} ${H}`}
+        className="w-full max-w-sm"
+        role="img"
+        aria-label={ariaLabel}
+      >
+        <title>{ariaLabel}</title>
         {weeks.map((wk, wi) =>
           wk.map((day, di) => (
             <rect
@@ -71,6 +83,8 @@ export default function ActivityHeatmap({ data, streak }: Props) {
               height={cellSize}
               rx={2}
               fill={getColor(day.cards_reviewed)}
+              role="gridcell"
+              aria-label={`${day.date}: ${day.cards_reviewed} cards, ${Math.round(day.minutes_studied)} minutes`}
             >
               <title>
                 {day.date}: {day.cards_reviewed} cards,{" "}
