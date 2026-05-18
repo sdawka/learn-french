@@ -165,7 +165,7 @@ export default function GameOrchestrator({ subject, mood }: Props) {
         setExecState(data.executor_state);
 
         // Pause for feedback, then advance
-        setTimeout(async () => {
+        setTimeout(() => {
           setFeedback(null);
 
           if (data.teaching_card) {
@@ -175,7 +175,10 @@ export default function GameOrchestrator({ subject, mood }: Props) {
           }
 
           if (data.session_done) {
-            await endSession();
+            endSession().catch((e) => {
+              setError(String(e));
+              setPhase("error");
+            });
             return;
           }
 
@@ -225,12 +228,34 @@ export default function GameOrchestrator({ subject, mood }: Props) {
   if (phase === "empty") {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center text-center p-8">
-        <div className="space-y-4">
-          <p className="text-2xl">All caught up!</p>
-          <p className="text-gray-400 text-sm">No items due for review right now.</p>
-          <a href="/" className="inline-block mt-4 px-6 py-3 bg-gray-800 rounded-xl text-sm hover:bg-gray-700">
-            Back to dashboard
-          </a>
+        <div className="max-w-md space-y-6">
+          <div className="text-5xl">🎉</div>
+          <h1 className="text-2xl font-bold">All caught up!</h1>
+          <p className="text-gray-400">
+            No {subject === "mixed" ? "" : subject + " "}items due for review right now.
+            Come back later or try a different mode.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/" className="px-6 py-3 bg-gray-800 rounded-xl text-sm hover:bg-gray-700 transition-colors">
+              Back to dashboard
+            </a>
+            {mood === "review" && (
+              <a
+                href={`/games/${subject}?mood=explore`}
+                className="px-6 py-3 bg-purple-700 rounded-xl text-sm hover:bg-purple-600 transition-colors"
+              >
+                Explore new words
+              </a>
+            )}
+            {mood !== "challenge" && (
+              <a
+                href={`/games/${subject}?mood=challenge`}
+                className="px-6 py-3 bg-amber-700 rounded-xl text-sm hover:bg-amber-600 transition-colors"
+              >
+                Try a challenge
+              </a>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@
  *   3 = 2-way MC (easiest)
  */
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 interface KCData {
   word: string;
@@ -50,8 +50,8 @@ export default function DefinitionGame({
   const isMC = scaffold_level >= 2;
   const optionCount = scaffold_level === 2 ? 4 : 2;
 
-  // Build MC options ensuring correct answer is included
-  const buildOptions = (): string[] => {
+  // Build MC options ensuring correct answer is included - refresh when question changes
+  const options = useMemo(() => {
     const correct = kc_data.word;
     let opts: string[] = kc_data.mc_options ? [...kc_data.mc_options] : [];
     opts = opts.slice(0, optionCount);
@@ -63,9 +63,7 @@ export default function DefinitionGame({
       }
     }
     return [...opts].sort(() => Math.random() - 0.5);
-  };
-
-  const [options] = useState<string[]>(() => buildOptions());
+  }, [kc_data.word, kc_data.mc_options, optionCount]);
 
   const handleSubmit = () => {
     if (typed.trim()) on_submit(typed.trim());

@@ -186,14 +186,15 @@ export async function runPostSession(
     [now.toISOString(), kcs_updated, overallAccuracy, session_id]
   );
 
-  // Update daily stats
+  // Update daily stats with weighted accuracy average
   const today = now.toISOString().split("T")[0];
   await run(
     `INSERT INTO daily_stats (date, cards_reviewed, accuracy, new_kcs_learned)
      VALUES (?, ?, ?, 0)
      ON CONFLICT(date) DO UPDATE SET
        cards_reviewed = cards_reviewed + excluded.cards_reviewed,
-       accuracy = (accuracy + excluded.accuracy) / 2`,
+       accuracy = ((accuracy * cards_reviewed) + (excluded.accuracy * excluded.cards_reviewed))
+                  / (cards_reviewed + excluded.cards_reviewed)`,
     [today, kcs_updated, overallAccuracy]
   );
 

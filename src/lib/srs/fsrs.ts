@@ -47,6 +47,7 @@ export const DESIRED_RETENTION = 0.9;
 
 /** Current retrievability given elapsed days and stability. */
 export function retrievability(elapsed_days: number, S: number): number {
+  if (S <= 0) return 0;
   return Math.exp((Math.log(DESIRED_RETENTION) * elapsed_days) / S);
 }
 

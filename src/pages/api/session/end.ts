@@ -56,7 +56,13 @@ export const POST: APIRoute = async ({ request }) => {
       "SELECT started_at, ended_at FROM sessions WHERE id = ?",
       [session_id]
     );
-    const minutes = sessionRow?.ended_at
+    if (!sessionRow) {
+      return new Response(
+        JSON.stringify({ error: "session_not_found", session_id }),
+        { status: 404, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    const minutes = sessionRow.ended_at
       ? (new Date(sessionRow.ended_at).getTime() - new Date(sessionRow.started_at).getTime()) / 60_000
       : 0;
 

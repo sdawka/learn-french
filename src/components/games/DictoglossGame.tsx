@@ -59,6 +59,7 @@ export default function DictoglossGame({
   const [flashDone, setFlashDone] = useState(scaffold_level !== 0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const focusTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const startFlash = useCallback(() => {
     setVisible(true);
@@ -73,7 +74,7 @@ export default function DictoglossGame({
         clearInterval(timerRef.current!);
         setVisible(false);
         setFlashDone(true);
-        setTimeout(() => textareaRef.current?.focus(), 100);
+        focusTimeoutRef.current = setTimeout(() => textareaRef.current?.focus(), 100);
       }
     }, 1000);
   }, []);
@@ -82,6 +83,7 @@ export default function DictoglossGame({
   useEffect(() => {
     setTyped("");
     if (timerRef.current) clearInterval(timerRef.current);
+    if (focusTimeoutRef.current) clearTimeout(focusTimeoutRef.current);
 
     if (scaffold_level === 0) {
       setVisible(false);
@@ -93,13 +95,14 @@ export default function DictoglossGame({
       setVisible(true);
       setFlashDone(true);
       setCountdown(0);
-      setTimeout(() => textareaRef.current?.focus(), 50);
+      focusTimeoutRef.current = setTimeout(() => textareaRef.current?.focus(), 50);
     }
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
+      if (focusTimeoutRef.current) clearTimeout(focusTimeoutRef.current);
     };
-  }, [correctAnswer, scaffold_level]);
+  }, [correctAnswer, scaffold_level, startFlash]);
 
   if (!sentence) {
     return (

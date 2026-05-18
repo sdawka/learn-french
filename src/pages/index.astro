@@ -120,6 +120,19 @@ const retentionByTag = await query<{ tag: string; avg_ret: number }>(`
 `);
 
 const totalCards = Object.values(stateRing).reduce((a, b) => a + b, 0);
+
+// Calculate progress toward next CEFR level
+const CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
+const currentLevelIndex = CEFR_LEVELS.indexOf(cefr);
+const nextLevel = currentLevelIndex < 5 ? CEFR_LEVELS[currentLevelIndex + 1] : null;
+const progressToNext = nextLevel
+  ? Math.min(100, Math.round((profile.vocabulary_proficiency % 1) * 100))
+  : 100;
+
+// Determine if user has items to review today
+const hasItemsDue = due.due + due.new_cards > 0;
+const todayEntry = heatmap.find((h) => h.date === now.toISOString().split("T")[0]);
+const cardsReviewedToday = todayEntry?.cards_reviewed ?? 0;
 ---
 
 <html lang="en">
@@ -140,24 +153,70 @@ const totalCards = Object.values(stateRing).reduce((a, b) => a + b, 0);
   </nav>
 
   <main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+    <!-- Welcome & Today's Goal -->
+    <section class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-2xl p-6 border border-blue-500/20">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-xl font-bold">
+            {hasItemsDue ? "Ready to learn?" : "All caught up!"}
+          </h1>
+          <p class="text-gray-400 text-sm mt-1">
+            {hasItemsDue
+              ? `${due.due + due.new_cards} items waiting for you`
+              : cardsReviewedToday > 0
+                ? `You've reviewed ${cardsReviewedToday} cards today`
+                : "Come back tomorrow for new reviews"
+            }
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          {streak > 0 && (
+            <div class="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 rounded-xl px-4 py-2">
+              <span class="text-amber-400 text-lg">🔥</span>
+              <span class="text-amber-400 font-semibold">{streak} day{streak !== 1 ? "s" : ""}</span>
+            </div>
+          )}
+          {hasItemsDue && (
+            <a href="/games/vocabulary?mood=review" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl font-semibold transition-colors">
+              Start review
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Progress to next level */}
+      {nextLevel && (
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between text-sm mb-2">
+            <span class="text-gray-400">Progress to {nextLevel}</span>
+            <span class="text-gray-300">{progressToNext}%</span>
+          </div>
+          <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all" style={`width: ${progressToNext}%`}></div>
+          </div>
+        </div>
+      )}
+    </section>
+
     <!-- Hero stats -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <a href="/games/vocabulary?mood=review" class="bg-gray-900 rounded-2xl p-5 border border-gray-800 hover:border-blue-500 transition-colors group">
+      <a href="/games/vocabulary?mood=review" class={`bg-gray-900 rounded-2xl p-5 border transition-colors group ${hasItemsDue ? 'border-gray-800 hover:border-blue-500' : 'border-gray-800/50 opacity-60'}`}>
         <p class="text-3xl font-bold">{due.due}</p>
         <p class="text-xs text-gray-400 mt-1">Due today</p>
-        <p class="text-xs text-blue-400 mt-2 group-hover:underline">Review now →</p>
+        {hasItemsDue && <p class="text-xs text-blue-400 mt-2 group-hover:underline">Review now →</p>}
       </a>
-      <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
+      <a href="/games/vocabulary?mood=explore" class="bg-gray-900 rounded-2xl p-5 border border-gray-800 hover:border-purple-500 transition-colors group">
         <p class="text-3xl font-bold text-purple-400">{due.new_cards}</p>
         <p class="text-xs text-gray-400 mt-1">New to learn</p>
-      </div>
+        <p class="text-xs text-purple-400 mt-2 group-hover:underline">Explore →</p>
+      </a>
       <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
         <p class="text-3xl font-bold text-green-400">{stateRing.mastered_count}</p>
         <p class="text-xs text-gray-400 mt-1">Mastered</p>
       </div>
       <div class="bg-gray-900 rounded-2xl p-5 border border-gray-800">
-        <p class="text-3xl font-bold text-amber-400">{streak}</p>
-        <p class="text-xs text-gray-400 mt-1">Day streak</p>
+        <p class="text-3xl font-bold">{totalCards}</p>
+        <p class="text-xs text-gray-400 mt-1">Total cards</p>
       </div>
     </section>
 
@@ -198,17 +257,37 @@ const totalCards = Object.values(stateRing).reduce((a, b) => a + b, 0);
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-3">
-      <a href="/games/vocabulary?mood=review" class="px-5 py-3 bg-blue-700 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors">
-        Review vocabulary
-      </a>
-      <a href="/games/grammar?mood=challenge" class="px-5 py-3 bg-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
-        Grammar challenge
-      </a>
-      <a href="/games/vocabulary?mood=explore" class="px-5 py-3 bg-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
-        Explore new words
-      </a>
-    </div>
+    <!-- Quick Actions -->
+    <section class="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+      <h2 class="text-sm font-semibold text-gray-300 mb-4">Quick Actions</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/games/vocabulary?mood=review" class={`px-5 py-4 rounded-xl text-sm font-semibold transition-colors flex flex-col ${due.due > 0 ? 'bg-blue-700 hover:bg-blue-600' : 'bg-gray-800 hover:bg-gray-700'}`}>
+          <span>Review vocabulary</span>
+          <span class="text-xs opacity-70 mt-1">Reinforce what you know</span>
+        </a>
+        <a href="/games/grammar?mood=challenge" class="px-5 py-4 bg-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors flex flex-col">
+          <span>Grammar challenge</span>
+          <span class="text-xs opacity-70 mt-1">Push your limits</span>
+        </a>
+        <a href="/games/vocabulary?mood=explore" class="px-5 py-4 bg-purple-700/50 hover:bg-purple-700/70 rounded-xl text-sm font-semibold transition-colors flex flex-col">
+          <span>Explore new words</span>
+          <span class="text-xs opacity-70 mt-1">Learn something new</span>
+        </a>
+      </div>
+
+      {/* Empty state guidance */}
+      {!hasItemsDue && (
+        <div class="mt-4 pt-4 border-t border-gray-800 text-center">
+          <p class="text-gray-400 text-sm">
+            No reviews due right now.
+            {due.new_cards > 0
+              ? " Try exploring new words to add more to your learning queue."
+              : " Great job keeping up with your reviews!"
+            }
+          </p>
+        </div>
+      )}
+    </section>
   </main>
 </body>
 </html>

@@ -32,19 +32,22 @@ const LEVEL_UNLOCK_THRESHOLD = 0.7; // fraction of KCs in review/mastered to unl
  * are in review or mastered state. Levels with no KCs are skipped.
  */
 async function getUnlockedLevels(type: "vocabulary" | "grammar" | "mixed"): Promise<string[]> {
-  const typeFilter = type === "mixed" ? "" : `AND kc.type = '${type}'`;
   const unlocked: string[] = [];
   for (const level of CEFR_LEVEL_ORDER) {
     unlocked.push(level);
+    const params: (string | number)[] = [level];
+    const typeClause = type === "mixed" ? "" : "AND kc.type = ?";
+    if (type !== "mixed") params.push(type);
+
     const stats = await queryOne<{ total: number; mastered: number }>(`
       SELECT
         COUNT(kc.id) AS total,
         SUM(CASE WHEN sc.state IN ('review','mastered') THEN 1 ELSE 0 END) AS mastered
       FROM knowledge_components kc
       LEFT JOIN srs_cards sc ON sc.kc_id = kc.id
-      WHERE kc.level = ? ${typeFilter}
-    `, [level]);
-    if (!stats || stats.total === 0) continue; // no KCs at this level, keep going
+      WHERE kc.level = ? ${typeClause}
+    `, params);
+    if (!stats || stats.total === 0) continue;
     if (stats.mastered / stats.total < LEVEL_UNLOCK_THRESHOLD) break;
   }
   return unlocked;
@@ -60,8 +63,10 @@ export async function getDueItems(
   now: Date = new Date()
 ): Promise<DueItem[]> {
   const nowIso = now.toISOString();
-  const typeFilter =
-    subject === "mixed" ? "" : `AND kc.type = '${subject}'`;
+  const typeClause = subject === "mixed" ? "" : "AND kc.type = ?";
+  const dueParams: (string | number)[] = [nowIso];
+  if (subject !== "mixed") dueParams.push(subject);
+  dueParams.push(limit);
 
   // Due + learning/relearning cards (overdue first)
   const due = await query<{
@@ -96,10 +101,10 @@ export async function getDueItems(
     FROM srs_cards sc
     JOIN knowledge_components kc ON kc.id = sc.kc_id
     WHERE (sc.due_at <= ? OR sc.state IN ('learning','relearning'))
-      ${typeFilter}
+      ${typeClause}
     ORDER BY sc.retrievability ASC, sc.due_at ASC
     LIMIT ?
-  `, [nowIso, limit]);
+  `, dueParams);
 
   // New cards (not yet in srs_cards) to fill up to limit.
   // Gated by (a) CEFR level unlock and (b) prerequisite satisfaction.
@@ -108,13 +113,17 @@ export async function getDueItems(
   if (newLimit > 0) {
     const unlockedLevels = await getUnlockedLevels(subject);
     const levelPlaceholders = unlockedLevels.map(() => "?").join(",");
+    const newParams: (string | number)[] = [...unlockedLevels];
+    if (subject !== "mixed") newParams.push(subject);
+    newParams.push(Math.min(newLimit, NEW_CARDS_PER_SESSION));
+
     newKcs = await query<{ kc_id: number; kc_type: string; kc_level: string; data_json: string }>(`
       SELECT kc.id AS kc_id, kc.type AS kc_type, kc.level AS kc_level, kc.data_json
       FROM knowledge_components kc
       LEFT JOIN srs_cards sc ON sc.kc_id = kc.id
       WHERE sc.id IS NULL
-        ${typeFilter}
         AND kc.level IN (${levelPlaceholders})
+        ${subject === "mixed" ? "" : "AND kc.type = ?"}
         AND NOT EXISTS (
           SELECT 1 FROM kc_prerequisites kp
           LEFT JOIN srs_cards sc2 ON sc2.kc_id = kp.requires_kc_id
@@ -122,7 +131,7 @@ export async function getDueItems(
             AND (sc2.id IS NULL OR sc2.state NOT IN ('review','mastered'))
         )
       LIMIT ?
-    `, [...unlockedLevels, Math.min(newLimit, NEW_CARDS_PER_SESSION)]);
+    `, newParams);
   }
 
   const dueItems: DueItem[] = due.map((row) => {
@@ -228,22 +237,25 @@ export async function getDueCount(subject = "mixed"): Promise<{
   due: number;
   new_cards: number;
 }> {
-  const typeFilter =
-    subject === "mixed" ? "" : `AND kc.type = '${subject}'`;
   const now = new Date().toISOString();
+  const typeClause = subject === "mixed" ? "" : "AND kc.type = ?";
+
+  const dueParams: (string | number)[] = [now];
+  if (subject !== "mixed") dueParams.push(subject);
 
   const due = (await queryOne<{ n: number }>(`
     SELECT COUNT(*) AS n FROM srs_cards sc
     JOIN knowledge_components kc ON kc.id = sc.kc_id
     WHERE (sc.due_at <= ? OR sc.state IN ('learning','relearning'))
-      ${typeFilter}
-  `, [now]))?.n ?? 0;
+      ${typeClause}
+  `, dueParams))?.n ?? 0;
 
+  const newParams: string[] = subject === "mixed" ? [] : [subject];
   const newCards = (await queryOne<{ n: number }>(`
     SELECT COUNT(*) AS n FROM knowledge_components kc
     LEFT JOIN srs_cards sc ON sc.kc_id = kc.id
-    WHERE sc.id IS NULL ${typeFilter}
-  `))?.n ?? 0;
+    WHERE sc.id IS NULL ${typeClause}
+  `, newParams))?.n ?? 0;
 
   return { due, new_cards: Math.min(newCards, NEW_CARDS_PER_SESSION) };
 }

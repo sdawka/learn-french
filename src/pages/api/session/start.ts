@@ -60,7 +60,13 @@ export const POST: APIRoute = async ({ request }) => {
       "SELECT data_json FROM knowledge_components WHERE id = ?",
       [firstItem.kc_id]
     );
-    const rawKcData = JSON.parse(kc?.data_json ?? "{}");
+    if (!kc) {
+      return new Response(
+        JSON.stringify({ error: "kc_not_found", kc_id: firstItem.kc_id }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    const rawKcData = JSON.parse(kc.data_json ?? "{}");
     const kc_data = await enrichKcDataForGame(
       firstItem.game_type,
       firstItem.scaffold_level,

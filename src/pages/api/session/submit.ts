@@ -152,7 +152,13 @@ export const POST: APIRoute = async ({ request }) => {
         "SELECT data_json FROM knowledge_components WHERE id = ?",
         [nextItem.kc_id]
       );
-      const rawKcData = JSON.parse(kc?.data_json ?? "{}");
+      if (!kc) {
+        return new Response(
+          JSON.stringify({ error: "kc_not_found", kc_id: nextItem.kc_id }),
+          { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+      }
+      const rawKcData = JSON.parse(kc.data_json ?? "{}");
       const effectiveScaffold = Math.max(
         nextItem.scaffold_level,
         newExecState.scaffold_level

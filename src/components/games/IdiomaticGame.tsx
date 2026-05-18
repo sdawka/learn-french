@@ -8,7 +8,7 @@
  *   3 = 2-way MC + full definition shown
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface KCData {
   word: string;
@@ -43,15 +43,11 @@ export default function IdiomaticGame({
 
   const optionCount = scaffold_level === 0 ? 4 : 2;
 
-  // Build MC options list, always ensuring correct answer (kc_data.word) is present
-  const buildOptions = (): string[] => {
+  // Build MC options - refresh when question changes
+  const options = useMemo(() => {
     const correct = kc_data.word;
     let opts: string[] = kc_data.mc_options ? [...kc_data.mc_options] : [];
-
-    // Trim to desired count
     opts = opts.slice(0, optionCount);
-
-    // Ensure correct answer is present
     if (!opts.includes(correct)) {
       if (opts.length < optionCount) {
         opts.push(correct);
@@ -59,12 +55,8 @@ export default function IdiomaticGame({
         opts[opts.length - 1] = correct;
       }
     }
-
-    // Shuffle
     return [...opts].sort(() => Math.random() - 0.5);
-  };
-
-  const [options] = useState<string[]>(() => buildOptions());
+  }, [kc_data.word, kc_data.mc_options, optionCount]);
 
   // If no mc_options at all, show a minimal 2-option fallback
   const visibleOptions = kc_data.mc_options

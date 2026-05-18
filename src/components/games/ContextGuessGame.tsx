@@ -8,7 +8,7 @@
  *   3 = short passage + 2-way MC + definition hint
  */
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 interface KCData {
   word: string;
@@ -71,8 +71,8 @@ export default function ContextGuessGame({
 
   const displayPassage = passage ? maskWord(passage, kc_data.word) : null;
 
-  // Build MC options ensuring correct answer is present
-  const buildOptions = (): string[] => {
+  // Build MC options - refresh when question changes
+  const options = useMemo(() => {
     const correct = kc_data.word;
     let opts: string[] = kc_data.mc_options ? [...kc_data.mc_options] : [];
     opts = opts.slice(0, optionCount);
@@ -84,9 +84,7 @@ export default function ContextGuessGame({
       }
     }
     return [...opts].sort(() => Math.random() - 0.5);
-  };
-
-  const [options] = useState<string[]>(() => buildOptions());
+  }, [kc_data.word, kc_data.mc_options, optionCount]);
 
   const handleSubmit = () => {
     if (typed.trim()) on_submit(typed.trim());
