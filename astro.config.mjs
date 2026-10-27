@@ -8,5 +8,7 @@ export default defineConfig({
     imageService: "passthrough",
   }),
   session: false,
+  // Keep pre-v7 whitespace handling
+  compressHTML: true,
   integrations: [react()],
 });
