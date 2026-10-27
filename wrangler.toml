@@ -1,7 +1,6 @@
 name = "french"
 compatibility_date = "2024-01-01"
-main = "dist/_worker.js"
-assets = { directory = "dist", binding = "ASSETS" }
+main = "@astrojs/cloudflare/entrypoints/server"
 
 [observability]
 enabled = true

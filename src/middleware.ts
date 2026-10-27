@@ -1,11 +1,11 @@
 import { defineMiddleware } from "astro:middleware";
+import { env } from "cloudflare:workers";
 import { setD1 } from "~/lib/db/index.ts";
 
-export const onRequest = defineMiddleware(async (context, next) => {
-  // Inject D1 binding from Cloudflare runtime (works in both dev and prod with platformProxy)
-  const runtime = (context.locals as any).runtime;
-  if (runtime?.env?.DB) {
-    setD1(runtime.env.DB);
+export const onRequest = defineMiddleware(async (_context, next) => {
+  // Inject D1 binding from the Cloudflare runtime (workerd in both dev and prod)
+  if (env.DB) {
+    setD1(env.DB);
   }
   return next();
 });
